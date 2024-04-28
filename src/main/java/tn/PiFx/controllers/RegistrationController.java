@@ -20,6 +20,7 @@ import tn.PiFx.entities.User;
 import tn.PiFx.services.ServiceUtilisateurs;
 
 
+
 public class RegistrationController {
 
     @FXML
@@ -103,6 +104,7 @@ public class RegistrationController {
                 this.verificationCode = generateVerificationCode();
                 System.out.println("Gernerated Code: " + generateVerificationCode());
                 sendVerificationCode(String.valueOf(NUMTEL), this.verificationCode);
+                System.out.println();
                 boolean isCodeVerified = false;
                 while (!isCodeVerified) {
                     TextInputDialog dialog = new TextInputDialog();
