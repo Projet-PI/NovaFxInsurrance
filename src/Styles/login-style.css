@@ -1,0 +1,49 @@
+.root {
+    -fx-background-color: #f4f4f4;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+}
+
+.text-field {
+    -fx-pref-width: 265px;
+    -fx-pref-height: 30px;
+    -fx-font-size: 12px;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
+
+.button {
+    -fx-background-color: #2a9df4;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-pref-width: 265px;
+    -fx-pref-height: 30px;
+    -fx-font-size: 14px;
+}
+
+.button:hover {
+    -fx-background-color: #559edf;
+}
+
+.hyperlink {
+    -fx-text-fill: #2a9df4;
+    -fx-underline: true;
+}
+
+.hyperlink:hover {
+    -fx-text-fill: #207ce5;
+}
+
+#copyrightLabel {
+    -fx-font-size: 10px;
+    -fx-text-fill: #666;
+}
+
+#imageView {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 10);
+}
