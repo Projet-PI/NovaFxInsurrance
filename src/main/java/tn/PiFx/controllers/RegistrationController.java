@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.util.Optional;
 import java.util.Random;
 import javafx.stage.Stage;
+import org.w3c.dom.Text;
 import tn.PiFx.entities.User;
 import tn.PiFx.services.ServiceUtilisateurs;
 
@@ -32,7 +33,7 @@ public class RegistrationController {
     private TextField CinInsTF;
 
     @FXML
-    private TextField ConfirmMdpInscTf;
+    private TextField ProfessionInscTf;
 
     @FXML
     private TextField EmailInscTf;
@@ -89,16 +90,16 @@ public class RegistrationController {
 
     @FXML
     public void ConfirmerInscButton(javafx.event.ActionEvent actionEvent)throws SQLException {
+        try {
 
         int CIN = Integer.parseInt(CinInsTF.getText());
         String NOM = NomInscTf.getText();
         String PRENOM = PrenomInscTf.getText();
         String EMAIL = EmailInscTf.getText();
         String ADRESSE = AdresseInscTf.getText();
+        String PROFESSION = ProfessionInscTf.getText();
         String MDP = MdpInsTf.getText();
-        //String CONFIRMMDP = ConfirmMdpInscTf.getText();
         int NUMTEL = Integer.parseInt(NumTelInscTf.getText());
-        try {
             if (!UserS.isValidEmail(EmailInscTf.getText())) {
                 reginfo.setText("Email est invalide");
             } else if (!(UserS.isValidPhoneNumber(Integer.parseInt(NumTelInscTf.getText())))) {
@@ -124,10 +125,19 @@ public class RegistrationController {
                         String inputCode = result.get();
                         if (inputCode.equals(this.verificationCode)) {
                             isCodeVerified = true;
-                            UserS.Add(new User(0,CIN, NOM, PRENOM, EMAIL, ADRESSE, NUMTEL, MDP, "User"));
-                            System.out.println("user added");
+                            try{
+                                if (MDP == null || MDP.isEmpty()){
+                                    throw new IllegalArgumentException("Mot de Passe cannot be empty");
+                                }
+                                UserS.Add(new User(0,CIN, NOM, PRENOM, EMAIL, ADRESSE, NUMTEL, MDP, PROFESSION,"[\"ROLE_USER\"]"));
+                                System.out.println("user added");
+
+                            }catch (IllegalArgumentException e) {
+                                System.out.println("utilisateur ne peut pas etre ajouté");
+
+                            }
                             try {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
                                 Parent root = loader.load();
                                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                                 Scene scene = new Scene(root);

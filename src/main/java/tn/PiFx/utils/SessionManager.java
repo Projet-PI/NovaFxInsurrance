@@ -20,6 +20,9 @@ public class SessionManager {
 
     }
 
+    public static void getInstace(int id, int cin, String nom, String prenom, String email, String password, int numTel, String profession, String roles) {
+    }
+
     public void setUserId(String userId) {
         this.userId = userId;
     }

@@ -174,8 +174,8 @@ public class AdminUserController implements Initializable  {
     }
     @FXML
     void AjouterButton(ActionEvent event) {
-        try {
 
+        try {
             int CIN = Integer.parseInt(cinTF.getText());
             String NOM = nomTF.getText();
             String PRENOM = prenomTF.getText();

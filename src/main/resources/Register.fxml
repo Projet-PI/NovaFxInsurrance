@@ -32,17 +32,17 @@
             <TextField fx:id="EmailInscTf" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="AdresseInscTf" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="NumTelInscTf" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="MdpInsTf" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="MdpInsTf" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom:" wrappingWidth="32.02473831176758" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom:" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" GridPane.rowIndex="2" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse:" GridPane.rowIndex="3" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Numéro Tel:" GridPane.rowIndex="5" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de Passe:" GridPane.rowIndex="6" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Confirmer Mot de Passe:" GridPane.rowIndex="7" />
-            <TextField fx:id="ConfirmMdpInscTf" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de Passe:" GridPane.rowIndex="7" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CIN:" GridPane.rowIndex="4" />
             <TextField fx:id="CinInsTF" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Profession:" GridPane.rowIndex="6" />
+            <TextField fx:id="ProfessionInscTf" GridPane.columnIndex="1" GridPane.rowIndex="6" />
          </children>
       </GridPane>
       <Button layoutX="548.0" layoutY="432.0" mnemonicParsing="false" onAction="#ConfirmerInscButton" prefHeight="30.0" prefWidth="171.0" text="S'inscrire" />
