@@ -159,8 +159,6 @@ public class CardviewUserController implements Initializable {
             String profession = ProfessionModifTf.getText();
             System.out.println("ID after parse: " + idModifTF.getText());
 
-
-
             if (nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || adresse.isEmpty() || role.isEmpty() || profession.isEmpty()) {
                 showAlert("Validation Error", "Please fill in all the fields.", Alert.AlertType.ERROR);
             }
@@ -180,6 +178,7 @@ public class CardviewUserController implements Initializable {
             showAlert("Validation Error", "Please enter valid numbers for CIN and Telephone.", Alert.AlertType.ERROR);
         }
     }
+
     public void setAdminUserController(AdminUserController controller) {
         this.adminUserController = controller;
     }

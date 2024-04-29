@@ -19,6 +19,8 @@ import javafx.stage.Stage;
 import tn.PiFx.entities.User;
 import tn.PiFx.services.ServiceUtilisateurs;
 
+import java.net.URI;
+import java.math.BigDecimal;
 
 
 public class RegistrationController {
@@ -55,7 +57,7 @@ public class RegistrationController {
 
     // Api SMS Slim
     public static final String ACCOUNT_SID = "AC8e6265824899b900397db47f1bd6c4a1";
-    public static final String AUTH_TOKEN = "6cc028d0bc1f4682935e5d5da5599dad";
+    public static final String AUTH_TOKEN = "7aa599dcfbb6c03c948741052eb7801a";
     public static final String TWILIO_PHONE_NUMBER = "+16812026037";
     public String verificationCode;
 
@@ -63,13 +65,18 @@ public class RegistrationController {
         return String.format("%06d", new Random().nextInt(999999));
     }
     private void sendVerificationCode(String toPhoneNumber, String code) {
-        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-        String fullPhoneNumber = "+216" + toPhoneNumber;
-        Message.creator(
-                new PhoneNumber(fullPhoneNumber),
-                new PhoneNumber(TWILIO_PHONE_NUMBER),
-                "Your verification code is: " + code
-        ).create();
+        try {
+            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+            String fullPhoneNumber = "+216" + toPhoneNumber;
+            Message.creator(
+                    new PhoneNumber(fullPhoneNumber),
+                    new PhoneNumber(TWILIO_PHONE_NUMBER),
+                    "Your verification code is: " + code
+            ).create();
+        } catch (com.twilio.exception.ApiException e) {
+            e.printStackTrace();
+            // Handle Twilio API exceptions here
+        }
     }
 
     //Fin Api//
@@ -104,19 +111,21 @@ public class RegistrationController {
                 this.verificationCode = generateVerificationCode();
                 System.out.println("Gernerated Code: " + generateVerificationCode());
                 sendVerificationCode(String.valueOf(NUMTEL), this.verificationCode);
-                System.out.println();
+                System.out.println("Test to checck");
                 boolean isCodeVerified = false;
                 while (!isCodeVerified) {
                     TextInputDialog dialog = new TextInputDialog();
                     dialog.setTitle("Verification Code");
                     dialog.setHeaderText("Entrez le code de vérification envoyé à votre téléphone:");
                     dialog.setContentText("Code:");
+
                     Optional<String> result = dialog.showAndWait();
                     if (result.isPresent()) {
                         String inputCode = result.get();
                         if (inputCode.equals(this.verificationCode)) {
                             isCodeVerified = true;
                             UserS.Add(new User(0,CIN, NOM, PRENOM, EMAIL, ADRESSE, NUMTEL, MDP, "User"));
+                            System.out.println("user added");
                             try {
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
                                 Parent root = loader.load();
@@ -126,7 +135,11 @@ public class RegistrationController {
                                 stage.setTitle("Nova");
                                 stage.show();
                             } catch (IOException e) {
-                                e.printStackTrace();
+                                e.printStackTrace(); // This will print the full stack trace to the console
+                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setTitle("SQL Exception");
+                                alert.setContentText(e.getMessage());
+                                alert.showAndWait();
                             }
                         } else {
                             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
