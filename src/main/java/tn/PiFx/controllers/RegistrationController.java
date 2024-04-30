@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import org.w3c.dom.Text;
 import tn.PiFx.entities.User;
 import tn.PiFx.services.ServiceUtilisateurs;
+import tn.PiFx.utils.PasswordUtil;
 
 import java.net.URI;
 import java.math.BigDecimal;
@@ -129,7 +130,8 @@ public class RegistrationController {
                                 if (MDP == null || MDP.isEmpty()){
                                     throw new IllegalArgumentException("Mot de Passe cannot be empty");
                                 }
-                                UserS.Add(new User(0,CIN, NOM, PRENOM, EMAIL, ADRESSE, NUMTEL, MDP, PROFESSION,"[\"ROLE_USER\"]"));
+                                String HashedPassword = PasswordUtil.hashPassword(MDP);
+                                UserS.Add(new User(0,CIN, NOM, PRENOM, EMAIL, ADRESSE, NUMTEL, HashedPassword, PROFESSION,"[\"ROLE_USER\"]"));
                                 System.out.println("user added");
 
                             }catch (IllegalArgumentException e) {

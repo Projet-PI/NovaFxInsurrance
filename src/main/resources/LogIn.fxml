@@ -40,6 +40,6 @@
                 <Image url="@../../../Page2.png" />
             </image>
         </ImageView>
-        <Button layoutX="73.0" layoutY="428.0" mnemonicParsing="false" onAction="#connecterUser" prefHeight="30.0" prefWidth="265.0" text="Se Connecter" />
+        <Button layoutX="73.0" layoutY="428.0" mnemonicParsing="true" onAction="#connecterUser" prefHeight="30.0" prefWidth="265.0" text="Se Connecter" />
     </children>
 </AnchorPane>
