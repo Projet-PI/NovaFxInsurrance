@@ -14,7 +14,7 @@ public class GoogleUtil {
     private static final String CLIENT_SECRET = "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";
     private static final String REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob";
 
-    private static GoogleAuthorizationCodeFlow flow;
+    private static GoogleAuthorizationCodeFlow flow ;
 
     public static String getAuthorizationUrl(){
         flow = new GoogleAuthorizationCodeFlow.Builder(
