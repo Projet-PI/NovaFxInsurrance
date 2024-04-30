@@ -45,9 +45,10 @@
             <TextField fx:id="ProfessionInscTf" GridPane.columnIndex="1" GridPane.rowIndex="6" />
          </children>
       </GridPane>
-      <Button layoutX="548.0" layoutY="432.0" mnemonicParsing="false" onAction="#ConfirmerInscButton" prefHeight="30.0" prefWidth="171.0" text="S'inscrire" />
+      <Button layoutX="664.0" layoutY="435.0" mnemonicParsing="false" onAction="#GoogleButton" prefHeight="30.0" prefWidth="171.0" text="Se Connecter avec Google" />
       <Button layoutX="664.0" layoutY="515.0" mnemonicParsing="false" onAction="#SeConnecterButtonInsc" prefHeight="30.0" prefWidth="108.0" text="Se Connecter" />
       <Text layoutX="485.0" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous avez déja un compte?" />
       <Label fx:id="reginfo" layoutX="456.0" layoutY="76.0" prefHeight="18.0" prefWidth="356.0" />
+      <Button layoutX="456.0" layoutY="435.0" mnemonicParsing="false" onAction="#ConfirmerInscButton" prefHeight="30.0" prefWidth="171.0" text="S'inscrire" />
    </children>
 </AnchorPane>

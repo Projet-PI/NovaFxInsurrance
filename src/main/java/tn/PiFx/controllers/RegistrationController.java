@@ -1,5 +1,7 @@
 package tn.PiFx.controllers;
 
+import com.google.api.services.oauth2.Oauth2;
+import com.google.api.services.oauth2.model.Userinfo;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
@@ -19,6 +21,7 @@ import javafx.stage.Stage;
 import org.w3c.dom.Text;
 import tn.PiFx.entities.User;
 import tn.PiFx.services.ServiceUtilisateurs;
+import tn.PiFx.utils.GoogleUtil;
 import tn.PiFx.utils.PasswordUtil;
 
 import java.net.URI;
@@ -41,6 +44,7 @@ public class RegistrationController {
 
     @FXML
     private TextField MdpInsTf;
+
 
     @FXML
     private TextField NomInscTf;
@@ -88,6 +92,7 @@ public class RegistrationController {
     void SeConnecterButtonInsc(ActionEvent event) {
 
     }
+
 
     @FXML
     public void ConfirmerInscButton(javafx.event.ActionEvent actionEvent)throws SQLException {
@@ -172,7 +177,37 @@ public class RegistrationController {
         }
     }
 
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
     public void SeConnecterButtonInsc(javafx.event.ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void GoogleButton(javafx.event.ActionEvent actionEvent) {
+        try{
+            String url = GoogleUtil.getAuthorizationUrl();
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Google Sign-In");
+            dialog.setHeaderText("Please paste the authorization code here:");
+            Optional<String> result = dialog.showAndWait();
+
+            if (result.isPresent()){
+                Userinfo userInfo = GoogleUtil.getUserInfo(result.get());
+                System.out.println("User Info" + userInfo.getName() + ","+ userInfo.getEmail());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Authorization Erro", "Failed to authenticate with google ");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
 
