@@ -90,11 +90,21 @@ public class RegistrationController {
 
 
     @FXML
-    void SeConnecterButtonInsc(ActionEvent event) {
+    public void SeConnecterButtonInsc(javafx.event.ActionEvent  event) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Nova - Connexion");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
-
-
     @FXML
     public void ConfirmerInscButton(javafx.event.ActionEvent actionEvent)throws SQLException {
         try {
@@ -185,8 +195,7 @@ public class RegistrationController {
         alert.showAndWait();
     }
 
-    public void SeConnecterButtonInsc(javafx.event.ActionEvent actionEvent) {
-    }
+
 
     @FXML
     public void GoogleButton(javafx.event.ActionEvent actionEvent) {
