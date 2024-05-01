@@ -16,9 +16,12 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.Random;
 
 import javafx.scene.web.WebEngine;
@@ -28,9 +31,16 @@ import netscape.javascript.JSObject;
 import org.w3c.dom.Text;
 import tn.PiFx.entities.User;
 import tn.PiFx.services.ServiceUtilisateurs;
+import tn.PiFx.utils.DataBase;
 import tn.PiFx.utils.GoogleUtil;
 import tn.PiFx.utils.PasswordUtil;
 
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.net.URI;
 import java.math.BigDecimal;
 
@@ -70,9 +80,9 @@ public class RegistrationController {
     private final ServiceUtilisateurs UserS = new ServiceUtilisateurs();
 
     // Api SMS Slim
-    public static final String ACCOUNT_SID = "AC3c200b7735c11e0cc051107187d83042";
-    public static final String AUTH_TOKEN = "da93732e625227f03fbe38ccce12fa7a";
-    public static final String TWILIO_PHONE_NUMBER = "+15025426456";
+    public static final String ACCOUNT_SID = "AC8e6265824899b900397db47f1bd6c4a1";
+    public static final String AUTH_TOKEN = "c6819259e8bc18e7346a0598d85be896";
+    public static final String TWILIO_PHONE_NUMBER = "+16812026037";
     public String verificationCode;
     public String generateVerificationCode() {
         return String.format("%06d", new Random().nextInt(999999));
@@ -93,6 +103,47 @@ public class RegistrationController {
     }
 
     //Fin Api//
+
+    //Debut api mail//
+
+    private boolean emailExists(String email) throws SQLException{
+        cnx = DataBase.getInstance().getConx();
+        String query = "SELECT * FROM `user` WHERE email=?";
+        PreparedStatement statement = cnx.prepareStatement(query);
+        statement.setString(1,email);
+        ResultSet resultSet = statement.executeQuery();
+        return resultSet.next();
+    }
+
+    private void sendEmailConfirmation(String recipient, String subject, String body){
+        final String senderEmail = "slim.bentanfous@esprit.tn";
+        final String senderPassword = "Salamlam2002!";
+
+        String host = "smtp-mail.outlook.com";
+        Properties properties = new Properties();
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", host);
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.auth","true");
+        properties.put("mail.smtp.stattls.enable","true");
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(senderEmail, senderPassword);
+            }
+        });
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(senderEmail));
+            message.addRecipient(javax.mail.Message.RecipientType.TO, new InternetAddress(recipient));
+            message.setSubject(subject);
+            message.setText(body);
+            Transport.send(message);
+            System.out.println("Confirmation email sent successfully....");
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+    }
+
 
 
 
@@ -164,6 +215,9 @@ public class RegistrationController {
                                 }
                                 String HashedPassword = PasswordUtil.hashPassword(MDP);
                                 UserS.Add(new User(0,CIN, NOM, PRENOM, EMAIL, ADRESSE, NUMTEL, HashedPassword, PROFESSION,"[\"ROLE_USER\"]"));
+                                String subject = "Account confirmed !";
+                                String body = String.format("Bonjour%s,\n\nVotre compte a bien été créé.\n\nCordialement,", PRENOM);
+                                sendEmailConfirmation(EMAIL, subject, body);
                                 System.out.println("user added");
 
                             }catch (IllegalArgumentException e) {

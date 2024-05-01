@@ -51,11 +51,8 @@
       <Text layoutX="96.0" layoutY="529.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous avez déja un compte?" />
       <Label fx:id="reginfo" layoutX="67.0" layoutY="70.0" prefHeight="18.0" prefWidth="356.0" />
       <Button layoutX="540.0" layoutY="163.0" mnemonicParsing="false" onAction="#ConfirmerInscButton" prefHeight="30.0" prefWidth="108.0" text="S'inscrire" />
-      <Button layoutX="301.0" layoutY="417.0" mnemonicParsing="false" onAction="#ValidateCaptcha" text="Valider" />
-      <Label fx:id="CaptchaDisplay" layoutX="74.0" layoutY="371.0" prefHeight="18.0" prefWidth="73.0" text="CAPTCHA" />
-      <TextField fx:id="CaptchaInput" layoutX="246.0" layoutY="367.0" />
-      <Button layoutX="138.0" layoutY="417.0" mnemonicParsing="false" onAction="#handleGenerateCaptcha" text="Génerer" />
-       <Button layoutX="250.0" layoutY="420.0" onAction="#handleRegistration" prefWidth="200.0" text="Validate CAPTCHA and Register" />
+
+
 
    </children>
 </AnchorPane>

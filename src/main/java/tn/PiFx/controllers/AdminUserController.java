@@ -11,10 +11,14 @@
     import javafx.scene.layout.GridPane;
     import javafx.scene.layout.Pane;
 
+    import java.io.File;
     import java.io.FileOutputStream;
     import java.io.IOException;
     import java.net.URL;
     import java.sql.Connection;
+    import javafx.stage.FileChooser;
+    import javafx.stage.Stage;
+
 
 
     import org.apache.poi.ss.usermodel.Cell;
@@ -77,6 +81,9 @@
 
         @FXML
         private Text errorPhone;
+
+        @FXML
+        private Label reginfo;
 
 
         private Connection conx;
@@ -304,18 +311,13 @@
         private void exportUsersToExcel(List<User> users) {
             Workbook workbook = new XSSFWorkbook();
             Sheet sheet = workbook.createSheet("Users");
-
-
             Row headerRow = sheet.createRow(0);
             String[] columnNames = {"ID", "CIN", "Name", "Surname", "Email", "Address", "Phone", "Role", "Profession"};
-
             for (int i = 0; i < columnNames.length; i++) {
                 Cell cell = headerRow.createCell(i);
                 cell.setCellValue(columnNames[i]);
             }
 
-
-            // Fill data
             int rowNum = 1;
             for (User user : users) {
                 Row row = sheet.createRow(rowNum++);
@@ -330,12 +332,10 @@
                 row.createCell(8).setCellValue(user.getProfession());
             }
 
-            // Resize all columns to fit the content size
             for (int i = 0; i < columnNames.length; i++) {
                 sheet.autoSizeColumn(i);
             }
 
-            // Write the output to a file
             try (FileOutputStream fileOut = new FileOutputStream("Users.xlsx")) {
                 workbook.write(fileOut);
             } catch (IOException e) {
@@ -348,7 +348,31 @@
                 }
             }
         }
+
+        private void saveExcelFile(Workbook workbook) {
+            FileChooser fileChooser = new FileChooser();
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx)", "*.xlsx");
+            fileChooser.getExtensionFilters().add(extFilter);
+            fileChooser.setInitialFileName("UsersData.xlsx");
+
+            // Show save file dialog
+            Stage stage = (Stage) reginfo.getScene().getWindow(); // Assuming 'reginfo' is a node on your current stage
+            File file = fileChooser.showSaveDialog(stage);
+
+            if (file != null) {
+                try (FileOutputStream outputStream = new FileOutputStream(file)) {
+                    workbook.write(outputStream);
+                    workbook.close();
+                    showAlert("Success", "File saved successfully at " + file.getAbsolutePath(), Alert.AlertType.INFORMATION);
+                } catch (IOException e) {
+                    showAlert("Error", "Failed to save file: " + e.getMessage(), Alert.AlertType.ERROR);
+                }
+            } else {
+                showAlert("Cancelled", "File save cancelled.", Alert.AlertType.INFORMATION);
+            }
         }
+
+    }
 
 
 
