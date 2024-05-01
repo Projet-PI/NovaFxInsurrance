@@ -5,19 +5,26 @@ import com.google.api.services.oauth2.model.Userinfo;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import java.awt.event.ActionEvent;
+
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.util.Optional;
 import java.util.Random;
+
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import netscape.javascript.JSObject;
 import org.w3c.dom.Text;
 import tn.PiFx.entities.User;
 import tn.PiFx.services.ServiceUtilisateurs;
@@ -45,7 +52,6 @@ public class RegistrationController {
     @FXML
     private TextField MdpInsTf;
 
-
     @FXML
     private TextField NomInscTf;
 
@@ -58,15 +64,16 @@ public class RegistrationController {
     @FXML
     private Label reginfo;
 
+
+
     private Connection cnx;
     private final ServiceUtilisateurs UserS = new ServiceUtilisateurs();
 
     // Api SMS Slim
-    public static final String ACCOUNT_SID = "AC8e6265824899b900397db47f1bd6c4a1";
-    public static final String AUTH_TOKEN = "7aa599dcfbb6c03c948741052eb7801a";
-    public static final String TWILIO_PHONE_NUMBER = "+16812026037";
+    public static final String ACCOUNT_SID = "AC3c200b7735c11e0cc051107187d83042";
+    public static final String AUTH_TOKEN = "da93732e625227f03fbe38ccce12fa7a";
+    public static final String TWILIO_PHONE_NUMBER = "+15025426456";
     public String verificationCode;
-
     public String generateVerificationCode() {
         return String.format("%06d", new Random().nextInt(999999));
     }
@@ -85,8 +92,15 @@ public class RegistrationController {
         }
     }
 
-
     //Fin Api//
+
+
+
+
+
+
+
+
 
 
     @FXML
@@ -103,10 +117,12 @@ public class RegistrationController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
+
+
     @FXML
     public void ConfirmerInscButton(javafx.event.ActionEvent actionEvent)throws SQLException {
+        
         try {
 
         int CIN = Integer.parseInt(CinInsTF.getText());
@@ -243,6 +259,7 @@ public class RegistrationController {
         Optional<String> result = dialog.showAndWait();
         return result.orElse("");
     }
+
 
 }
 
