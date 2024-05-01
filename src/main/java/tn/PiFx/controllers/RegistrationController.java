@@ -80,10 +80,11 @@ public class RegistrationController {
                     "Your verification code is: " + code
             ).create();
         } catch (com.twilio.exception.ApiException e) {
+            System.err.println("Error sending SMS: " + e.getMessage());
             e.printStackTrace();
-            // Handle Twilio API exceptions here
         }
     }
+
 
     //Fin Api//
 
@@ -189,26 +190,51 @@ public class RegistrationController {
 
     @FXML
     public void GoogleButton(javafx.event.ActionEvent actionEvent) {
-        try{
+        try {
             String url = GoogleUtil.getAuthorizationUrl();
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
-            TextInputDialog dialog = new TextInputDialog();
-            dialog.setTitle("Google Sign-In");
-            dialog.setHeaderText("Please paste the authorization code here:");
-            Optional<String> result = dialog.showAndWait();
+            TextInputDialog authCodeDialog = new TextInputDialog();
+            authCodeDialog.setTitle("Google Sign-In");
+            authCodeDialog.setHeaderText("Please paste the authorization code here:");
+            Optional<String> authCodeResult = authCodeDialog.showAndWait();
 
-            if (result.isPresent()){
-                Userinfo userInfo = GoogleUtil.getUserInfo(result.get());
-                System.out.println("User Info" + userInfo.getName() + ","+ userInfo.getEmail());
+            if (authCodeResult.isPresent()) {
+                Userinfo userInfo = GoogleUtil.getUserInfo(authCodeResult.get());
+
+                // Collect additional information using dialogs
+                String cin = showInputDialog("Enter CIN", "Please enter your CIN:");
+                int phone = Integer.parseInt(showInputDialog("Enter Phone Number", "Please enter your phone number:"));
+                String address = showInputDialog("Enter Address", "Please enter your address:");
+                String profession = showInputDialog("Enter Profession", "Please enter your profession:");
+                String password = showInputDialog("Set Password", "Please set your password:");
+
+                // Use the Twilio API to send a verification code to the phone number
+                sendVerificationCode(String.valueOf(phone), generateVerificationCode());
+
+
+
+                // Assuming user verification is done, hash the password
+                String hashedPassword = PasswordUtil.hashPassword(password);
+                User newUser = new User(0, Integer.parseInt(cin), userInfo.getName(), "", userInfo.getEmail(), address, phone, hashedPassword, profession, "[\"ROLE_USER\"]");
+                UserS.Add(newUser);
+                System.out.println("User added to the database with email: " + userInfo.getEmail());
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert("Authorization Erro", "Failed to authenticate with google ");
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            showAlert("Error", "Failed to authenticate with Google or process data");
         }
-
     }
+
+
+    private String showInputDialog(String title, String content) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle(title);
+        dialog.setHeaderText(content);
+        dialog.setContentText("Value:");
+        Optional<String> result = dialog.showAndWait();
+        return result.orElse("");
+    }
+
 }
 
 
