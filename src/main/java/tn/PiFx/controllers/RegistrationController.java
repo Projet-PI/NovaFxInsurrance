@@ -145,15 +145,6 @@ public class RegistrationController {
     }
 
 
-
-
-
-
-
-
-
-
-
     @FXML
     public void SeConnecterButtonInsc(javafx.event.ActionEvent  event) {
 

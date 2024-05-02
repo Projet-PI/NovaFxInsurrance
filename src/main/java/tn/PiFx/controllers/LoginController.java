@@ -1,6 +1,7 @@
 package tn.PiFx.controllers;
 
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
@@ -10,18 +11,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import tn.PiFx.entities.User;
+import tn.PiFx.services.ServiceUtilisateurs;
 import tn.PiFx.utils.DataBase;
 import tn.PiFx.utils.SessionManager;
 
@@ -152,6 +154,27 @@ public class LoginController implements Initializable {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    @FXML
+    public void ResetPassword(ActionEvent actionEvent) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Password Reset");
+        dialog.setHeaderText("Enter your email to reset your password:");
+        dialog.setContentText("Email:");
+
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(email -> {
+            try {
+                ServiceUtilisateurs userService = new ServiceUtilisateurs();
+                userService.requestPasswordReset(email);
+                showAlert("Reset Email Sent", "If the email you entered is registered, we've sent a reset link to it.", Alert.AlertType.INFORMATION);
+            } catch (Exception e) {
+                showAlert("Error", "Failed to send reset email: " + e.getMessage(), Alert.AlertType.ERROR);
+                e.printStackTrace();
+            }
+        });
+
     }
 }
 

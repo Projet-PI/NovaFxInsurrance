@@ -28,7 +28,7 @@
                 <Font size="10.0" />
             </font>
         </Label>
-        <Hyperlink layoutX="212.0" layoutY="382.0" text="Mot de Passe Oublié?" />
+        <Hyperlink layoutX="212.0" layoutY="382.0" onAction="#ResetPassword" text="Mot de Passe Oublié?" />
         <Hyperlink layoutX="70.0" layoutY="382.0" onAction="#creerCompteLog" text="Créer un compte" />
         <Label layoutX="87.0" layoutY="478.0" text="Copyright © 2024 tous droits reservés">
             <font>

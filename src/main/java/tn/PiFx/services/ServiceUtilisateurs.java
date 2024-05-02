@@ -5,7 +5,11 @@ import tn.PiFx.entities.User;
 import tn.PiFx.utils.DataBase;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.util.*;
+import java.util.UUID;
+
 public class ServiceUtilisateurs implements IUtilisateur<User> {
     private Connection conx;
     public ServiceUtilisateurs(){conx = DataBase.getInstance().getConx();}
@@ -191,4 +195,54 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
     }
 
 
+    public void requestPasswordReset(String email) throws SQLException, MessagingException {
+        String sql = "SELECT id FROM user WHERE email = ?";
+        try (PreparedStatement stmt = conx.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String token = UUID.randomUUID().toString();
+                long expirationTime = System.currentTimeMillis() + (1000 * 60 * 60); // Token expires in 1 hour
+
+                sql = "UPDATE user SET reset_token = ?, reset_token_expiration = ? WHERE email = ?";
+                try (PreparedStatement updateStmt = conx.prepareStatement(sql)) {
+                    updateStmt.setString(1, token);
+                    updateStmt.setLong(2, expirationTime);
+                    updateStmt.setString(3, email);
+                    updateStmt.executeUpdate();
+
+                    sendResetEmail(email, token); // Send email with the token
+                }
+            } else {
+                throw new SQLException("Email not found.");
+            }
+        }
+
+    }
+
+    private void sendResetEmail(String recipientEmail, String token) throws MessagingException {
+        final String senderEmail = "your-email@example.com"; // Modify to your sender email
+        final String senderPassword = "your-password"; // Modify to your email password
+
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.example.com"); // Specify the SMTP host
+        props.put("mail.smtp.port", "587"); // TLS Port
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true"); // Enable STARTTLS
+
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(senderEmail, senderPassword);
+            }
+        });
+
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(senderEmail));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
+        message.setSubject("Reset Your Password");
+        message.setText("To reset your password, use the following token:\n" + token + "\nToken is valid for 1 hour.");
+
+        Transport.send(message);
+        System.out.println("Reset email sent successfully to " + recipientEmail);
+    }
 }
