@@ -161,11 +161,10 @@ public class LoginController implements Initializable {
     @FXML
     public void ResetPassword(ActionEvent actionEvent) {
 
-
         TextInputDialog emailDialog = new TextInputDialog();
-        emailDialog.setTitle("Password Reset");
-        emailDialog.setHeaderText("Password Reset Request");
-        emailDialog.setContentText("Please enter your email address:");
+        emailDialog.setTitle("Réinitialisation Mot de Passe");
+        emailDialog.setHeaderText("Demande de réinitialisation");
+        emailDialog.setContentText("Veuillez entrer votre Email:");
 
         Optional<String> emailResult = emailDialog.showAndWait();
         emailResult.ifPresent(email -> {
@@ -184,8 +183,8 @@ public class LoginController implements Initializable {
 
     private void showTokenEntryDialog(String email) {
         TextInputDialog tokenDialog = new TextInputDialog();
-        tokenDialog.setTitle("Password Reset");
-        tokenDialog.setHeaderText("Enter the reset token sent to your email:");
+        tokenDialog.setTitle("Réinitialisation Mot de Passe");
+        tokenDialog.setHeaderText("Veuillez entrer le Token:");
         tokenDialog.setContentText("Token:");
 
         Optional<String> tokenResult = tokenDialog.showAndWait();
@@ -210,12 +209,9 @@ public class LoginController implements Initializable {
                 Timestamp expiration = rs.getTimestamp("reset_token_expiration");
                 long currentTime = System.currentTimeMillis();
                 long tokenExpiration = expiration != null ? expiration.getTime() : 0;
-
                 if (token != null && token.equals(tokenInput) && currentTime < tokenExpiration) {
-                    // Token is valid
                     Platform.runLater(() -> showPasswordResetDialog(email));
                 } else {
-                    // Token is invalid or expired
                     Platform.runLater(() -> showAlert("Reset Error", "The reset token is invalid or has expired.", Alert.AlertType.ERROR));
                 }
             } else {
@@ -229,9 +225,9 @@ public class LoginController implements Initializable {
 
     private void showPasswordResetDialog(String email) {
         TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Reset Password");
-        dialog.setHeaderText("Enter new password for " + email);
-        dialog.setContentText("New Password:");
+        dialog.setTitle("Réinitialisation Mot de Passe");
+        dialog.setHeaderText("Entrer votre nouveau Mot de Passe" + email);
+        dialog.setContentText("Nouveau Mot de Passe:");
 
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(newPassword -> resetUserPassword(email, newPassword));

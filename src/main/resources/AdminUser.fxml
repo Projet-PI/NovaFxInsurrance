@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AdminUserController">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AdminUserController" stylesheets="@style.css">
    <children>
       <TabPane layoutX="170.0" layoutY="104.0" prefHeight="664.0" prefWidth="1145.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
