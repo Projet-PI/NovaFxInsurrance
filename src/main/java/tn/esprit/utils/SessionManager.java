@@ -1,4 +1,4 @@
-package tn.PiFx.utils;
+package tn.esprit.utils;
 
 public class SessionManager {
     private static SessionManager instance;

@@ -1,8 +1,8 @@
-package tn.PiFx.services;
+package tn.esprit.services;
 
-import tn.PiFx.Interfaces.IUtilisateur;
-import tn.PiFx.entities.User;
-import tn.PiFx.utils.DataBase;
+import tn.esprit.Interfaces.IUtilisateur;
+import tn.esprit.entities.User;
+import tn.esprit.utils.DataBase;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.mail.*;
@@ -202,12 +202,14 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 String token = UUID.randomUUID().toString();
-                long expirationTime = System.currentTimeMillis() + (1000 * 60 * 60); // Token expires in 1 hour
+                long currentTimeMillis = System.currentTimeMillis();
+                long expirationTimeMillis = currentTimeMillis + (1000 * 60 * 60); // 1 hour from now
+                Timestamp expirationTime = new Timestamp(expirationTimeMillis);
 
                 sql = "UPDATE user SET reset_token = ?, reset_token_expiration = ? WHERE email = ?";
                 try (PreparedStatement updateStmt = conx.prepareStatement(sql)) {
                     updateStmt.setString(1, token);
-                    updateStmt.setLong(2, expirationTime);
+                    updateStmt.setTimestamp(2, expirationTime); // Use setTimestamp for DATETIME or TIMESTAMP fields
                     updateStmt.setString(3, email);
                     updateStmt.executeUpdate();
 
@@ -221,16 +223,19 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
     }
 
     private void sendResetEmail(String recipientEmail, String token) throws MessagingException {
-        final String senderEmail = "your-email@example.com"; // Modify to your sender email
-        final String senderPassword = "your-password"; // Modify to your email password
 
-        Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.example.com"); // Specify the SMTP host
-        props.put("mail.smtp.port", "587"); // TLS Port
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true"); // Enable STARTTLS
+        final String senderEmail = "slim.bentanfous@esprit.tn";
+        final String senderPassword = "Salamlam2002!";
 
-        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+        String host = "smtp-mail.outlook.com";
+        Properties properties = new Properties();
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", host);
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.auth","true");
+        properties.put("mail.smtp.stattls.enable","true");
+
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(senderEmail, senderPassword);
             }
@@ -239,10 +244,9 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(senderEmail));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
-        message.setSubject("Reset Your Password");
-        message.setText("To reset your password, use the following token:\n" + token + "\nToken is valid for 1 hour.");
-
+        message.setSubject("Réinitialisation du Mot de Passe");
+        message.setText("Pour réinitialiser votre Mot de Passe, utiliser ce Token:\n" + token + "\nLe Token est valide que pour 1 heure.");
         Transport.send(message);
-        System.out.println("Reset email sent successfully to " + recipientEmail);
+        System.out.println("TEEEEEEEEEEST Envoi Email " + recipientEmail);
     }
 }

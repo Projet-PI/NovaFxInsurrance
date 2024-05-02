@@ -1,6 +1,5 @@
-    package tn.PiFx.controllers;
+    package tn.esprit.controllers;
     //--Imports--//
-    import javafx.collections.FXCollections;
     import javafx.event.ActionEvent;
     import javafx.fxml.FXML;
     import javafx.scene.control.ComboBox;
@@ -24,9 +23,9 @@
     import org.apache.poi.ss.usermodel.Cell;
     import org.apache.poi.xssf.usermodel.XSSFWorkbook;
     import org.w3c.dom.Text;
-    import tn.PiFx.services.ServiceUtilisateurs;
-    import tn.PiFx.entities.User;
-    import tn.PiFx.utils.DataBase;
+    import tn.esprit.services.ServiceUtilisateurs;
+    import tn.esprit.entities.User;
+    import tn.esprit.utils.DataBase;
     import javax.mail.*;
     import javax.mail.internet.InternetAddress;
     import javax.mail.internet.MimeMessage;
@@ -36,7 +35,7 @@
     import java.util.List;
     import java.util.Properties;
     import java.util.ResourceBundle;
-    import org.apache.poi.ss.usermodel.*;
+
     import org.apache.poi.ss.usermodel.Row;
     import org.apache.poi.ss.usermodel.Sheet;
     import org.apache.poi.ss.usermodel.Workbook;

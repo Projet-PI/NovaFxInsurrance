@@ -1,4 +1,4 @@
-package tn.PiFx.entities;
+package tn.esprit.entities;
 
 public class User {
     int cin,num_tel,id;

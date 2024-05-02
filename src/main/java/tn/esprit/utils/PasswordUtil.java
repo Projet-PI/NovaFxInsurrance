@@ -1,4 +1,4 @@
-package tn.PiFx.utils;
+package tn.esprit.utils;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class PasswordUtil {

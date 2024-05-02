@@ -1,31 +1,33 @@
-package tn.PiFx.controllers;
+package tn.esprit.controllers;
 
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Connection;
+import java.sql.*;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
-import tn.PiFx.entities.User;
-import tn.PiFx.services.ServiceUtilisateurs;
-import tn.PiFx.utils.DataBase;
-import tn.PiFx.utils.SessionManager;
+import tn.esprit.entities.User;
+import tn.esprit.services.ServiceUtilisateurs;
+import tn.esprit.utils.DataBase;
+import tn.esprit.utils.SessionManager;
+
+import javax.mail.MessagingException;
 
 public class LoginController implements Initializable {
     private Connection conx;
@@ -158,24 +160,100 @@ public class LoginController implements Initializable {
 
     @FXML
     public void ResetPassword(ActionEvent actionEvent) {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Password Reset");
-        dialog.setHeaderText("Enter your email to reset your password:");
-        dialog.setContentText("Email:");
 
-        Optional<String> result = dialog.showAndWait();
-        result.ifPresent(email -> {
+
+        TextInputDialog emailDialog = new TextInputDialog();
+        emailDialog.setTitle("Password Reset");
+        emailDialog.setHeaderText("Password Reset Request");
+        emailDialog.setContentText("Please enter your email address:");
+
+        Optional<String> emailResult = emailDialog.showAndWait();
+        emailResult.ifPresent(email -> {
             try {
-                ServiceUtilisateurs userService = new ServiceUtilisateurs();
-                userService.requestPasswordReset(email);
-                showAlert("Reset Email Sent", "If the email you entered is registered, we've sent a reset link to it.", Alert.AlertType.INFORMATION);
-            } catch (Exception e) {
-                showAlert("Error", "Failed to send reset email: " + e.getMessage(), Alert.AlertType.ERROR);
-                e.printStackTrace();
+                ServiceUtilisateurs service = new ServiceUtilisateurs();
+                service.requestPasswordReset(email);
+                showTokenEntryDialog(email);
+            } catch (SQLException | MessagingException ex) {
+                showAlert("Error", "Failed to send reset token: " + ex.getMessage(), Alert.AlertType.ERROR);
             }
         });
 
     }
+
+
+
+    private void showTokenEntryDialog(String email) {
+        TextInputDialog tokenDialog = new TextInputDialog();
+        tokenDialog.setTitle("Password Reset");
+        tokenDialog.setHeaderText("Enter the reset token sent to your email:");
+        tokenDialog.setContentText("Token:");
+
+        Optional<String> tokenResult = tokenDialog.showAndWait();
+        tokenResult.ifPresent(token -> verifyToken(email, token));
+    }
+
+    public void verifyToken(String email, String tokenInput) {
+        if (conx == null) {
+            conx = DataBase.getInstance().getConx();
+            if (conx == null) {
+                showAlert("Database Error", "Unable to establish a connection to the database.", Alert.AlertType.ERROR);
+                return;
+            }
+        }
+
+        String sql = "SELECT reset_token, reset_token_expiration FROM user WHERE email = ?";
+        try (PreparedStatement stmt = conx.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String token = rs.getString("reset_token");
+                Timestamp expiration = rs.getTimestamp("reset_token_expiration");
+                long currentTime = System.currentTimeMillis();
+                long tokenExpiration = expiration != null ? expiration.getTime() : 0;
+
+                if (token != null && token.equals(tokenInput) && currentTime < tokenExpiration) {
+                    // Token is valid
+                    Platform.runLater(() -> showPasswordResetDialog(email));
+                } else {
+                    // Token is invalid or expired
+                    Platform.runLater(() -> showAlert("Reset Error", "The reset token is invalid or has expired.", Alert.AlertType.ERROR));
+                }
+            } else {
+                Platform.runLater(() -> showAlert("Error", "Email not found.", Alert.AlertType.ERROR));
+            }
+        } catch (SQLException e) {
+            Platform.runLater(() -> showAlert("Database Error", "Error checking token: " + e.getMessage(), Alert.AlertType.ERROR));
+        }
+    }
+
+
+    private void showPasswordResetDialog(String email) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Reset Password");
+        dialog.setHeaderText("Enter new password for " + email);
+        dialog.setContentText("New Password:");
+
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(newPassword -> resetUserPassword(email, newPassword));
+    }
+
+    private void resetUserPassword(String email, String newPassword) {
+        String sql = "UPDATE user SET password = ?, reset_token = NULL, reset_token_expiration = NULL WHERE email = ?";
+        try (PreparedStatement stmt = conx.prepareStatement(sql)) {
+            stmt.setString(1, newPassword);
+            stmt.setString(2, email);
+            int updated = stmt.executeUpdate();
+            if (updated > 0) {
+                Platform.runLater(() -> showAlert("Success", "Password has been reset successfully.", Alert.AlertType.INFORMATION));
+            } else {
+                Platform.runLater(() -> showAlert("Error", "Failed to reset password.", Alert.AlertType.ERROR));
+            }
+        } catch (SQLException e) {
+            Platform.runLater(() -> showAlert("Database Error", "Error updating password: " + e.getMessage(), Alert.AlertType.ERROR));
+        }
+    }
+
+
 }
 
 

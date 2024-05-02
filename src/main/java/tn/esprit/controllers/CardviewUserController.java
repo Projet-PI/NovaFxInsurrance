@@ -1,28 +1,21 @@
-package tn.PiFx.controllers;
+package tn.esprit.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
-import tn.PiFx.entities.User;
-import tn.PiFx.services.ServiceUtilisateurs;
+import tn.esprit.entities.User;
+import tn.esprit.services.ServiceUtilisateurs;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;

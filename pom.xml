@@ -110,14 +110,8 @@
             <artifactId>poi-ooxml</artifactId>
             <version>5.2.3</version>
         </dependency>
-
-
-
-
-
-
-
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -126,7 +120,7 @@
                 <version>0.0.8</version>
 
                 <configuration>
-                    <mainClass>tn.PiFx.MainFx</mainClass>
+                    <mainClass>tn.esprit.MainFx</mainClass>
                 </configuration>
             </plugin>
         </plugins>

@@ -1,12 +1,9 @@
-package tn.PiFx.controllers;
+package tn.esprit.controllers;
 
-import com.google.api.services.oauth2.Oauth2;
 import com.google.api.services.oauth2.model.Userinfo;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -15,7 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,16 +20,12 @@ import java.util.Optional;
 import java.util.Properties;
 import java.util.Random;
 
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import netscape.javascript.JSObject;
-import org.w3c.dom.Text;
-import tn.PiFx.entities.User;
-import tn.PiFx.services.ServiceUtilisateurs;
-import tn.PiFx.utils.DataBase;
-import tn.PiFx.utils.GoogleUtil;
-import tn.PiFx.utils.PasswordUtil;
+import tn.esprit.entities.User;
+import tn.esprit.services.ServiceUtilisateurs;
+import tn.esprit.utils.DataBase;
+import tn.esprit.utils.GoogleUtil;
+import tn.esprit.utils.PasswordUtil;
 
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -41,8 +33,6 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.net.URI;
-import java.math.BigDecimal;
 
 
 public class RegistrationController {
