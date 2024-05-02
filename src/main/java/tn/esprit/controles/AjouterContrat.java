@@ -1,0 +1,130 @@
+package tn.esprit.controles;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import tn.esprit.Service.Contrat_s;
+import tn.esprit.entity.Contrat;
+import utils.DataBase;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Optional;
+import java.util.Random;
+
+public class AjouterContrat {
+
+    @FXML
+    private TextField dureetf;
+
+    @FXML
+    private DatePicker datesouscriptointf;
+
+    @FXML
+    private ComboBox<String> combo;
+
+    @FXML
+    private TextField PhoneNumber;
+    private Contrat_s contratService;
+    private Connection conn;
+
+    public AjouterContrat() {
+        contratService = new Contrat_s();
+        conn = DataBase.getInstance().getConn();
+    }
+
+    @FXML
+    void initialize() {
+        combo.getItems().addAll("gold", "silver", "bronze");
+    }
+
+    @FXML
+    void ajouter(ActionEvent event) {
+        String duree = dureetf.getText();
+        String dateSouscription = datesouscriptointf.getEditor().getText();
+        String selectedType = combo.getValue();
+
+        if (duree.isEmpty() || dateSouscription.isEmpty() || selectedType == null) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Veuillez remplir tous les champs.");
+            return;
+        }
+
+        Contrat contrat = new Contrat();
+        contrat.setDuree(Integer.parseInt(duree));
+        contrat.setDate_de_souscription(dateSouscription);
+        contrat.setType_couverture(selectedType);
+
+        try {
+            // Assuming PhoneNumber is a TextField defined in your FXML file and properly initialized
+            String numTel = PhoneNumber.getText(); // Get the phone number from the TextField
+            contratService.add(contrat, conn); // Pass the connection object to the service method
+            this.verificationCode = generateVerificationCode();
+            System.out.println("Generated Code: " + generateVerificationCode());
+
+            // Send the verification code to the phone number obtained from the TextField
+            sendVerificationCode(numTel, this.verificationCode);
+            System.out.println("test to check");
+
+            boolean isCodeVerified = false;
+            while (!isCodeVerified){
+                TextInputDialog dialog = new TextInputDialog();
+                dialog.setTitle("verification code");
+                dialog.setHeaderText("entrez le code de verification");
+                dialog.setContentText("code");
+                Optional<String> result = dialog.showAndWait();
+                if (result.isPresent()){
+                    String inputCode = result.get();
+                    if (inputCode.equals(this.verificationCode)){
+                        isCodeVerified = true;
+                    }
+                }
+            }
+            showAlert(Alert.AlertType.INFORMATION, "Succès", "Le contrat a été ajouté avec succès.");
+            clearFields();
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Une erreur s'est produite lors de l'ajout du contrat : " + e.getMessage());
+        }
+    }
+
+
+    public static final String ACCOUNT_SID = "AC477088c8b47d4d92f90263039a4f4bbd";
+    public static final String AUTH_TOKEN = "c9f55d9ea5bffb59ee89b1d3430403df";
+    public static final String TWILIO_PHONE_NUMBER = "+17575167738";
+    public String verificationCode;
+    public String generateVerificationCode() {
+        return String.format("%06d", new Random().nextInt(999999));
+    }
+    public void sendVerificationCode(String toPhoneNumber, String code) {
+        try {
+            String NumeroTel = PhoneNumber.getText();
+            System.out.println("number retrieved " + NumeroTel);
+
+            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+            String fullPhoneNumber = "+216" + NumeroTel;
+            Message.creator(
+                    new PhoneNumber(fullPhoneNumber),
+                    new PhoneNumber(TWILIO_PHONE_NUMBER),
+                    "Your verification code is: " + code
+            ).create();
+        } catch (com.twilio.exception.ApiException e) {
+            System.err.println("Error sending SMS: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void clearFields() {
+        dureetf.clear();
+        datesouscriptointf.getEditor().clear();
+        combo.getSelectionModel().clearSelection();
+    }
+}
