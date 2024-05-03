@@ -70,9 +70,9 @@ public class RegistrationController {
     private final ServiceUtilisateurs UserS = new ServiceUtilisateurs();
 
     // Api SMS Slim
-    public static final String ACCOUNT_SID = "AC8e6265824899b900397db47f1bd6c4a1";
-    public static final String AUTH_TOKEN = "c6819259e8bc18e7346a0598d85be896";
-    public static final String TWILIO_PHONE_NUMBER = "+16812026037";
+    public static final String ACCOUNT_SID = "AC82bc4c7caa7f6f456f88448e5d6227c0";
+    public static final String AUTH_TOKEN = "098dd902c953033a3e7ca73df761f5fb";
+    public static final String TWILIO_PHONE_NUMBER = "+12697491291";
     public String verificationCode;
     public String generateVerificationCode() {
         return String.format("%06d", new Random().nextInt(999999));
@@ -261,19 +261,14 @@ public class RegistrationController {
             if (authCodeResult.isPresent()) {
                 Userinfo userInfo = GoogleUtil.getUserInfo(authCodeResult.get());
 
-                // Collect additional information using dialogs
                 String cin = showInputDialog("Enter CIN", "Please enter your CIN:");
                 int phone = Integer.parseInt(showInputDialog("Enter Phone Number", "Please enter your phone number:"));
                 String address = showInputDialog("Enter Address", "Please enter your address:");
                 String profession = showInputDialog("Enter Profession", "Please enter your profession:");
                 String password = showInputDialog("Set Password", "Please set your password:");
 
-                // Use the Twilio API to send a verification code to the phone number
                 sendVerificationCode(String.valueOf(phone), generateVerificationCode());
 
-
-
-                // Assuming user verification is done, hash the password
                 String hashedPassword = PasswordUtil.hashPassword(password);
                 User newUser = new User(0, Integer.parseInt(cin), userInfo.getName(), "", userInfo.getEmail(), address, phone, hashedPassword, profession, "[\"ROLE_USER\"]");
                 UserS.Add(newUser);

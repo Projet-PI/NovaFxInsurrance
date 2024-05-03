@@ -97,7 +97,7 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
     @Override
     public boolean Update(User user) {
 
-        System.out.println("Attempting to update user with ID: " + user.getId());  // Debug statement
+        System.out.println("Attempting to update user with ID: " + user.getId());
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -108,7 +108,7 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
             connection = DataBase.getInstance().getConx();
             connection.setAutoCommit(false);
             preparedStatement = connection.prepareStatement(query);
-            System.out.println("User Details: " + user.toString());  // Make sure 'User' class has a proper 'toString' method
+            System.out.println("User Details: " + user.toString());
 
             preparedStatement.setString(1, user.getNom());
             preparedStatement.setString(2, user.getPrenom());
@@ -203,23 +203,22 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
             if (rs.next()) {
                 String token = UUID.randomUUID().toString();
                 long currentTimeMillis = System.currentTimeMillis();
-                long expirationTimeMillis = currentTimeMillis + (1000 * 60 * 60); // 1 hour from now
+                long expirationTimeMillis = currentTimeMillis + (1000 * 60 * 60);
                 Timestamp expirationTime = new Timestamp(expirationTimeMillis);
 
                 sql = "UPDATE user SET reset_token = ?, reset_token_expiration = ? WHERE email = ?";
                 try (PreparedStatement updateStmt = conx.prepareStatement(sql)) {
                     updateStmt.setString(1, token);
-                    updateStmt.setTimestamp(2, expirationTime); // Use setTimestamp for DATETIME or TIMESTAMP fields
+                    updateStmt.setTimestamp(2, expirationTime);
                     updateStmt.setString(3, email);
                     updateStmt.executeUpdate();
 
-                    sendResetEmail(email, token); // Send email with the token
+                    sendResetEmail(email, token);
                 }
             } else {
                 throw new SQLException("Email not found.");
             }
         }
-
     }
 
     private void sendResetEmail(String recipientEmail, String token) throws MessagingException {

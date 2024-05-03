@@ -25,6 +25,7 @@ import javafx.stage.Stage;
 import tn.esprit.entities.User;
 import tn.esprit.services.ServiceUtilisateurs;
 import tn.esprit.utils.DataBase;
+import tn.esprit.utils.PasswordUtil;
 import tn.esprit.utils.SessionManager;
 
 import javax.mail.MessagingException;
@@ -236,8 +237,11 @@ public class LoginController implements Initializable {
     private void resetUserPassword(String email, String newPassword) {
         String sql = "UPDATE user SET password = ?, reset_token = NULL, reset_token_expiration = NULL WHERE email = ?";
         try (PreparedStatement stmt = conx.prepareStatement(sql)) {
-            stmt.setString(1, newPassword);
+            String HashedPassword = PasswordUtil.hashPassword(newPassword);
+
+            stmt.setString(1, HashedPassword);
             stmt.setString(2, email);
+
             int updated = stmt.executeUpdate();
             if (updated > 0) {
                 Platform.runLater(() -> showAlert("Success", "Password has been reset successfully.", Alert.AlertType.INFORMATION));
