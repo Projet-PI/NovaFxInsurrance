@@ -25,6 +25,7 @@ import javafx.stage.Stage;
 import tn.esprit.entities.User;
 import tn.esprit.services.ServiceUtilisateurs;
 import tn.esprit.utils.DataBase;
+import tn.esprit.utils.PasswordUtil;
 import tn.esprit.utils.SessionManager;
 
 import javax.mail.MessagingException;
@@ -76,12 +77,17 @@ public class LoginController implements Initializable {
 
     @FXML
     public void connecterUser(javafx.event.ActionEvent actionEvent) {
+        System.out.println("test1");
         String qry = "SELECT * FROM `user` WHERE `email`=? AND `password`=?";
         conx = DataBase.getInstance().getConx();
         try {
             PreparedStatement stm = conx.prepareStatement(qry);
             stm.setString(1, mailFieldLogin.getText());
             stm.setString(2, tempPasswordField.getText());
+            System.out.println("password field" + tempPasswordField.getText());
+            String HashedPassword = PasswordUtil.hashPassword(String.valueOf(tempPasswordField));
+
+            System.out.println("hashed password" + HashedPassword);
             ResultSet rs = stm.executeQuery();
             User CurUser;
 
@@ -108,6 +114,7 @@ public class LoginController implements Initializable {
                         rs.getString("role"));
                 String role = rs.getString("role");
                 if (role.equals("[\"ROLE_ADMIN\"]")) {
+                    System.out.println("test 2");
                     try {
                         FXMLLoader loadingLoader = new FXMLLoader(getClass().getResource("/loadingscene.fxml"));
                         Parent loadingRoot = loadingLoader.load();

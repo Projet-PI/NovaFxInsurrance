@@ -371,6 +371,19 @@
             }
         }
 
+        @FXML
+        public void LogoutButton(ActionEvent actionEvent) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
+                Pane root = loader.load();
+                Stage stage = (Stage) reginfo.getScene().getWindow();
+                stage.getScene().setRoot(root);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }
     }
 
 
