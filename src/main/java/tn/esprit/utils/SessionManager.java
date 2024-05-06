@@ -1,12 +1,17 @@
 package tn.esprit.utils;
 
+import tn.esprit.entities.User;
+
 public class SessionManager {
     private static SessionManager instance;
     private String userId;
 
     private int userfront ;
+    private User currentUser;
+
 
     private SessionManager() {
+
     }
 
     public static SessionManager getInstance() {
@@ -21,29 +26,30 @@ public class SessionManager {
     }
 
     public static void getInstace(int id, int cin, String nom, String prenom, String email, String password, int numTel, String profession, String roles) {
+
     }
+
+    public static void logoutCurrentUser() {
+
+    }
+
 
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public void setUserFront(int userfront) {
-        this.userfront = userfront;
-    }
-    public int getUserFront() {
-        return userfront;
-    }
 
+    public void setUser(User curUser) {
+        this.currentUser = curUser;
+        // You might want to do additional actions here, such as logging or setting up user-specific settings
+        System.out.println("User set in session: " + curUser.getEmail());
 
-    public String getUserId()
-    {
-        return userId;
     }
-    public void cleanUserSessionAdmin() {
-        userId= " " ;
+    public User getUser() {
+        return this.currentUser;
     }
-    public void cleanUserSessionFront() {
-        userfront= 0;
+    public void clearSession() {
+        currentUser = null;
+        System.out.println("Session cleared.");
     }
-
 }

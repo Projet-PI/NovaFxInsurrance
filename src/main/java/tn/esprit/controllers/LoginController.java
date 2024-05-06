@@ -84,13 +84,8 @@ public class LoginController implements Initializable {
             PreparedStatement stm = conx.prepareStatement(qry);
             stm.setString(1, mailFieldLogin.getText());
             stm.setString(2, tempPasswordField.getText());
-            System.out.println("password field" + tempPasswordField.getText());
-            String HashedPassword = PasswordUtil.hashPassword(String.valueOf(tempPasswordField));
-
-            System.out.println("hashed password" + HashedPassword);
             ResultSet rs = stm.executeQuery();
             User CurUser;
-
             if (rs.next()) {
                 CurUser = new User(rs.getInt("id"),
                         rs.getInt("cin"),
@@ -101,7 +96,6 @@ public class LoginController implements Initializable {
                         rs.getInt("num_tel"),
                         rs.getString("profession"),
                         rs.getString("role"));
-
                 User.setCurrent_User(CurUser);
                 SessionManager.getInstace(rs.getInt("id"),
                         rs.getInt("cin"),
@@ -135,12 +129,10 @@ public class LoginController implements Initializable {
                             Parent root = task.getValue();
                             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                             Scene scene = new Scene(root);
-                            //scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
                             stage.setScene(scene);
                             stage.setTitle("Nova - Dashboard");
                             stage.show();
                         });
-
                         new Thread(task).start();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -164,6 +156,7 @@ public class LoginController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
+
 
     @FXML
     public void ResetPassword(ActionEvent actionEvent) {
@@ -256,6 +249,23 @@ public class LoginController implements Initializable {
             }
         } catch (SQLException e) {
             Platform.runLater(() -> showAlert("Database Error", "Error updating password: " + e.getMessage(), Alert.AlertType.ERROR));
+        }
+    }
+
+    @FXML
+    public void LogoutButton(ActionEvent actionEvent) {
+        User.setCurrent_User(null);
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
+            Parent loginRoot = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(loginRoot);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

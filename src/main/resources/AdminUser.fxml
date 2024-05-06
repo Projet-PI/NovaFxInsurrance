@@ -107,8 +107,6 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Button mnemonicParsing="false" onAction="#TriNom" prefHeight="52.0" prefWidth="76.0" text="Nom" />
-                              <Button mnemonicParsing="false" onAction="#TriEmail" prefHeight="59.0" prefWidth="92.0" text="Email" />
                            </children>
                         </HBox>
                         <Button layoutX="902.0" layoutY="11.0" mnemonicParsing="false" onAction="#ExporterExcel" prefHeight="30.0" prefWidth="172.0" text="Exporter en EXCEL" />

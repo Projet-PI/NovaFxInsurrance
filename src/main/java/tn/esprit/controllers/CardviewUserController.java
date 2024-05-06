@@ -79,7 +79,7 @@ public class CardviewUserController implements Initializable {
     public void setData(User user){
 
         this.currentUser = user;
-        Card.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
+        //Card.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
         Card.setStyle("-fx-border-radius: 5px;-fx-border-color:#808080");
         idModifTF.setText(String.valueOf(user.getId()));
         CinModifTF.setText(String.valueOf(user.getCin()));
@@ -92,21 +92,6 @@ public class CardviewUserController implements Initializable {
         RolesModifCB.setValue(user.getRoles());
         Card.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
     }
-
-
-    /*public void setData(User user) {
-
-        Card.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
-        Card.setStyle("-fx-border-radius: 5px;-fx-border-color:#808080");
-        uid = user.getId();
-        uprenom = user.getPrenom();
-        unom = user.getNom();
-        uemail = user.getEmail();
-        umdp = user.getPassword();
-        urole = user.getRoles();
-        unumtel = user.getNum_tel();
-    }*/
-
 
 
     @FXML

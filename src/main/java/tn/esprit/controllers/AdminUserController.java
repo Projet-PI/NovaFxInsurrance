@@ -7,6 +7,8 @@
     import javafx.fxml.FXMLLoader;
     import javafx.fxml.Initializable;
     import javafx.geometry.Insets;
+    import javafx.scene.Parent;
+    import javafx.scene.Scene;
     import javafx.scene.control.Alert;
     import javafx.scene.control.ComboBox;
     import javafx.scene.control.Label;
@@ -24,6 +26,7 @@
     import tn.esprit.entities.User;
     import tn.esprit.services.ServiceUtilisateurs;
     import tn.esprit.utils.DataBase;
+    import tn.esprit.utils.SessionManager;
 
     import javax.mail.*;
     import javax.mail.internet.InternetAddress;
@@ -321,7 +324,7 @@
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/CardUser.fxml"));
                     Pane userBox = fxmlLoader.load();
-                    cardC = fxmlLoader.getController();
+                    //cardC = fxmlLoader.getController();
                     userContainer.setUserData(user);
                     if (column == 3) {
                         column = 0;
@@ -335,19 +338,7 @@
             }
         }
 
-        @FXML
-        public void LogoutButton(ActionEvent actionEvent) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
-                Pane root = loader.load();
-                Stage stage = (Stage) reginfo.getScene().getWindow();
-                stage.getScene().setRoot(root);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
-
-        }
     }
 
 
