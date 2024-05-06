@@ -135,11 +135,6 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
             return false;
         }
 
-
-
-
-
-
     @Override
     public boolean Delete(User user) {
         String query = "DELETE FROM user WHERE id = ?";
@@ -247,5 +242,31 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
         message.setText("Pour réinitialiser votre Mot de Passe, utiliser ce Token:\n" + token + "\nLe Token est valide que pour 1 heure.");
         Transport.send(message);
         System.out.println("TEEEEEEEEEEST Envoi Email " + recipientEmail);
+    }
+
+    @Override
+    public List<User> RechrecheUser(String recherche) {
+        List<User> users = new ArrayList<>();
+        String sql = "SELECT `id`, `nom`, `prenom`, `adresse`, `email`, `num_tel`, `profession`, `password`, `cin`, `role` FROM `user` WHERE 1WHERE `nom` LIKE '%" + recherche + "%' OR `prenom` LIKE '%" + recherche + "%' OR `email`LIKE '%" + recherche + "%'";
+        try {
+            Statement ste = conx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+            while (rs.next()) {
+                User user = new User();
+                rs.getInt("id");
+                        rs.getInt("cin");
+                        rs.getString("nom");
+                        rs.getString("prenom");
+                        rs.getString("email");
+                        rs.getString("adresse");
+                        rs.getInt("num_tel");
+                        rs.getString("profession");
+                        rs.getString("role");
+                users.add(user);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return users;
     }
 }

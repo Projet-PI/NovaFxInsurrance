@@ -1,5 +1,7 @@
 package tn.esprit.Interfaces;
 
+import tn.esprit.entities.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,4 +18,6 @@ public interface IUtilisateur<T> {
 
     boolean Delete(T t);
     void DeleteByID(int id);
+
+    List<User> RechrecheUser(String recherche);
 }

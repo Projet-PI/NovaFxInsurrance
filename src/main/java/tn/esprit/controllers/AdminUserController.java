@@ -1,48 +1,53 @@
     package tn.esprit.controllers;
     //--Imports--//
+
+    import javafx.collections.FXCollections;
     import javafx.event.ActionEvent;
     import javafx.fxml.FXML;
-    import javafx.scene.control.ComboBox;
     import javafx.fxml.FXMLLoader;
     import javafx.fxml.Initializable;
     import javafx.geometry.Insets;
-    import javafx.scene.control.*;
+    import javafx.scene.control.Alert;
+    import javafx.scene.control.ComboBox;
+    import javafx.scene.control.Label;
+    import javafx.scene.control.TextField;
     import javafx.scene.layout.GridPane;
     import javafx.scene.layout.Pane;
+    import javafx.stage.FileChooser;
+    import javafx.stage.Stage;
+    import org.apache.poi.ss.usermodel.Cell;
+    import org.apache.poi.ss.usermodel.Row;
+    import org.apache.poi.ss.usermodel.Sheet;
+    import org.apache.poi.ss.usermodel.Workbook;
+    import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+    import org.w3c.dom.Text;
+    import tn.esprit.entities.User;
+    import tn.esprit.services.ServiceUtilisateurs;
+    import tn.esprit.utils.DataBase;
 
+    import javax.mail.*;
+    import javax.mail.internet.InternetAddress;
+    import javax.mail.internet.MimeMessage;
+    import java.awt.event.KeyEvent;
     import java.io.File;
     import java.io.FileOutputStream;
     import java.io.IOException;
     import java.net.URL;
     import java.sql.Connection;
-    import javafx.stage.FileChooser;
-    import javafx.stage.Stage;
-
-
-
-    import org.apache.poi.ss.usermodel.Cell;
-    import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-    import org.w3c.dom.Text;
-    import tn.esprit.services.ServiceUtilisateurs;
-    import tn.esprit.entities.User;
-    import tn.esprit.utils.DataBase;
-    import javax.mail.*;
-    import javax.mail.internet.InternetAddress;
-    import javax.mail.internet.MimeMessage;
     import java.sql.PreparedStatement;
     import java.sql.ResultSet;
     import java.sql.SQLException;
+    import java.util.ArrayList;
     import java.util.List;
     import java.util.Properties;
     import java.util.ResourceBundle;
-
-    import org.apache.poi.ss.usermodel.Row;
-    import org.apache.poi.ss.usermodel.Sheet;
-    import org.apache.poi.ss.usermodel.Workbook;
-
+    //import javafx.scene.input.KeyEvent;
     //--Imports End--//
 
     public class AdminUserController implements Initializable  {
+
+        @FXML
+        public TextField SearchBar;
         @FXML
         private ResourceBundle resources;
         @FXML
@@ -71,16 +76,12 @@
         public GridPane userContainer;
         @FXML
         private Text errorNom;
-
         @FXML
         private Text errorAdresse;
-
         @FXML
         private Text errorEmail;
-
         @FXML
         private Text errorPhone;
-
         @FXML
         private Label reginfo;
 
@@ -88,13 +89,14 @@
         private Connection conx;
         private final ServiceUtilisateurs UserS = new ServiceUtilisateurs();
 
+        //Initialize Function
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
+            roleCOMBOBOX.setItems(FXCollections.observableArrayList("[\"ROLE_USER\"]", "[\"ROLE_ADMIN\"]"));
             load();
-
         }
 
-
+        //Load Function
         public void load() {
             int column = 0;
             int row = 1;
@@ -119,52 +121,8 @@
                 e.printStackTrace();
             }
         }
-        @FXML
-        public void TriEmail(ActionEvent actionEvent) {
-            int column = 0;
-            int row = 1;
-            try {
-                for (User user : UserS.TriparEmail()) {
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/CardUser.fxml"));
-                    Pane userBox = fxmlLoader.load();
-                    CardviewUserController cardC = fxmlLoader.getController();
-                    cardC.setData(user);
-                    if (column == 3) {
-                        column = 0;
-                        ++row;
-                    }
-                    userContainer.add(userBox, column++, row);
-                    GridPane.setMargin(userBox, new Insets(10));
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
-        }
-        @FXML
-        void TriNom(ActionEvent actionEvent) {
-            int column = 0;
-            int row = 1;
-            try {
-                for (User user : UserS.TriparNom()) {
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/CardUser.fxml"));
-                    Pane userBox = fxmlLoader.load();
-                    Object cardC = fxmlLoader.getController();
-                   // cardC.setData(user);
-                    if (column == 3) {
-                        column = 0;
-                        ++row;
-                    }
-                    userContainer.add(userBox, column++, row);
-                    GridPane.setMargin(userBox, new Insets(10));
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
+        //PopulateForm Function
         public void populateEditForm(User user) {
             if (user == null) {
                 showAlert("Error", "User data is not available.", Alert.AlertType.ERROR);
@@ -180,6 +138,7 @@
             mdpTF.setText(user.getPassword());
         }
 
+        //Email Functions
         private boolean emailExists(String email) throws SQLException{
             conx = DataBase.getInstance().getConx();
             String query = "SELECT * FROM `user` WHERE email=?";
@@ -188,6 +147,37 @@
             ResultSet resultSet = statement.executeQuery();
             return resultSet.next();
         }
+        private void sendEmailConfirmation(String recipient, String subject, String body){
+            final String senderEmail = "slim.bentanfous@esprit.tn";
+            final String senderPassword = "Salamlam2002!";
+
+            String host = "smtp-mail.outlook.com";
+            Properties properties = new Properties();
+            properties.put("mail.smtp.starttls.enable", "true");
+            properties.put("mail.smtp.host", host);
+            properties.put("mail.smtp.port", "587");
+            properties.put("mail.smtp.auth","true");
+            properties.put("mail.smtp.stattls.enable","true");
+            Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(senderEmail, senderPassword);
+                }
+            });
+            try {
+                MimeMessage message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(senderEmail));
+                message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+                message.setSubject(subject);
+                message.setText(body);
+                Transport.send(message);
+                System.out.println("Confirmation email sent successfully....");
+            } catch (MessagingException mex) {
+                mex.printStackTrace();
+            }
+        }
+        //End Functions Email
+
+        //Add Function
         @FXML
         void AjouterButton(ActionEvent event) {
 
@@ -258,40 +248,7 @@
             }
         }
 
-
-        private void sendEmailConfirmation(String recipient, String subject, String body){
-            final String senderEmail = "slim.bentanfous@esprit.tn";
-            final String senderPassword = "Salamlam2002!";
-
-            String host = "smtp-mail.outlook.com";
-            Properties properties = new Properties();
-            properties.put("mail.smtp.starttls.enable", "true");
-            properties.put("mail.smtp.host", host);
-            properties.put("mail.smtp.port", "587");
-            properties.put("mail.smtp.auth","true");
-            properties.put("mail.smtp.stattls.enable","true");
-            Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
-                protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(senderEmail, senderPassword);
-            }
-        });
-            try {
-                MimeMessage message = new MimeMessage(session);
-                message.setFrom(new InternetAddress(senderEmail));
-                message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-                message.setSubject(subject);
-                message.setText(body);
-                Transport.send(message);
-                System.out.println("Confirmation email sent successfully....");
-            } catch (MessagingException mex) {
-                mex.printStackTrace();
-            }
-        }
-
-        void refreshUserInterface() {
-            load();
-        }
-
+        //Alert Function
         private void showAlert(String title, String message, Alert.AlertType type) {
             Alert alert = new Alert(type);
             alert.setTitle(title);
@@ -300,13 +257,13 @@
             alert.showAndWait();
         }
 
+        //Excel Function
         @FXML
         void ExporterExcel(ActionEvent event) {
             List<User> users = UserS.afficher(); // This method should return a List of all users
             exportUsersToExcel(users);
 
         }
-
         private void exportUsersToExcel(List<User> users) {
             Workbook workbook = new XSSFWorkbook();
             Sheet sheet = workbook.createSheet("Users");
@@ -347,27 +304,34 @@
                 }
             }
         }
+        //End Functions Excel
 
-        private void saveExcelFile(Workbook workbook) {
-            FileChooser fileChooser = new FileChooser();
-            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx)", "*.xlsx");
-            fileChooser.getExtensionFilters().add(extFilter);
-            fileChooser.setInitialFileName("UsersData.xlsx");
 
-            // Show save file dialog
-            Stage stage = (Stage) reginfo.getScene().getWindow(); // Assuming 'reginfo' is a node on your current stage
-            File file = fileChooser.showSaveDialog(stage);
 
-            if (file != null) {
-                try (FileOutputStream outputStream = new FileOutputStream(file)) {
-                    workbook.write(outputStream);
-                    workbook.close();
-                    showAlert("Success", "File saved successfully at " + file.getAbsolutePath(), Alert.AlertType.INFORMATION);
-                } catch (IOException e) {
-                    showAlert("Error", "Failed to save file: " + e.getMessage(), Alert.AlertType.ERROR);
+
+        //Search Functions
+        @FXML
+        public void RechercheNom(ActionEvent actionEvent) {
+            int column = 0;
+            int row = 1;
+            String recherche = SearchBar.getText();
+            try {
+                userContainer.getChildren().clear();
+                for (User user : UserS.Rechreche(recherche)){
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/CardUser.fxml"));
+                    Pane userBox = fxmlLoader.load();
+                    cardC = fxmlLoader.getController();
+                    userContainer.setUserData(user);
+                    if (column == 3) {
+                        column = 0;
+                        ++row;
+                    }
+                    userContainer.add(userBox, column++, row);
+                    GridPane.setMargin(userBox, new Insets(10));
                 }
-            } else {
-                showAlert("Cancelled", "File save cancelled.", Alert.AlertType.INFORMATION);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
 
