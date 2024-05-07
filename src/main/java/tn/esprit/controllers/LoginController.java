@@ -252,22 +252,7 @@ public class LoginController implements Initializable {
         }
     }
 
-    @FXML
-    public void LogoutButton(ActionEvent actionEvent) {
-        User.setCurrent_User(null);
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
-            Parent loginRoot = loader.load();
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(loginRoot);
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 
 }

@@ -39,7 +39,6 @@ public class RegistrationController {
 
     @FXML
     private TextField AdresseInscTf;
-
     @FXML
     private TextField CinInsTF;
 
@@ -245,9 +244,6 @@ public class RegistrationController {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
-
-
     @FXML
     public void GoogleButton(javafx.event.ActionEvent actionEvent) {
         try {
@@ -280,7 +276,6 @@ public class RegistrationController {
         }
     }
 
-
     private String showInputDialog(String title, String content) {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle(title);
@@ -289,7 +284,6 @@ public class RegistrationController {
         Optional<String> result = dialog.showAndWait();
         return result.orElse("");
     }
-
 
 }
 

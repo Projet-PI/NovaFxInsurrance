@@ -7,6 +7,7 @@
     import javafx.fxml.FXMLLoader;
     import javafx.fxml.Initializable;
     import javafx.geometry.Insets;
+    import javafx.scene.Node;
     import javafx.scene.Parent;
     import javafx.scene.Scene;
     import javafx.scene.control.Alert;
@@ -333,6 +334,22 @@
                     userContainer.add(userBox, column++, row);
                     GridPane.setMargin(userBox, new Insets(10));
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @FXML
+        public void LogoutButton(ActionEvent actionEvent) {
+            User.setCurrent_User(null);
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
+                Parent loginRoot = loader.load();
+                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                Scene scene = new Scene(loginRoot);
+                stage.setScene(scene);
+                stage.show();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
