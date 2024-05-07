@@ -7,7 +7,7 @@ public class SessionManager {
     private String userId;
 
     private int userfront ;
-    private User currentUser;
+    private static User currentUser;
 
 
     private SessionManager() {
@@ -29,8 +29,15 @@ public class SessionManager {
 
     }
 
+
     public static void logoutCurrentUser() {
 
+        // Clear all session data
+        // This could include setting the current user object to null,
+        // clearing any saved authentication tokens, etc.
+        currentUser = null; // Assuming currentUser is a static field holding the logged-in user
+        // Optionally log this action
+        System.out.println("User has been logged out.");
     }
 
 
