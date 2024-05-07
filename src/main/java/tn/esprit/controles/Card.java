@@ -1,5 +1,6 @@
 package tn.esprit.controles;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,10 +11,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import tn.esprit.Service.Contrat_s;
 import tn.esprit.entity.Assurance;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.scene.image.Image;
@@ -78,13 +81,18 @@ public class Card {
 
 
 
-   public void setData(Assurance prodData) {
+   public void setData(Assurance prodData) throws SQLException {
     this.prodData = prodData;
 
 
+       int contratId = prodData.getContrat_id();
+
+           Contrat_s contratService = new Contrat_s();
+           String typeCouverture = contratService.getTypeCovertureByContratId(contratId);
+
 
     nomass.setText(prodData.getNom());
-    type.setText(prodData.getType());
+    type.setText(String.valueOf(typeCouverture));
     dated.setText(prodData.getDate_debut());
     datef.setText(prodData.getDate_fin());
 

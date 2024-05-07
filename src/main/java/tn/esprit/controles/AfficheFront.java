@@ -110,6 +110,8 @@ public class AfficheFront implements Initializable {
                 pageGrid.getChildren().add(cardPane);
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         }
 
