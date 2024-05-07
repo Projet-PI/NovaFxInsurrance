@@ -97,7 +97,7 @@
         //Initialize Function
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
-            roleCOMBOBOX.setItems(FXCollections.observableArrayList("[\"ROLE_USER\"]", "[\"ROLE_ADMIN\"]"));
+            roleCOMBOBOX.setItems(FXCollections.observableArrayList("[\"ROLE_USER\"]", "[\"ROLE_ADMIN\"]","[\"ROLE_RECLAMATION\"]", "[\"ROLE_SINISTRE\"]", "[\"ROLE_ASSURANCE\"]", "[\"ROLE_FINANCIER\"]"));
             load();
         }
 

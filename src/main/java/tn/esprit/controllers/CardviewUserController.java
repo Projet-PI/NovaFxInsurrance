@@ -68,7 +68,7 @@ public class CardviewUserController implements Initializable {
     String unom, uprenom, uemail, umdp, urole;
     private AdminUserController adminUserController;
     private User currentUser;
-    ObservableList<String> RoleList = FXCollections.observableArrayList("[\"ROLE_USER\"]", "[\"ROLE_ADMIN\"]");
+    ObservableList<String> RoleList = FXCollections.observableArrayList("[\"ROLE_USER\"]", "[\"ROLE_ADMIN\"]","[\"ROLE_RECLAMATION\"]", "[\"ROLE_SINISTRE\"]", "[\"ROLE_ASSURANCE\"]", "[\"ROLE_FINANCIER\"]");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
