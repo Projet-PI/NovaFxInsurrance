@@ -78,12 +78,18 @@ public class LoginController implements Initializable {
     @FXML
     public void connecterUser(javafx.event.ActionEvent actionEvent) {
         System.out.println("test1");
+        String email = mailFieldLogin.getText();
+        String password = tempPasswordField.getText();
+        System.out.println();
+        //String hashedPassword = PasswordUtil.hashPassword(password);
+
         String qry = "SELECT * FROM `user` WHERE `email`=? AND `password`=?";
+
         conx = DataBase.getInstance().getConx();
         try {
             PreparedStatement stm = conx.prepareStatement(qry);
-            stm.setString(1, mailFieldLogin.getText());
-            stm.setString(2, tempPasswordField.getText());
+            stm.setString(1, email);
+            stm.setString(2, password);
             ResultSet rs = stm.executeQuery();
             User CurUser;
             if (rs.next()) {
