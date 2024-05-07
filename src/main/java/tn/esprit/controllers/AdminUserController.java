@@ -27,6 +27,7 @@
     import tn.esprit.entities.User;
     import tn.esprit.services.ServiceUtilisateurs;
     import tn.esprit.utils.DataBase;
+    import tn.esprit.utils.PasswordUtil;
     import tn.esprit.utils.SessionManager;
 
     import javax.mail.*;
@@ -226,7 +227,9 @@
                     if (EMAIL.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@(esprit\\.tn|gmail\\.com|outlook\\.(com|tn|fr)|yahoo\\.(com|tn|fr))$")) {
                         if (numtelTF.getText().matches("\\d{8}")) {
                             if (!emailExists(EMAIL)) {
-                                UserS.Add(new User(CIN, NOM, PRENOM, EMAIL, ADRESSE, NUMTEL, MDP, ROLE, PROFESSION));
+                                String HashedPassword = PasswordUtil.hashPassword(MDP);
+
+                                UserS.Add(new User(CIN, NOM, PRENOM, EMAIL, ADRESSE, NUMTEL, HashedPassword, ROLE, PROFESSION));
                                 uinfolabel.setText("Ajout Effectué");
                                 String subject = "Account confirmed !";
                                 String body = String.format("Bonjour%s,\n\nVos informations ont bien été enregistrés.\n\nCordialement,", PRENOM);

@@ -80,91 +80,87 @@ public class LoginController implements Initializable {
         System.out.println("test1");
         String email = mailFieldLogin.getText();
         String password = tempPasswordField.getText();
-        System.out.println();
-        //String hashedPassword = PasswordUtil.hashPassword(password);
-
-        String qry = "SELECT * FROM `user` WHERE `email`=? AND `password`=?";
-
+        String qry = "SELECT * FROM `user` WHERE `email`=?";
         conx = DataBase.getInstance().getConx();
         try {
             PreparedStatement stm = conx.prepareStatement(qry);
             stm.setString(1, email);
-            stm.setString(2, password);
             ResultSet rs = stm.executeQuery();
-            User CurUser;
             if (rs.next()) {
-                CurUser = new User(rs.getInt("id"),
-                        rs.getInt("cin"),
-                        rs.getString("nom"),
-                        rs.getString("prenom"),
-                        rs.getString("email"),
-                        rs.getString("password"),
-                        rs.getInt("num_tel"),
-                        rs.getString("profession"),
-                        rs.getString("role"));
-                User.setCurrent_User(CurUser);
-                SessionManager.getInstace(rs.getInt("id"),
-                        rs.getInt("cin"),
-                        rs.getString("nom"),
-                        rs.getString("prenom"),
-                        rs.getString("email"),
-                        rs.getString("password"),
-                        rs.getInt("num_tel"),
-                        rs.getString("profession"),
-                        rs.getString("role"));
-                String role = rs.getString("role");
-                if (role.equals("[\"ROLE_ADMIN\"]")) {
-                    System.out.println("test 2");
-                    try {
-                        FXMLLoader loadingLoader = new FXMLLoader(getClass().getResource("/loadingscene.fxml"));
-                        Parent loadingRoot = loadingLoader.load();
-                        Stage loadingStage = new Stage();
-                        loadingStage.setScene(new Scene(loadingRoot));
-                        loadingStage.setTitle("Loading...");
-                        loadingStage.show();
+                String storedHash = rs.getString("password");
+                if (PasswordUtil.checkPassword(password, storedHash)) {
+                    User curUser = new User(rs.getInt("id"),
+                            rs.getInt("cin"),
+                            rs.getString("nom"),
+                            rs.getString("prenom"),
+                            rs.getString("email"),
+                            storedHash,
+                            rs.getInt("num_tel"),
+                            rs.getString("profession"),
+                            rs.getString("role"));
+                    User.setCurrent_User(curUser);
+                    SessionManager.getInstace(rs.getInt("id"),
+                            rs.getInt("cin"),
+                            rs.getString("nom"),
+                            rs.getString("prenom"),
+                            rs.getString("email"),
+                            rs.getString("password"),
+                            rs.getInt("num_tel"),
+                            rs.getString("profession"),
+                            rs.getString("role"));
+                    String role = rs.getString("role");
+                    if (role.equals("[\"ROLE_ADMIN\"]")) {
+                        System.out.println("test 2");
+                        try {
+                            FXMLLoader loadingLoader = new FXMLLoader(getClass().getResource("/loadingscene.fxml"));
+                            Parent loadingRoot = loadingLoader.load();
+                            Stage loadingStage = new Stage();
+                            loadingStage.setScene(new Scene(loadingRoot));
+                            loadingStage.setTitle("Loading...");
+                            loadingStage.show();
 
-                        Task<Parent> task = new Task<>() {
-                            @Override
-                            protected Parent call() throws Exception {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
-                                return loader.load();
-                            }
-                        };
-                        task.setOnSucceeded(event -> {
-                            loadingStage.close();
-                            Parent root = task.getValue();
+                            Task<Parent> task = new Task<>() {
+                                @Override
+                                protected Parent call() throws Exception {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
+                                    return loader.load();
+                                }
+                            };
+                            task.setOnSucceeded(event -> {
+                                loadingStage.close();
+                                Parent root = task.getValue();
+                                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                                Scene scene = new Scene(root);
+                                stage.setScene(scene);
+                                stage.setTitle("Nova - Dashboard");
+                                stage.show();
+                            });
+                            new Thread(task).start();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (role.equals("[\"ROLE_USER\"]")) {
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/InterfaceUser.fxml"));
+                            Parent root = loader.load();
                             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                             Scene scene = new Scene(root);
                             stage.setScene(scene);
-                            stage.setTitle("Nova - Dashboard");
+                            stage.setTitle("Nova Assurance");
                             stage.show();
-                        });
-                        new Thread(task).start();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                if (role.equals("[\"ROLE_USER\"]")) {
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/InterfaceUser.fxml"));
-                        Parent root = loader.load();
-                        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                        Scene scene = new Scene(root);
-                        stage.setScene(scene);
-                        stage.setTitle("Nova Assurance");
-                        stage.show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
-
-    @FXML
+        @FXML
     public void ResetPassword(ActionEvent actionEvent) {
 
         TextInputDialog emailDialog = new TextInputDialog();
