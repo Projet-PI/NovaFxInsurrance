@@ -135,6 +135,9 @@ public class AjouterContrat {
     }
 
 
+    public static final String ACCOUNT_SID = "AC5fc57a6c07af8c83d08d0861f809a007";
+    public static final String AUTH_TOKEN = "03685198cf492db1aa033b11f2caced8";
+    public static final String TWILIO_PHONE_NUMBER = "+1 260 370 0107";
     public String verificationCode;
     public String generateVerificationCode() {
         return String.format("%06d", new Random().nextInt(999999));
