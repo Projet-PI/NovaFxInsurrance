@@ -35,6 +35,7 @@
                         <Label layoutX="2.0" layoutY="114.0" prefHeight="17.0" prefWidth="92.0" text="Durée :" />
                         <!-- Add a button -->
                         <Button fx:id="updateContractButton" layoutX="110.0" layoutY="140.0" onAction="#editContractButtonClicked" text="Modifier contrat" />
+                        <Button fx:id="deleteContractButton" layoutX="90.0" layoutY="170.0" onAction="#deleteContractButtonClicked" text="Supprimer contrat" />
                     </children>
                 </AnchorPane>
             </children>
