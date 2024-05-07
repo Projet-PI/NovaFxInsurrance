@@ -15,6 +15,10 @@ public class Contrat_s implements Service<Contrat> {
         this.cnx = DataBase.getInstance().getConn(); // Initialize connection
     }
 
+    public static Contrat_s getInstance() {
+        // Implement singleton pattern to return an instance of Contrat_s
+        return new Contrat_s();
+    }
     @Override
     public void add(Contrat contrat) throws SQLException {
         String qry = "INSERT INTO contrat (duree, date_de_souscription, type_couverture) VALUES (?, ?, ?)";
@@ -110,6 +114,7 @@ public class Contrat_s implements Service<Contrat> {
             }
         }
     }
+    
     @Override
     public void update(Contrat contrat) throws SQLException {
         String qry = "UPDATE contrat SET duree = ?, date_de_souscription = ?, type_couverture = ? WHERE id = ?";
