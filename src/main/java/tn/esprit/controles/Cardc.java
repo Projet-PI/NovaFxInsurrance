@@ -36,6 +36,9 @@ public class Cardc {
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setScene(new Scene(root));
                 stage.showAndWait();
+
+                // After editing, refresh the displayed contract data
+                refreshContractData();
             } catch (IOException e) {
                 e.printStackTrace();
                 // Handle the exception as needed
@@ -53,5 +56,19 @@ public class Cardc {
         contratId.setText(String.valueOf(contrat.getId()));
         contratType.setText(contrat.getType_couverture());
         contratDuration.setText(String.valueOf(contrat.getDuree()));
+    }
+    public void refreshContractData() {
+        // Check if contratData is not null
+        if (contratData != null) {
+            // Refresh contrat data to corresponding UI elements
+            contratId.setText(String.valueOf(contratData.getId()));
+            contratType.setText(contratData.getType_couverture());
+            contratDuration.setText(String.valueOf(contratData.getDuree()));
+        } else {
+            // Clear UI elements if contratData is null
+            contratId.setText("");
+            contratType.setText("");
+            contratDuration.setText("");
+        }
     }
 }
