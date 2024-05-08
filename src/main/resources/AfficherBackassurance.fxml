@@ -6,7 +6,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import java.net.URL?>
 <AnchorPane prefHeight="552.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controles.AfficherBack">
+    <stylesheets>
+        <URL value="@yourstylesheet.css" />
+    </stylesheets>
     <children>
         <TableView fx:id="tableau" layoutX="80.0" layoutY="82.0" prefHeight="428.0" prefWidth="760.0">
             <columns>

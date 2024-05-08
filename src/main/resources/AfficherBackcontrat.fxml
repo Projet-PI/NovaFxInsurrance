@@ -6,14 +6,18 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import java.net.URL?>
 <AnchorPane prefHeight="552.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controles.AfficherBackcontrat">
+    <stylesheets>
+        <URL value="@yourstylesheet.css" />
+    </stylesheets>
     <children>
         <TableView fx:id="tableau" layoutX="80.0" layoutY="82.0" prefHeight="428.0" prefWidth="760.0">
             <columns>
-                <TableColumn fx:id="idtv" prefWidth="75.0" text="id" />
-                <TableColumn fx:id="dureetv" prefWidth="75.0" text="duree" />
-                <TableColumn fx:id="dateDeSouscriptiontv" prefWidth="154.0" text="date de souscription" />
-                <TableColumn fx:id="typeCouverturetv" prefWidth="159.0" text="type couverture" />
+                <TableColumn fx:id="idtv" prefWidth="100.0" text="ID" />
+                <TableColumn fx:id="dureetv" prefWidth="100.0" text="Durée" />
+                <TableColumn fx:id="dateDeSouscriptiontv" prefWidth="200.0" text="Date de Souscription" />
+                <TableColumn fx:id="typeCouverturetv" prefWidth="200.0" text="Type de Couverture" />
             </columns>
         </TableView>
         <Button fx:id="pageforumass" layoutX="20.0" layoutY="530.0" mnemonicParsing="false" onAction="#navigateToAjouterAssurance" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-border-radius: 5;" text="⬅️" />

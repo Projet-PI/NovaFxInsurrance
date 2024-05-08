@@ -16,7 +16,7 @@ public class Home extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        FXMLLoader loder=new FXMLLoader(getClass().getResource("/afficherfrontcontrat.fxml"));
+        FXMLLoader loder=new FXMLLoader(getClass().getResource("/afficherbackassurance.fxml"));
 
         try {
             Parent root =loder.load ();
