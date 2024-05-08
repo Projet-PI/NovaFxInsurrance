@@ -20,7 +20,7 @@
                 <TableColumn fx:id="typeCouverturetv" prefWidth="200.0" text="Type de Couverture" />
             </columns>
         </TableView>
-        <Button fx:id="pageforumass" layoutX="20.0" layoutY="530.0" mnemonicParsing="false" onAction="#navigateToAjouterAssurance" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-border-radius: 5;" text="⬅️" />
+
         <TextField fx:id="filterField" layoutX="80.0" layoutY="28.0" promptText="Search" />
     </children>
 </AnchorPane>
