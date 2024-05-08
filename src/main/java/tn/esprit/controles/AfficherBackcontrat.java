@@ -1,5 +1,6 @@
 package tn.esprit.controles;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -62,18 +63,42 @@ public class AfficherBackcontrat {
 
         // Load and show contrats
         loadAndShowContrats();
-
-        // Initialize the filtered data with all contrats
         filteredData = new FilteredList<>(contratsList, p -> true);
 
-        // Set the filter Predicate whenever the filter changes
+// Set the filter Predicate whenever the filter changes
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Filter implementation...
+            System.out.println("Filter changed: " + newValue);
+            filteredData.setPredicate(contract -> {
+
+                // If filter text is empty, display all contracts
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare id, duration, subscription date, and coverage type of every contract with filter text
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (String.valueOf(contract.getId()).contains(lowerCaseFilter)) {
+                    return true; // Filter matches id
+                } else if (String.valueOf(contract.getDuree()).contains(lowerCaseFilter)) {
+                    return true; // Filter matches duration
+                } else if (contract.getDate_de_souscription().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches subscription date
+                } else if (contract.getType_couverture().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches coverage type
+                }
+                return false;
+            });
         });
 
-        // Wrap the filtered data in a SortedList...
+// Wrap the filtered data in a SortedList
+        SortedList<Contrat> sortedData = new SortedList<>(filteredData);
 
-        // Initialize modifier column
+// Bind the SortedList comparator to the TableView comparator
+        sortedData.comparatorProperty().bind(tableau.comparatorProperty());
+
+// Add the sorted (and filtered) data to the TableView
+        tableau.setItems(sortedData);
         initModifierColumn();
 
         // Add columns for delete and update buttons
