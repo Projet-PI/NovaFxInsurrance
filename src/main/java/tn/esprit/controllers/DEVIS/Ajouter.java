@@ -22,6 +22,17 @@
 
 
             @FXML
+            private Button Ajouter_devis;
+
+            @FXML
+            private Button BackAvis;
+
+            @FXML
+            private Button Gotodash;
+
+            @FXML
+            private Button Stat;
+            @FXML
             private TextField adresse;
             @FXML
             private Button devis;
@@ -229,6 +240,90 @@
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+            public void Ajouter_devis(ActionEvent event) throws IOException {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/ajouter.fxml"));
+                    Parent root = loader.load();
+
+                    // Créer la scène avec la nouvelle page
+                    Scene scene = new Scene(root);
+
+                    // Obtenir la scène actuelle à partir du bouton cliqué
+                    Stage stage = (Stage) Ajouter_devis.getScene().getWindow();
+
+                    // Remplacer la scène actuelle par la nouvelle scène
+                    stage.setScene(scene);
+                    stage.show();
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            public void BackAvis(ActionEvent event) throws IOException {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/avis.fxml"));
+                    Parent root = loader.load();
+
+                    // Créer la scène avec la nouvelle page
+                    Scene scene = new Scene(root);
+
+                    // Obtenir la scène actuelle à partir du bouton cliqué
+                    Stage stage = (Stage) BackAvis.getScene().getWindow();
+
+                    // Remplacer la scène actuelle par la nouvelle scène
+                    stage.setScene(scene);
+                    stage.show();
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            public void Gotodash(ActionEvent event) throws IOException {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/adminuser.fxml"));
+                    Parent root = loader.load();
+
+                    // Créer la scène avec la nouvelle page
+                    Scene scene = new Scene(root);
+
+                    // Obtenir la scène actuelle à partir du bouton cliqué
+                    Stage stage = (Stage) Gotodash.getScene().getWindow();
+
+                    // Remplacer la scène actuelle par la nouvelle scène
+                    stage.setScene(scene);
+                    stage.show();
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            public void Stat(ActionEvent event) throws IOException {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Chart.fxml"));
+                    Parent root = loader.load();
+
+                    // Créer la scène avec la nouvelle page
+                    Scene scene = new Scene(root);
+
+                    // Obtenir la scène actuelle à partir du bouton cliqué
+                    Stage stage = (Stage) Stat.getScene().getWindow();
+
+                    // Remplacer la scène actuelle par la nouvelle scène
+                    stage.setScene(scene);
+                    stage.show();
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
 
 

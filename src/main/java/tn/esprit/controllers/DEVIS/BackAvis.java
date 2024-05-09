@@ -37,7 +37,8 @@ public class BackAvis implements Initializable {
     @FXML
     private Button supprimer;
 
-
+    @FXML
+    private  Button ReclamationButton;
     @FXML
     private TableView<AvisRestau> tabAvis;
     @FXML
@@ -179,6 +180,27 @@ public class BackAvis implements Initializable {
 
             // Obtenir la scène actuelle à partir du bouton cliqué
             Stage stage = (Stage) BackAvis.getScene().getWindow();
+
+            // Remplacer la scène actuelle par la nouvelle scène
+            stage.setScene(scene);
+            stage.show();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void ReclamationButton(ActionEvent event)
+    {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/avis.fxml"));
+            Parent root = loader.load();
+
+            // Créer la scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la scène actuelle à partir du bouton cliqué
+            Stage stage = (Stage) ReclamationButton.getScene().getWindow();
 
             // Remplacer la scène actuelle par la nouvelle scène
             stage.setScene(scene);

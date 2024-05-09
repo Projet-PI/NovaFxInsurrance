@@ -29,10 +29,11 @@ import java.util.ResourceBundle;
 
 public class Avis implements Initializable {
     @FXML
-    private Button Gestiondevis;
+    private Button Stat;
 
     @FXML
-    private Button ajouter;
+    private Button Ajouter_devis;
+
     @FXML
     private Button BackAvis;
 
@@ -297,7 +298,7 @@ public class Avis implements Initializable {
     }
     public void Gotodash(ActionEvent event) throws IOException {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficher.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ajouter.fxml"));
             Parent root = loader.load();
 
             // Créer la scène avec la nouvelle page
@@ -317,16 +318,37 @@ public class Avis implements Initializable {
 
     }
 
-    public void Gestiondevis(ActionEvent event) throws IOException {
+    public void Stat(ActionEvent event) throws IOException {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/back.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/chart.fxml"));
             Parent root = loader.load();
 
             // Créer la scène avec la nouvelle page
             Scene scene = new Scene(root);
 
             // Obtenir la scène actuelle à partir du bouton cliqué
-            Stage stage = (Stage) Gestiondevis.getScene().getWindow();
+            Stage stage = (Stage) Stat.getScene().getWindow();
+
+            // Remplacer la scène actuelle par la nouvelle scène
+            stage.setScene(scene);
+            stage.show();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void Ajouter_devis(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ajouter.fxml"));
+            Parent root = loader.load();
+
+            // Créer la scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la scène actuelle à partir du bouton cliqué
+            Stage stage = (Stage) Ajouter_devis.getScene().getWindow();
 
             // Remplacer la scène actuelle par la nouvelle scène
             stage.setScene(scene);

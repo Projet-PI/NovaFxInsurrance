@@ -37,6 +37,12 @@ public class Back implements Initializable {
     private TableView<Devis> tab;
     @FXML
     private Button avis;
+    @FXML
+    private Button BackAvis;
+    @FXML
+    private Button Ajouter_devis;
+
+
 
     @FXML
     private TableColumn<Devis, String> prenom;
@@ -64,6 +70,12 @@ public class Back implements Initializable {
 
     int selectedId;
 
+
+    @FXML
+    private Button Gotodash;
+
+    @FXML
+    private Button Stat;
     ServiceR s = new ServiceR();
     public Devis r = new Devis();
 
@@ -224,17 +236,17 @@ public class Back implements Initializable {
         TFimage.clear();
     }
 
-    public void Back(ActionEvent event)
+    public void Ajouter_devis(ActionEvent event)
     {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficher.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ajouter.fxml"));
             Parent root = loader.load();
 
             // Créer la scène avec la nouvelle page
             Scene scene = new Scene(root);
 
             // Obtenir la scène actuelle à partir du bouton cliqué
-            Stage stage = (Stage) avis.getScene().getWindow();
+            Stage stage = (Stage) Ajouter_devis.getScene().getWindow();
 
             // Remplacer la scène actuelle par la nouvelle scène
             stage.setScene(scene);
@@ -244,6 +256,68 @@ public class Back implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public void Stat(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/chart.fxml"));
+            Parent root = loader.load();
+
+            // Créer la scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la scène actuelle à partir du bouton cliqué
+            Stage stage = (Stage) Stat.getScene().getWindow();
+
+            // Remplacer la scène actuelle par la nouvelle scène
+            stage.setScene(scene);
+            stage.show();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void BackAvis(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/backavis.fxml"));
+            Parent root = loader.load();
+
+            // Créer la scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la scène actuelle à partir du bouton cliqué
+            Stage stage = (Stage) BackAvis.getScene().getWindow();
+
+            // Remplacer la scène actuelle par la nouvelle scène
+            stage.setScene(scene);
+            stage.show();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }public void Gotodash(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/adminuser.fxml"));
+            Parent root = loader.load();
+
+            // Créer la scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la scène actuelle à partir du bouton cliqué
+            Stage stage = (Stage) Gotodash.getScene().getWindow();
+
+            // Remplacer la scène actuelle par la nouvelle scène
+            stage.setScene(scene);
+            stage.show();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

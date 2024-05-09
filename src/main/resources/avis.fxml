@@ -241,7 +241,7 @@
                         <Insets top="35.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button fx:id="Gestiondevis1" mnemonicParsing="false" onAction="#Gestiondevis" text="Contact client ">
+                  <Button fx:id="Ajouter_devis" mnemonicParsing="false" onAction="#Ajouter_devis" text="Ajouter devis">
                      <HBox.margin>
                         <Insets top="35.0" />
                      </HBox.margin>
@@ -258,7 +258,7 @@
                         <Insets top="35.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button fx:id="Gestiondevis" mnemonicParsing="false" onAction="#Gestiondevis" text="Contact client ">
+                  <Button fx:id="Stat" mnemonicParsing="false" onAction="#Stat" text="Statistque">
                      <HBox.margin>
                         <Insets top="35.0" />
                      </HBox.margin></Button>
