@@ -1,0 +1,12 @@
+.degrade {
+    -fx-background-color: linear-gradient(to bottom, #F8C07F 0%, #F8C07F 50%, #F8C07F 100%);
+}
+
+.scroll{
+    -fx-background-color:#FFFFFF ;
+}
+
+.card{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 30;
+}

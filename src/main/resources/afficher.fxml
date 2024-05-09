@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.Afficher">
+   <children>
+
+
+
+      <ComboBox fx:id="roleFilter" prefWidth="150" promptText="Select Role">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="Role 1" />
+               <String fx:value="Role 2" />
+               <String fx:value="Role 3" />
+               <!-- Add more roles as needed -->
+            </FXCollections>
+         </items>
+      </ComboBox>
+
+
+      <Button mnemonicParsing="false" onAction="#handleSearch" prefHeight="30.0" prefWidth="165.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Chercher" textFill="#fffbfb">
+         <HBox.margin>
+            <Insets left="20.0" right="20.0" />
+         </HBox.margin>
+      </Button>
+      <BorderPane prefHeight="700.0" prefWidth="100.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox prefHeight="697.0" prefWidth="344.0" styleClass="right-bar" stylesheets="@style/styleafficher.css" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="102.0" prefWidth="338.0">
+                     <children>
+                        <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="246.0" text="Gestion devis">
+                           <font>
+                              <Font name="Cambria Bold" size="35.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="48.0" prefWidth="298.0" stylesheets="@style/styleafficher.css">
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                     <children>
+                        <TextField fx:id="search" promptText="chercher.." styleClass="transparent" stylesheets="@style/styleafficher.css" />
+
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Chercher" textFill="#fffbfb">
+                           <HBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <styleClass>
+                        <String fx:value="search-box" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </HBox>
+                  <VBox fx:id="chosenRestau" alignment="TOP_CENTER" prefHeight="472.0" prefWidth="286.0" stylesheets="@style/styleafficher.css">
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" top="50.0" />
+                     </VBox.margin>
+                     <children>
+                        <HBox prefHeight="83.0" prefWidth="272.0">
+                           <children>
+                              <Label fx:id="nomRestau" alignment="TOP_CENTER" prefHeight="54.0" prefWidth="294.0" text="Devis">
+                                 <font>
+                                    <Font name="Cambria" size="36.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <ImageView fx:id="imageRestau" fitHeight="154.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </ImageView>
+
+                        <VBox prefHeight="173.0" prefWidth="286.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="286.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="38.0" prefWidth="74.0" text="Adresse">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="adresse" alignment="CENTER" prefHeight="49.0" prefWidth="178.0" text=" Zone Industrielle Mnihla,tunis" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="34.0" prefWidth="286.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="34.0" prefWidth="88.0" text="Email">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="email" alignment="CENTER" prefHeight="34.0" prefWidth="173.0" text="planb@gmail.com" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="34.0" prefWidth="286.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="38.0" prefWidth="94.0" text="Phone">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="phone" alignment="CENTER" prefHeight="38.0" prefWidth="134.0" text="53996264" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Button fx:id="butonAvis" mnemonicParsing="false" onAction="#handleAvisButtonClick" prefHeight="42.0" prefWidth="94.0" styleClass="avis-button" stylesheets="@style/styleafficher.css" text="Devis traite" textFill="WHITE" />
+                     </children>
+                     <padding>
+                        <Insets bottom="30.0" />
+                     </padding>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <styleClass>
+                        <String fx:value="show-box" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </VBox>
+               </children>
+            </VBox>
+         </left>
+      </BorderPane>
+      <VBox layoutX="344.0" prefHeight="700.0" prefWidth="604.0">
+         <children>
+            <HBox prefHeight="54.0" prefWidth="604.0">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bouton-retour.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label prefHeight="54.0" prefWidth="70.0" text="Mon Profil">
+                     <HBox.margin>
+                        <Insets left="430.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="35.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/profil.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="5.0" top="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox prefHeight="92.0" prefWidth="368.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
+                  <HBox prefHeight="92.0" prefWidth="275.0" styleClass="eco-card" stylesheets="@style/styleafficher.css">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                     <children>
+                        <VBox prefHeight="82.0" prefWidth="206.0">
+                           <children>
+                              <Label prefHeight="20.0" prefWidth="151.0" text="Nova Insurrance">
+                                 <VBox.margin>
+                                    <Insets left="5.0" top="30.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="Cambria Math" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="22.0" prefWidth="222.0" text="Nova Insurrance à portée de clic">
+                                 <VBox.margin>
+                                    <Insets left="5.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <ImageView fitHeight="66.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/sauver.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Button fx:id="Stat" mnemonicParsing="false" onAction="#Voir_stat" prefHeight="40.0" prefWidth="105.0" styleClass="avis-button" stylesheets="@style/styleafficher.css" text="Voir Statistique " textFill="#fcf6f6">
+                     <HBox.margin>
+                        <Insets left="100.0" top="30.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="66.0" styleClass="avis-button" stylesheets="@style/styleafficher.css" text="A-Z" textFill="#fcf9f9">
+                     <HBox.margin>
+                        <Insets left="20.0" top="30.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <ScrollPane fx:id="scroll" prefHeight="0.0" prefWidth="570.0" styleClass="transparent" stylesheets="@style/styleafficher.css">
+                     <content>
+                        <GridPane fx:id="grid" prefHeight="8.0" prefWidth="5.0">
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </ScrollPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
