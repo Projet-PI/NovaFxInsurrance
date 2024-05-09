@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<?import java.net.URL?>
-<AnchorPane prefHeight="552.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ASSURANCE.AfficherBackcontrat">
-    <stylesheets>
-        <URL value="@../yourstylesheet.css" />
-    </stylesheets>
+<AnchorPane prefHeight="552.0" prefWidth="636.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ASSURANCE.AfficherBackcontrat">
+   
     <children>
-        <TableView fx:id="tableau" layoutX="80.0" layoutY="82.0" prefHeight="428.0" prefWidth="760.0">
+      <ImageView fitHeight="552.0" fitWidth="708.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@backInterface.png" />
+         </image>
+      </ImageView>
+        <TableView fx:id="tableau" layoutX="14.0" layoutY="78.0" prefHeight="350.0" prefWidth="592.0">
             <columns>
                 <TableColumn fx:id="idtv" prefWidth="100.0" text="ID" />
                 <TableColumn fx:id="dureetv" prefWidth="100.0" text="Durée" />

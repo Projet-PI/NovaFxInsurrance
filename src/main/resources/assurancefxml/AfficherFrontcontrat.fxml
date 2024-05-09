@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.Button?>
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ASSURANCE.AfficherFrontcontrat">
     <children>
         <!-- Background image -->
@@ -41,5 +42,7 @@
 
         <!-- Pagination for navigation with border -->
         <Pagination fx:id="pagination" layoutX="118.0" layoutY="100.0" prefHeight="574.0" prefWidth="727.0" style="-fx-border-color: #007a80; -fx-border-width: 5px;" />
+        <Button layoutX="650.0" layoutY="30.0" text="nos assurance" onAction="#goToFront"/>
+
     </children>
 </AnchorPane>

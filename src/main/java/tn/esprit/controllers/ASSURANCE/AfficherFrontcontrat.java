@@ -1,12 +1,16 @@
 package tn.esprit.controllers.ASSURANCE;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Pagination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import tn.esprit.services.Contrat_s;
 import tn.esprit.entities.Contrat;
 
@@ -78,5 +82,22 @@ public class AfficherFrontcontrat implements Initializable {
         }
 
         return pageGrid;
+    }
+
+    public void goToFront(ActionEvent actionEvent) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/assurancefxml/afficherfront.fxml"));
+            Parent root = loader.load();
+
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }
