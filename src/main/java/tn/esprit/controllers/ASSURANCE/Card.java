@@ -1,6 +1,5 @@
 package tn.esprit.controllers.ASSURANCE;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,12 +22,6 @@ import facebook4j.FacebookFactory;
 import facebook4j.auth.AccessToken;
 import facebook4j.FacebookException;
 
-import javafx.scene.image.Image;
-import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
-
-import javafx.scene.image.ImageView; // Importez la classe ImageView correcte depuis JavaFX
-import javafx.scene.control.Label; // Importez la classe Label correcte depuis JavaFX
 public class Card {
     private Assurance prodData;
     @FXML
@@ -60,7 +53,7 @@ public class Card {
     private void viewContractButtonClicked(ActionEvent event) {
         try {
             //            // Charger le fichier FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterContrat.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/assurancefxml/AjouterContrat.fxml"));
             Parent root = loader.load();
             //
             //            // Obtenir le stage actuel
@@ -113,7 +106,7 @@ public class Card {
         // Construire le message à partager sur Facebook
         String msg = "Nouveau blog disponible maintenant ";
 //                + "\n*** Titre: "
-//                + blogservice.getTitre()
+//                + A_s.getTitre()
 //                + "\n*** Description: "
 //        //+ blogservice.getDescription()
 //        //+ "\n***Date: "

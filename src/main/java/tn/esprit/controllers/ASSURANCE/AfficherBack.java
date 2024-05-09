@@ -192,7 +192,7 @@ public class AfficherBack {
                 {
                     editButton.setOnAction(event -> {
                         Assurance assurance = getTableView().getItems().get(getIndex());
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierAssurance.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/assurancefxml/ModifierAssurance.fxml"));
                         try {
                             Parent root = loader.load();
                             ModifierAssurance controller = loader.getController();

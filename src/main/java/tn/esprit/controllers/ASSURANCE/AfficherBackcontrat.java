@@ -136,7 +136,7 @@ public class AfficherBackcontrat {
 
 
     private void openModifierContratDialog(Contrat contrat) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierContrat.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/assurancefxml/ModifierContrat.fxml"));
         try {
             Parent root = loader.load();
             ModifierContrat controller = loader.getController();

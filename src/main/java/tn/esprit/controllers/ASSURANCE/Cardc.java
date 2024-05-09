@@ -45,7 +45,7 @@ public class Cardc {
     public void editContractButtonClicked(ActionEvent actionEvent) {
         if (contratData != null) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierContrat.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/assurancefxml/ModifierContrat.fxml"));
                 Parent root = loader.load();
 
                 ModifierContrat modifierContratController = loader.getController();
