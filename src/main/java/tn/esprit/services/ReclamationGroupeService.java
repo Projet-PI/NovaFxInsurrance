@@ -16,24 +16,46 @@ public class ReclamationGroupeService {
         connection = DataBase.getInstance().getConx();
     }
 
-    public ResultSet GetAll() {
+    public ResultSet GetAll(int pageNumber, int pageSize, String searchQuery) {
         ResultSet rs = null;
 
         // inject a user id
         // check if the user is agent or normal user
-        /*
-            TODO:
-            - check if the user is agent or normal user
-         */
+    /*
+        TODO:
+        - check if the user is agent or normal user
+     */
         try {
+            int offset = (pageNumber - 1) * pageSize;
             String req = "SELECT * FROM `reclamation_groupe`";
+
+            // If there's a search query, add a WHERE clause
+            if (searchQuery != null && !searchQuery.isEmpty()) {
+                req += " WHERE `name` LIKE ?";
+            }
+
+            req += " LIMIT ?, ?";
+
             PreparedStatement st = connection.prepareStatement(req);
-            rs = st.executeQuery(req);
+
+            // Set parameters
+            int parameterIndex = 1;
+
+            // Set search query parameter if applicable
+            if (searchQuery != null && !searchQuery.isEmpty()) {
+                st.setString(parameterIndex++, "%" + searchQuery + "%");
+            }
+
+            st.setInt(parameterIndex++, offset);
+            st.setInt(parameterIndex++, pageSize);
+
+            rs = st.executeQuery();
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
         return rs;
     }
+
 
     public ResultSet GetById(int id) {
         ResultSet rs = null;

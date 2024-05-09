@@ -25,10 +25,32 @@ public class ReclamationGroupeController {
     @FXML
     private ListView<reclamation_groupe> listView;
 
+    @FXML
+    private TextField searchField;
+
+    // Define pagination parameters
+    private int pageNumber = 1;
+    private final int pageSize = 2; // Number of items per page
+
     public void showAlert(String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    private void loadListView(int pageNumber, int pageSize, String searchQuery) {
+        listView.getItems().clear(); // Clear existing items from ListView
+
+        ReclamationGroupeService service = new ReclamationGroupeService();
+        ResultSet rs = service.GetAll(pageNumber, pageSize, searchQuery);
+
+        try {
+            while (rs.next()) {
+                listView.getItems().add(new reclamation_groupe(rs.getInt("id"), rs.getInt("user_id_id"), rs.getInt("reclamation_agent_id_id"), rs.getString("name"), rs.getString("day_time"), rs.getString("status")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -82,16 +104,26 @@ public class ReclamationGroupeController {
             }
         });
 
-        ReclamationGroupeService service = new ReclamationGroupeService();
-        ResultSet rs = service.GetAll();
+        loadListView(pageNumber, pageSize, null); // Load initial data
 
-        try {
-            while (rs.next()) {
-                listView.getItems().add(new reclamation_groupe(rs.getInt("id"), rs.getInt("user_id_id"), rs.getInt("reclamation_agent_id_id"), rs.getString("name"), rs.getString("day_time"), rs.getString("status")));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        // Listen for changes in the search field
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            pageNumber = 1; // Reset page number when search criteria changes
+            loadListView(pageNumber, pageSize, newValue); // Reload list with search criteria
+        });
+    }
+
+    public void previousPage(ActionEvent actionEvent) {
+        if (pageNumber > 1) {
+            pageNumber--;
+            loadListView(pageNumber, pageSize, searchField.getText()); // Reload list for previous page
         }
+    }
+
+    // Next page button handler
+    public void nextPage(ActionEvent actionEvent) {
+        pageNumber++;
+        loadListView(pageNumber, pageSize, searchField.getText()); // Reload list for next page
     }
 
     private void handleEditButton(reclamation_groupe item) {
@@ -125,15 +157,13 @@ public class ReclamationGroupeController {
         service.DeleteReclamationGroupe(item.id);
         showAlert("Do you want to delete " + item.getName(), Alert.AlertType.WARNING);
         // refresh the list view
-        ResultSet rs = service.GetAll();
-        listView.getItems().clear();
-        try {
-            while (rs.next()) {
-                listView.getItems().add(new reclamation_groupe(rs.getInt("id"), rs.getInt("user_id_id"), rs.getInt("reclamation_agent_id_id"), rs.getString("name"), rs.getString("day_time"), rs.getString("status")));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        loadListView(pageNumber, pageSize, null); // Load initial data
+
+        // Listen for changes in the search field
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            pageNumber = 1; // Reset page number when search criteria changes
+            loadListView(pageNumber, pageSize, newValue); // Reload list with search criteria
+        });
     }
 
     private void handleViewButton(reclamation_groupe item) {
