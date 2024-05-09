@@ -8,7 +8,7 @@ import java.util.List;
 public interface IUtilisateur<T> {
     boolean Add (T t);
     ArrayList<T> getAll();
-    List<T> afficher(String recherche);
+    List<T> afficher(String recherche,int i,int b);
     List<T> TriparNom();
     List<T> TriparEmail();
     List<T> Rechreche(String recherche);

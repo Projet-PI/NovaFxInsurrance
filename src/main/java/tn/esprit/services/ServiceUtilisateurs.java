@@ -53,16 +53,25 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
     }
 
     @Override
-    public List<User> afficher(String searchQuery) {
+    public List<User> afficher(String searchQuery, int offset,int pageSize) {
         List<User> users = new ArrayList<>();
         String query = "SELECT * FROM user";
         if (searchQuery != null && !searchQuery.isEmpty()) {
             query += " WHERE `nom` LIKE ?";
         }
+
+        query += " LIMIT ?, ?";
+
         try (PreparedStatement stmt = conx.prepareStatement(query)) {
             if (searchQuery != null && !searchQuery.isEmpty()) {
                 stmt.setString(1, "%" + searchQuery + "%");
             }
+
+            stmt.setInt(2, offset);
+            stmt.setInt(3, pageSize);
+
+
+
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     User user = new User(

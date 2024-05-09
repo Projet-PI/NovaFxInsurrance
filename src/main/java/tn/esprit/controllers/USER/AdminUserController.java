@@ -88,7 +88,8 @@
 
         private String searchValue = "";
 
-
+        private int pageNumber = 1;
+        private final int pageSize = 2; // Number of items per pag
         private Connection conx;
         private final ServiceUtilisateurs UserS = new ServiceUtilisateurs();
 
@@ -102,13 +103,26 @@
             });
         }
 
+        public void previousPage(ActionEvent actionEvent) {
+            if (pageNumber > 1) {
+                pageNumber--;
+            }
+            load("");
+        }
+
+        // Next page button handler
+        public void nextPage(ActionEvent actionEvent) {
+            pageNumber++;
+            load("");
+        }
+
         //Load Function
         public void load(String query) {
             int column = 0;
             int row = 1;
             try {
                 userContainer.getChildren().clear();
-                for (User user : UserS.afficher(query)) {
+                for (User user : UserS.afficher(query,pageNumber,pageSize)) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/CardViewUser.fxml"));
                     Pane userBox = fxmlLoader.load();
@@ -270,7 +284,7 @@
         //Excel Function
         @FXML
         void ExporterExcel(ActionEvent event) {
-            List<User> users = UserS.afficher(""); // This method should return a List of all users
+            List<User> users = UserS.afficher("",pageNumber,pageSize); // This method should return a List of all users
             exportUsersToExcel(users);
 
         }
