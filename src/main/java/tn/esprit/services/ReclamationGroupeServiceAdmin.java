@@ -9,10 +9,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ReclamationGroupeService {
+public class ReclamationGroupeServiceAdmin {
     Connection connection;
 
-    public ReclamationGroupeService() {
+    public ReclamationGroupeServiceAdmin() {
         connection = DataBase.getInstance().getConx();
     }
 
@@ -30,7 +30,6 @@ public class ReclamationGroupeService {
             String req = "SELECT * FROM `reclamation_groupe`";
 
             // If there's a search query, add a WHERE clause
-            // if there's filter by
             if (searchQuery != null && !searchQuery.isEmpty()) {
                 req += " WHERE `name` LIKE ?";
             }

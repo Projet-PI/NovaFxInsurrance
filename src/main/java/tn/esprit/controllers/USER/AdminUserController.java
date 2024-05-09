@@ -342,6 +342,7 @@
         public void LogoutButton(ActionEvent actionEvent) {
             System.out.println("test1");
             SessionManager.logoutCurrentUser();
+            System.out.println(SessionManager.getUser());
             System.out.println("test2");
 
             try {
@@ -378,7 +379,6 @@
                 e.printStackTrace();
                 // Optionally, handle the error, for example logging it or showing an error message
             }
-
         }
     }
 

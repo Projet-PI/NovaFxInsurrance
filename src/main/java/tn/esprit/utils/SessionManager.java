@@ -47,13 +47,13 @@ public class SessionManager {
 
 
     public void setUser(User curUser) {
-        this.currentUser = curUser;
+        currentUser = curUser;
         // You might want to do additional actions here, such as logging or setting up user-specific settings
         System.out.println("User set in session: " + curUser.getEmail());
 
     }
-    public User getUser() {
-        return this.currentUser;
+    public static User getUser() {
+        return currentUser;
     }
     public void clearSession() {
         currentUser = null;

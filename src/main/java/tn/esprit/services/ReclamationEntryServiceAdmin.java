@@ -21,10 +21,10 @@ import java.sql.SQLException;
 // Class to represent the regulation response
 
 
-public class ReclamationEntryService {
+public class ReclamationEntryServiceAdmin {
     Connection connection;
 
-    public ReclamationEntryService() {
+    public ReclamationEntryServiceAdmin() {
         connection = DataBase.getInstance().getConx();
     }
 
@@ -126,29 +126,29 @@ public class ReclamationEntryService {
     // Method to insert reclamation entry into the database
     private void insertReclamationEntry(reclamation_entry reclamationEntry, String regulation) throws SQLException {
         String query = "INSERT INTO reclamation_entry (prompt, day_time, response, status, response_type) VALUES (?, ?, ?, ?, ?)";
-             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, reclamationEntry.getPrompt());
-            preparedStatement.setString(2, reclamationEntry.getDay_time());
-            preparedStatement.setString(3, regulation);
-            preparedStatement.setString(4, "processed");
-            preparedStatement.setString(5, reclamationEntry.getResponseType());
-            preparedStatement.executeUpdate();
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, reclamationEntry.getPrompt());
+        preparedStatement.setString(2, reclamationEntry.getDay_time());
+        preparedStatement.setString(3, regulation);
+        preparedStatement.setString(4, "processed");
+        preparedStatement.setString(5, reclamationEntry.getResponseType());
+        preparedStatement.executeUpdate();
     }
 
     private void insertIntoJoinTable(int reclamationGroupeId, int reclamationEntryId) throws SQLException {
         String query = "INSERT INTO reclamation_groupe_reclamation_entry (reclamation_groupe_id, reclamation_entry_id) VALUES (?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, reclamationGroupeId);
-            preparedStatement.setInt(2, reclamationEntryId);
-            preparedStatement.executeUpdate();
-        }
+        preparedStatement.setInt(1, reclamationGroupeId);
+        preparedStatement.setInt(2, reclamationEntryId);
+        preparedStatement.executeUpdate();
+    }
 
     // Method to retrieve the maximum ID from the reclamation_entry table
     private int getMaxReclamationEntryId() throws SQLException {
         String query = "SELECT MAX(id) FROM reclamation_entry";
         PreparedStatement statement = connection.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery(query);
-            return resultSet.next() ? resultSet.getInt(1) : 0;
+        ResultSet resultSet = statement.executeQuery(query);
+        return resultSet.next() ? resultSet.getInt(1) : 0;
     }
 
     public void updateReclamationEntry(reclamation_entry reclamationEntry) {
