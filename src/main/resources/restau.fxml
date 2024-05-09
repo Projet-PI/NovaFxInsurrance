@@ -17,9 +17,7 @@
                </font>
             </Label>
             <ImageView fx:id="img" fitHeight="172.0" fitWidth="244.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/image.png" />
-               </image>
+
             </ImageView>
          </children>
       </VBox>
