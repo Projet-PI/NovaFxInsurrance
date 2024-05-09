@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.fxmisc.richtext.*?>
+
+<AnchorPane style="-fx-background-color: #F2E0C9;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AjouterRapportController">
+    <stylesheets>
+        <URL value="styles.css" />
+    </stylesheets>
+    <VBox alignment="CENTER" cache="true" layoutX="1.0" prefHeight="400.0" prefWidth="800.0" spacing="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+        <Label prefHeight="27.0" prefWidth="170.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Ajouter un Rapport" textAlignment="CENTER" />
+        <HBox alignment="CENTER" spacing="20.0">
+                    <Label fx:id="ClienterrorLabel" />
+                    <Label prefHeight="32.0" prefWidth="120.0" text="Votre Prenom:" />
+                    <Label fx:id="userNameLabel" styleClass="custom-text-field" />
+                </HBox>
+
+
+        <!-- ComboBox for ID rapportClient -->
+        <HBox alignment="CENTER" spacing="20.0">
+            <Label fx:id="ExperterrorLabel" />
+            <Label prefHeight="32.0" prefWidth="120.0" text="ID Expert:" />
+            <ComboBox fx:id="expertIdComboBox" styleClass="custom-text-field" />
+        </HBox>
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="172.0" nodeOrientation="LEFT_TO_RIGHT" spacing="20.0">
+         <children>
+             <Label text="Sélectionner un Sinistre"/>
+             <ComboBox fx:id="SinistreCombobox" styleClass="custom-text-field"/>
+
+
+         </children>
+      </HBox>
+
+        <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" spacing="20.0">
+            <Label fx:id="PourcentageerrorLabel" />
+            <Label text="Pourcentage:" />
+            <TextField text="" fx:id="pourcentageTextField" styleClass="custom-text-field" />
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+        </HBox>
+
+
+
+        <HBox alignment="CENTER" spacing="20.0">
+            <Label fx:id="fautiferrorLabel" />
+            <Label text="Est Fautif:" />
+            <ComboBox fx:id="isFautifComboBox" styleClass="custom-text-field">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Fautif" />
+                        <String fx:value="Non Fautif" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+        </HBox>
+
+        <HBox alignment="CENTER" spacing="20.0">
+            <Label fx:id="RapporterrorLabel" />
+            <Label text="Rapport:" />
+            <CodeArea fx:id="markdownEditor" prefHeight="100" prefWidth="200" />
+        </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+
+              <Button contentDisplay="CENTER" onAction="#handleAddRapport" prefHeight="26.0" prefWidth="106.0" text="Ajouter" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+    </VBox>
+   <rotationAxis>
+      <Point3D />
+   </rotationAxis>
+
+</AnchorPane>

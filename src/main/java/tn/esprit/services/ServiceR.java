@@ -6,6 +6,7 @@ package tn.esprit.services;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import tn.esprit.entities.Devis;
+import tn.esprit.entities.RapportClient;
 import tn.esprit.utils.DataBase;
 
 import java.sql.*;
@@ -15,6 +16,11 @@ import java.util.List;
 public class ServiceR implements IService<Devis> {
 
     Connection cnx = DataBase.getInstance().getConx();
+
+    @Override
+    public List<RapportClient> afficher() throws SQLException {
+        return null;
+    }
 
     @Override
     public void ajouter(Devis devis) {
@@ -95,6 +101,11 @@ public class ServiceR implements IService<Devis> {
 
     @Override
     public Devis getOneById(int id) {
+        return null;
+    }
+
+    @Override
+    public List<RapportClient> afficherMaListe(String userName) throws SQLException {
         return null;
     }
 
