@@ -29,6 +29,10 @@ import java.util.ResourceBundle;
 
 
 public class Avis implements Initializable {
+
+    @FXML
+    private Button Modifer_etat;
+
     @FXML
     private Button Stat;
 
@@ -275,6 +279,28 @@ public class Avis implements Initializable {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void Modifer_etat(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/backavis.fxml"));
+            Parent root = loader.load();
+
+            // Créer la scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la scène actuelle à partir du bouton cliqué
+            Stage stage = (Stage) Modifer_etat.getScene().getWindow();
+
+            // Remplacer la scène actuelle par la nouvelle scène
+            stage.setScene(scene);
+            stage.show();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void BackAvis(ActionEvent event) throws IOException {

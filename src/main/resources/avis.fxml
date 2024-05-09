@@ -161,6 +161,14 @@
                                     <Insets />
                                  </opaqueInsets>
                               </Button>
+                              <Button fx:id="Modifer_etat" mnemonicParsing="false" onAction="#Modifer_etat" prefHeight="40.0" prefWidth="118.0" styleClass="avis-button" stylesheets="@style/styleafficher.css" text="Modifer etat" textAlignment="CENTER" textFill="#fffafa">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets top="20.0" />
+                                 </HBox.margin>
+                              </Button>
                            </children>
                         </HBox>
                      </children>
