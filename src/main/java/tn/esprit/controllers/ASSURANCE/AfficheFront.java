@@ -87,7 +87,7 @@ public class AfficheFront implements Initializable {
         // Ajouter les cartes à la page
         for (int i = startIndex; i < endIndex; i++) {
             Assurance cours = coursList.get(i);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Card.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/assurancefxml/card.fxml"));
             try {
                 AnchorPane cardPane = loader.load();
                 Card cardController = loader.getController();

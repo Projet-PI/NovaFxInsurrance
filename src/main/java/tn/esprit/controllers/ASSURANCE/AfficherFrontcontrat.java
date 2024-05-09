@@ -64,7 +64,7 @@ public class AfficherFrontcontrat implements Initializable {
         // Add contracts to the page horizontally
         for (int i = startIndex; i < endIndex; i++) {
             Contrat contrat = contratsList.get(i);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Cardc.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/assurancefxml/cardc.fxml"));
             try {
                 AnchorPane cardPane = loader.load();
                 Cardc cardController = loader.getController();

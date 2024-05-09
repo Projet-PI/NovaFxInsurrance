@@ -15,12 +15,12 @@
     <children>
         <ImageView fitHeight="37.0" fitWidth="532.0" layoutX="711.0" layoutY="38.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@416434692_769425838447527_1407072637719166262_n.png" />
+                <Image url="@../416434692_769425838447527_1407072637719166262_n.png" />
             </image>
         </ImageView>
         <ImageView fitHeight="82.0" fitWidth="123.0" layoutX="650.0" layoutY="15.0" opacity="0.85" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@416434692_769425838447527_1407072637719166262_n.png" />
+                <Image url="@../416434692_769425838447527_1407072637719166262_n.png" />
             </image>
         </ImageView>
         <Label layoutX="80.0" layoutY="292.0" text="Durée" />
@@ -35,7 +35,7 @@
         <Text layoutX="27.0" layoutY="367.0" text="Numéro de téléphone" />
         <ImageView fx:id="generateCap" fitHeight="50.0" fitWidth="50.0" layoutX="381.0" layoutY="409.0" onMouseClicked="#generateCaptcha">
             <image>
-                <Image url="@png-transparent-recaptcha-hd-logo-thumbnail.png" />
+                <Image url="@../png-transparent-recaptcha-hd-logo-thumbnail.png" />
             </image>
         </ImageView>
         <TextField fx:id="tfCaptcha" layoutX="182.0" layoutY="416.0" prefWidth="150.0" />

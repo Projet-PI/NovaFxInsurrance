@@ -15,7 +15,7 @@
         <ImageView fx:id="backgroundImage" fitHeight="1103.0" fitWidth="1082.0" layoutX="-56.0" layoutY="-358.0" pickOnBounds="true" preserveRatio="true" />
         <ImageView fitHeight="53.0" fitWidth="200.0" layoutX="29.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@416434692_769425838447527_1407072637719166262_n.png" />
+                <Image url="@../416434692_769425838447527_1407072637719166262_n.png" />
             </image>
         </ImageView>
         <Label layoutX="317.0" layoutY="29.0" text="Gestion Assurance" textFill="#007a80">
