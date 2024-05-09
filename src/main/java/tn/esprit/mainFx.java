@@ -16,7 +16,7 @@ public class mainFx extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/AjouterAssurance.fxml"));
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/Afficherfront.fxml"));
         try {
             System.out.println("before");
             Parent root = loader.load();
