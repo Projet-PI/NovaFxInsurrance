@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="538.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/21" fx:controller="tn.esprit.controllers.LandingPage" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="538.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/21" fx:controller="tn.esprit.controllers.USER.LandingPage" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button layoutX="82.0" layoutY="188.0" mnemonicParsing="false" text="Voir mes contrats" />
       <Button layoutX="82.0" layoutY="244.0" mnemonicParsing="false" text="Voir assurance" />
