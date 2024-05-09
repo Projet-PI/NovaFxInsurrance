@@ -23,11 +23,6 @@
         </Label>
         <TextField fx:id="mailFieldLogin" layoutX="72.0" layoutY="238.0" prefHeight="25.0" prefWidth="265.0" />
         <TextField fx:id="tempPasswordField" layoutX="72.0" layoutY="340.0" prefHeight="30.0" prefWidth="265.0" />
-        <Label layoutX="70.0" layoutY="599.0" text="Vous êtes connecté en tant que">
-            <font>
-                <Font size="10.0" />
-            </font>
-        </Label>
         <Hyperlink layoutX="212.0" layoutY="382.0" onAction="#ResetPassword" text="Mot de Passe Oublié?" />
         <Hyperlink layoutX="70.0" layoutY="382.0" onAction="#creerCompteLog" text="Créer un compte" />
         <Label layoutX="87.0" layoutY="478.0" text="Copyright © 2024 tous droits reservés">

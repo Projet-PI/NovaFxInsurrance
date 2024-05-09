@@ -76,91 +76,87 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    public void connecterUser(javafx.event.ActionEvent actionEvent) {
-        System.out.println("test1");
+    public void connecterUser(ActionEvent actionEvent) {
+        System.out.println("Attempting to connect user...");
         String email = mailFieldLogin.getText();
         String password = tempPasswordField.getText();
         String qry = "SELECT * FROM `user` WHERE `email`=?";
-        conx = DataBase.getInstance().getConx();
-        try {
-            PreparedStatement stm = conx.prepareStatement(qry);
-            stm.setString(1, email);
-            ResultSet rs = stm.executeQuery();
-            if (rs.next()) {
-                String storedHash = rs.getString("password");
-                if (PasswordUtil.checkPassword(password, storedHash)) {
-                    User curUser = new User(rs.getInt("id"),
-                            rs.getInt("cin"),
-                            rs.getString("nom"),
-                            rs.getString("prenom"),
-                            rs.getString("email"),
-                            storedHash,
-                            rs.getInt("num_tel"),
-                            rs.getString("profession"),
-                            rs.getString("role"));
-                    User.setCurrent_User(curUser);
-                    SessionManager.getInstace(rs.getInt("id"),
-                            rs.getInt("cin"),
-                            rs.getString("nom"),
-                            rs.getString("prenom"),
-                            rs.getString("email"),
-                            rs.getString("password"),
-                            rs.getInt("num_tel"),
-                            rs.getString("profession"),
-                            rs.getString("role"));
-                    String role = rs.getString("role");
-                    if (role.equals("[\"ROLE_ADMIN\"]")) {
-                        System.out.println("test 2");
-                        try {
-                            FXMLLoader loadingLoader = new FXMLLoader(getClass().getResource("/loadingscene.fxml"));
-                            Parent loadingRoot = loadingLoader.load();
-                            Stage loadingStage = new Stage();
-                            loadingStage.setScene(new Scene(loadingRoot));
-                            loadingStage.setTitle("Loading...");
-                            loadingStage.show();
 
-                            Task<Parent> task = new Task<>() {
-                                @Override
-                                protected Parent call() throws Exception {
-                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
-                                    return loader.load();
-                                }
-                            };
-                            task.setOnSucceeded(event -> {
-                                loadingStage.close();
-                                Parent root = task.getValue();
-                                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                                Scene scene = new Scene(root);
-                                stage.setScene(scene);
-                                stage.setTitle("Nova - Dashboard");
-                                stage.show();
-                            });
-                            new Thread(task).start();
-                        } catch (IOException e) {
-                            e.printStackTrace();
+        Task<User> userLoginTask = new Task<>() {
+            @Override
+            protected User call() throws Exception {
+                try (Connection conx = DataBase.getInstance().getConx();
+                     PreparedStatement stm = conx.prepareStatement(qry)) {
+                    stm.setString(1, email);
+                    ResultSet rs = stm.executeQuery();
+                    if (rs.next()) {
+                        String storedHash = rs.getString("password");
+                        if (PasswordUtil.checkPassword(password, storedHash)) {
+                            return new User(rs.getInt("id"),
+                                    rs.getInt("cin"),
+                                    rs.getString("nom"),
+                                    rs.getString("prenom"),
+                                    storedHash,
+                                    rs.getString("email"),
+                                    rs.getInt("num_tel"),
+
+                                    rs.getString("role"),
+                                    rs.getString("profession"));// Ensure role is trimmed if necessary
                         }
                     }
-                    if (role.equals("[\"ROLE_USER\"]")) {
-                        try {
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/InterfaceUser.fxml"));
-                            Parent root = loader.load();
-                            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                            Scene scene = new Scene(root);
-                            stage.setScene(scene);
-                            stage.setTitle("Nova Assurance");
-                            stage.show();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
+                    return null;
                 }
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        };
+
+        userLoginTask.setOnSucceeded(e -> {
+            User curUser = userLoginTask.getValue();
+            if (curUser != null) {
+                SessionManager.getInstance().setCurrentUser(curUser); // Set user in session
+                System.out.println("User logged in: " + curUser.getEmail());
+                System.out.println("Role: " + curUser.getRoles()); // Debug: Print the role
+                try {
+                    navigateBasedOnRole(curUser.getRoles(), actionEvent);
+                } catch (IOException ioException) {
+                    System.err.println("Navigation failed: " + ioException.getMessage());
+                    ioException.printStackTrace();
+                }
+            } else {
+                System.out.println("Login failed: No valid user found or password does not match.");
+            }
+        });
+
+        userLoginTask.setOnFailed(e -> {
+            Throwable exc = userLoginTask.getException();
+            System.err.println("Login failed: " + exc.getMessage());
+            exc.printStackTrace();
+        });
+
+        new Thread(userLoginTask).start();
+    }
+
+
+    private void navigateBasedOnRole(String role, ActionEvent actionEvent) throws IOException {
+        String fxmlFile = "";
+        if ("[\"ROLE_ADMIN\"]".equals(role)) {
+            fxmlFile = "/AdminUser.fxml";
+        } else if ("[\"ROLE_USER\"]".equals(role)) {
+            fxmlFile = "/InterfaceUser.fxml";
+        }
+
+        if (!fxmlFile.isEmpty()) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } else {
+            System.out.println("Role not recognized or fxml file not specified.");
         }
     }
 
-        @FXML
+
+    @FXML
     public void ResetPassword(ActionEvent actionEvent) {
 
         TextInputDialog emailDialog = new TextInputDialog();

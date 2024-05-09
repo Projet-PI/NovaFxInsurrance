@@ -20,41 +20,41 @@
                   <Image url="@user_1177568.png" />
                </image>
             </ImageView>
-            <Button layoutX="76.0" layoutY="303.0" mnemonicParsing="false" opacity="0.0" prefHeight="88.0" prefWidth="112.0" text="Mon Compte" />
+            <Button layoutX="76.0" layoutY="303.0" mnemonicParsing="false" onAction="#MyAccount" opacity="0.0" prefHeight="88.0" prefWidth="112.0" text="Mon Compte" />
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="197.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Reclamationpic.png" />
                </image>
             </ImageView>
-            <Button layoutX="200.0" layoutY="303.0" mnemonicParsing="false" opacity="0.0" prefHeight="88.0" prefWidth="144.0" text="Passer une réclamation" />
+            <Button layoutX="200.0" layoutY="303.0" mnemonicParsing="false" onAction="#MyReclamation" opacity="0.0" prefHeight="88.0" prefWidth="144.0" text="Passer une réclamation" />
             <ImageView fitHeight="150.0" fitWidth="137.0" layoutX="340.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@devispic.png" />
                </image>
             </ImageView>
-            <Button layoutX="356.0" layoutY="303.0" mnemonicParsing="false" opacity="0.0" prefHeight="88.0" prefWidth="101.0" text="Passer un devis" />
+            <Button layoutX="356.0" layoutY="303.0" mnemonicParsing="false" onAction="#MyDevis" opacity="0.0" prefHeight="88.0" prefWidth="101.0" text="Passer un devis" />
             <ImageView fitHeight="137.0" fitWidth="124.0" layoutX="471.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Sinistrepic.png" />
                </image>
             </ImageView>
-            <Button layoutX="477.0" layoutY="304.0" mnemonicParsing="false" opacity="0.0" prefHeight="88.0" prefWidth="112.0" text="Sinistre" />
+            <Button layoutX="477.0" layoutY="304.0" mnemonicParsing="false" onAction="#MySinistre" opacity="0.0" prefHeight="88.0" prefWidth="112.0" text="Sinistre" />
             <ImageView fitHeight="137.0" fitWidth="122.0" layoutX="606.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@assurance%20pic.png" />
                </image>
             </ImageView>
-            <Button layoutX="605.0" layoutY="304.0" mnemonicParsing="false" opacity="0.0" prefHeight="88.0" prefWidth="124.0" text="Contrats Assurance" />
+            <Button layoutX="605.0" layoutY="304.0" mnemonicParsing="false" onAction="#MyAssurance" opacity="0.0" prefHeight="88.0" prefWidth="124.0" text="Contrats Assurance" />
             <ImageView fitHeight="54.0" fitWidth="56.0" layoutX="49.0" layoutY="529.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@logout.png" />
                </image>
             </ImageView>
-            <Button layoutX="43.0" layoutY="543.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="54.0" text="Déconnexion" />
+            <Button layoutX="43.0" layoutY="543.0" mnemonicParsing="false" onAction="#Logout" opacity="0.0" prefHeight="25.0" prefWidth="54.0" text="Déconnexion" />
             <Text layoutX="91.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mon Compte" />
             <Text layoutX="201.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passer une réclamation" />
-            <Text layoutX="357.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passer un devis" />
-            <Text layoutX="490.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passer un devis" />
+            <Text layoutX="359.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passer un devis" />
+            <Text layoutX="512.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sinistre" />
             <Text layoutX="616.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contrat assurance" />
             <Text layoutX="115.0" layoutY="560.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Se déconnecter" />
          </children>

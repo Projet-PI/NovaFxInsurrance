@@ -49,7 +49,7 @@ public class UserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userService = new ServiceUtilisateurs();
-        currentUser = SessionManager.getInstance().getUser();  // Assuming SessionManager holds the logged-in user
+        currentUser = SessionManager.getInstance().getCurrentUser();  // Assuming SessionManager holds the logged-in user
         loadUserProfile();
     }
 
