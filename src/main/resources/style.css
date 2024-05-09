@@ -90,3 +90,33 @@
     -fx-border-radius: 0.25em;
     -fx-text-fill: #ffffff;
 }
+
+.custom-button {
+    -fx-background-color: #4CAF50; /* Green background */
+    -fx-text-fill: white; /* White text */
+    -fx-font-size: 14px; /* Larger font size */
+    -fx-padding: 10 20; /* Padding for button */
+    -fx-border-radius: 5px; /* Rounded borders */
+    -fx-background-radius: 5px; /* Match border radius with background */
+}
+
+.account-button {
+    -fx-background-color: #f0f0f0; /* Light grey background */
+    -fx-text-fill: black; /* Black text */
+    -fx-font-size: 14px;
+    -fx-padding: 8 16;
+}
+
+.menu-bar {
+    -fx-background-color: #2C3E50; /* Dark blue background */
+    -fx-text-fill: white;
+}
+
+.menu {
+    -fx-text-fill: white;
+}
+
+.menu-item {
+    -fx-text-fill: black;
+}
+

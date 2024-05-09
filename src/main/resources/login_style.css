@@ -1,0 +1,61 @@
+.root {
+    -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    -fx-base: #ffffff;
+    -fx-background: #f4f4f4;
+}
+
+.label-style {
+    -fx-font-size: 16px;
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+}
+
+.small-label-style {
+    -fx-font-size: 12px;
+    -fx-text-fill: #666666;
+}
+
+.footer-label-style {
+    -fx-font-size: 14px;
+    -fx-text-fill: #aaaaaa;
+    -fx-padding: 10px 0 20px 0;
+}
+
+.text-field-style {
+    -fx-font-size: 14px;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5px;
+    -fx-padding: 8px;
+    -fx-background-radius: 5px;
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0.0, 0, 1);
+}
+
+.hyperlink-style {
+    -fx-text-fill: #07dc84;
+    -fx-underline: true;
+    -fx-font-size: 14px;
+}
+
+.login-button-style {
+    -fx-background-color: #0ee864;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.0, 0, 2);
+}
+
+.login-button-style:hover {
+    -fx-background-color: #006b36;
+}
+
+.menu-bar {
+    -fx-background-color: #f4f4f4;
+}
+
+.menu {
+    -fx-text-fill: #333;
+    -fx-font-size: 14px;
+}
