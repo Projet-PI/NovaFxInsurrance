@@ -35,6 +35,6 @@
       <Label layoutX="71.0" layoutY="252.0" text="CIN:" />
       <Label layoutX="71.0" layoutY="280.0" text="Profession:" />
       <Button fx:id="ModifierBack" layoutX="157.0" layoutY="381.0" mnemonicParsing="false" onAction="#HandleModification" prefHeight="25.0" prefWidth="106.0" text="Modifier" />
-      <Button fx:id="RetourButton" layoutX="617.0" layoutY="64.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Menu" />
+      <Button fx:id="RetourButton" layoutX="617.0" layoutY="64.0" mnemonicParsing="false" onAction="#BackToMenuButton" prefHeight="25.0" prefWidth="69.0" text="Menu" />
    </children>
 </AnchorPane>

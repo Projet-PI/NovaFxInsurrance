@@ -1,17 +1,22 @@
 package tn.esprit.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import tn.esprit.entities.User;
 import tn.esprit.services.ServiceUtilisateurs;
 import tn.esprit.utils.SessionManager;
 
-import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.scene.Node;
 
 public class UserController implements Initializable {
 
@@ -66,7 +71,7 @@ public class UserController implements Initializable {
     }
 
     @FXML
-    private void HandleModification(ActionEvent event) {
+    private void HandleModification(javafx.event.ActionEvent actionEvent) {
         try {
             currentUser.setNom(NomText.getText());
             currentUser.setPrenom(PrénomText.getText());
@@ -75,7 +80,7 @@ public class UserController implements Initializable {
             currentUser.setNum_tel(Integer.parseInt((NumtelText.getText())));
             currentUser.setCin(Integer.parseInt((CinText.getText())));
             currentUser.setProfession((ProfessionText.getText()));
-            userService.Update(currentUser);
+            userService.updateUser(currentUser);
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Votre Profile à été modifié avec succès.");
             alert.showAndWait();
         } catch (Exception e) {
@@ -84,5 +89,23 @@ public class UserController implements Initializable {
         }
     }
 
+    @FXML
+    private void BackToMenuButton(javafx.event.ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfacUser.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-}
+
+    }
+
+
+
+
+

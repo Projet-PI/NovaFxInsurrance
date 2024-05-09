@@ -1,5 +1,6 @@
 package tn.esprit.services;
 
+import javafx.scene.control.Alert;
 import tn.esprit.Interfaces.IUtilisateur;
 import tn.esprit.entities.User;
 import tn.esprit.utils.DataBase;
@@ -134,6 +135,36 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
         }
             return false;
         }
+    public void updateUser(User currentUser) throws SQLException {
+        if (conx == null) {
+            conx = DataBase.getInstance().getConx();
+        }
+
+        String updateSql = "UPDATE user SET nom = ?, prenom = ?, adresse = ?, email = ?, num_tel = ?, cin = ?, profession = ? WHERE id = ?";
+
+        try (PreparedStatement stmt = conx.prepareStatement(updateSql)) {
+            stmt.setString(1, currentUser.getNom());
+            stmt.setString(2, currentUser.getPrenom());
+            stmt.setString(3, currentUser.getAdresse());
+            stmt.setString(4, currentUser.getEmail());
+            stmt.setInt(5, currentUser.getNum_tel());
+            stmt.setInt(6, currentUser.getCin());
+            stmt.setString(7, currentUser.getProfession());
+            stmt.setInt(8, currentUser.getId());
+
+            int affectedRows = stmt.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Update successful");
+                showAlert("Update Successful", "Your profile has been updated successfully.", Alert.AlertType.INFORMATION);
+            } else {
+                System.out.println("Update failed");
+                showAlert("Update Failed", "No changes were made to your profile.", Alert.AlertType.ERROR);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("Database Error", "Failed to update user profile: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
 
     @Override
     public boolean Delete(User user) {
@@ -268,5 +299,13 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
             System.out.println(ex.getMessage());
         }
         return users;
+    }
+
+    private void showAlert(String title, String content, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }
