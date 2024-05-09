@@ -18,16 +18,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.PiFx.controllers.AdminUserController">
+<AnchorPane stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AdminUserController">
    <children>
       <TabPane layoutX="170.0" layoutY="104.0" prefHeight="664.0" prefWidth="1145.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -115,10 +107,10 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Button mnemonicParsing="false" onAction="#TriNom" prefHeight="52.0" prefWidth="76.0" text="Nom" />
-                              <Button mnemonicParsing="false" onAction="#TriEmail" prefHeight="59.0" prefWidth="92.0" text="Email" />
                            </children>
                         </HBox>
+                        <Button layoutX="902.0" layoutY="11.0" mnemonicParsing="false" onAction="#ExporterExcel" prefHeight="30.0" prefWidth="172.0" text="Exporter en EXCEL" />
+                        <TextField fx:id="SearchBar" layoutX="407.0" layoutY="14.0" prefHeight="26.0" prefWidth="200.0" promptText="Recherche..." />
                      </children></AnchorPane>
               </content>
             </Tab>
@@ -128,16 +120,18 @@
          <children>
             <VBox layoutX="6.0" layoutY="22.0" prefHeight="466.0" prefWidth="160.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="173.0" text="Gestion Utilisateurs" />
+                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" text="Gestion Utilisateurs" />
                   <Separator prefWidth="200.0" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="184.0" text="Gestion Finance" />
+                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="160.0" text="Gestion Finance" />
                   <Separator prefWidth="200.0" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="204.0" text="Gestion Réclamation" />
+                  <Button mnemonicParsing="false" onAction="#ReclamationButton" prefHeight="36.0" prefWidth="189.0" text="Gestion Réclamation" />
                   <Separator prefWidth="200.0" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="174.0" text="Gestion Sinistre" />
+                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="160.0" text="Gestion Sinistre" />
+                  <Separator prefWidth="200.0" />
+                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="175.0" text="Gestion Assurance" />
                </children>
             </VBox>
-            <Button layoutX="19.0" layoutY="607.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="135.0" text="Déconnexion" />
+            <Button layoutX="19.0" layoutY="607.0" mnemonicParsing="false" onAction="#LogoutButton" prefHeight="30.0" prefWidth="135.0" text="Déconnexion" />
             <Button layoutX="43.0" layoutY="562.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="87.0" text="Menu" />
          </children>
       </Pane>

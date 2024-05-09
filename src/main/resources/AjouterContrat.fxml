@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="640.0" prefWidth="862.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AjouterContrat">
+    <children>
+        <ImageView fitHeight="37.0" fitWidth="532.0" layoutX="711.0" layoutY="38.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@416434692_769425838447527_1407072637719166262_n.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="82.0" fitWidth="123.0" layoutX="650.0" layoutY="15.0" opacity="0.85" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@416434692_769425838447527_1407072637719166262_n.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="80.0" layoutY="292.0" text="Durée" />
+        <Label layoutX="46.0" layoutY="167.0" text="Type de couverture" />
+        <Label layoutX="31.0" layoutY="232.0" text="Date de souscription" />
+        <TextField fx:id="dureetf" layoutX="182.0" layoutY="287.0" prefWidth="150.0" />
+        <ComboBox fx:id="combo" layoutX="182.0" layoutY="162.0" prefWidth="150.0" />
+
+        <DatePicker fx:id="datesouscriptointf" layoutX="182.0" layoutY="227.0" prefWidth="150.0" />
+        <Button layoutX="508.0" layoutY="547.0" mnemonicParsing="false" onAction="#ajouter" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8px 16px; -fx-border-radius: 3px;" text="Ajouter" />
+        <TextField fx:id="PhoneNumber" layoutX="182.0" layoutY="346.0" prefWidth="150.0" promptText="Numéro de téléphone" />
+        <Text layoutX="27.0" layoutY="367.0" text="Numéro de téléphone" />
+        <ImageView fx:id="generateCap" fitHeight="50.0" fitWidth="50.0" layoutX="381.0" layoutY="409.0" onMouseClicked="#generateCaptcha">
+            <image>
+                <Image url="@png-transparent-recaptcha-hd-logo-thumbnail.png" />
+            </image>
+        </ImageView>
+        <TextField fx:id="tfCaptcha" layoutX="182.0" layoutY="416.0" prefWidth="150.0" />
+        <Label fx:id="captchaLabel" layoutX="182.0" layoutY="395.0" prefHeight="21.0" prefWidth="150.0" />
+        <Label fx:id="checkrecaptcha" layoutX="139.0" layoutY="459.0" prefHeight="21.0" prefWidth="237.0" />
+      <Label layoutX="122.0" layoutY="40.0" prefHeight="43.0" prefWidth="344.0" text="formulaire du contrat" textFill="#000000b0">
+         <font>
+            <Font name="System Bold Italic" size="29.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>

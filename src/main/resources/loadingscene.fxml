@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="768.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21">
+    <children>
+
+    </children>
+</AnchorPane>

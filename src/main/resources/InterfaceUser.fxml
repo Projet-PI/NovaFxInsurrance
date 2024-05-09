@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="538.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/21" fx:controller="tn.esprit.controllers.LandingPage" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="82.0" layoutY="188.0" mnemonicParsing="false" text="Voir mes contrats" />
+      <Button layoutX="82.0" layoutY="244.0" mnemonicParsing="false" text="Voir assurance" />
+      <Button layoutX="82.0" layoutY="298.0" mnemonicParsing="false" text="Passer un réclamation" />
+      <Label layoutX="539.0" layoutY="64.0" prefHeight="17.0" prefWidth="132.0" />
+      <Button layoutX="643.0" layoutY="60.0" mnemonicParsing="false" text="Mon Compte" />
+      <Button layoutX="79.0" layoutY="141.0" mnemonicParsing="false" text="Passer un Devis" />
+   </children>
+</AnchorPane>
