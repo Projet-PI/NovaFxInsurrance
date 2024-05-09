@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import tn.esprit.entities.Devis;
 import org.controlsfx.control.Notifications;
 import tn.esprit.entities.AvisRestau;
 import tn.esprit.entities.Devis;
@@ -185,14 +186,14 @@ public class Avis implements Initializable {
         AvisRestau avis = new AvisRestau();
         avis.setStatus(status);
         avis.setResponse(response);
-        avis.setDevis_id_id(devis_id_id); // Définir l'ID du devis
+        avis.setDevis_id_id(devis_id_id); // Définir l'ID du devis // 2
 
         // Appeler la méthode pour ajouter l'avis à la base de données
         ServiceDevis service = new ServiceDevis();
         service.ajouter(avis);
 
         // Si le statut est "traite", envoyer un SMS
-        if ("101".equals(status)) {
+        /*if ("101".equals(status)) {
             // Construire le message à envoyer par SMS
             String message = "Merci d'avoir passe un devis Chez Nova Insurrance  : " + response;
 
@@ -200,7 +201,7 @@ public class Avis implements Initializable {
             Example example = new Example();
             example.send_sms(message);
         }
-
+*/
         // Effacer les champs de texte
         show();
         sasie.clear();
@@ -249,6 +250,7 @@ public class Avis implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         show();
     }
+
 
 
     public void show(){

@@ -133,6 +133,7 @@
                         <Insets left="40.0" />
                      </padding>
                   </HBox>
+
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <HBox prefHeight="136.0" prefWidth="316.0">
