@@ -46,5 +46,7 @@
             <Font name="System Bold Italic" size="29.0" />
          </font>
       </Label>
+        <Button fx:id="button" layoutX="508.0" layoutY="590.0" mnemonicParsing="false" onAction="#goToAfficherFrontContrat" style="-fx-background-color: #007a80; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8px 16px; -fx-border-radius: 3px;" text="Go to AfficherFrontcontrat" />
+
     </children>
 </AnchorPane>

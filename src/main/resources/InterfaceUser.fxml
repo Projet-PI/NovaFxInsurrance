@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="538.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.USER.LandingPage">
+<AnchorPane prefHeight="538.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.USER.LandingPage">
    <children>
       <AnchorPane prefHeight="538.0" prefWidth="794.0">
          <children>
@@ -44,7 +44,7 @@
                   <Image url="@assurance%20pic.png" />
                </image>
             </ImageView>
-            <Button layoutX="605.0" layoutY="304.0" mnemonicParsing="false" opacity="0.0" prefHeight="88.0" prefWidth="124.0" text="Contrats Assurance" />
+            <Button layoutX="605.0" layoutY="304.0" mnemonicParsing="false" onAction="#mycontrat" opacity="0.0" prefHeight="88.0" prefWidth="124.0" text="Contrats Assurance" />
             <ImageView fitHeight="54.0" fitWidth="56.0" layoutX="49.0" layoutY="529.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@logout.png" />

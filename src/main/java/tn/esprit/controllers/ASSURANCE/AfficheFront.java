@@ -2,15 +2,19 @@ package tn.esprit.controllers.ASSURANCE;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import tn.esprit.services.Assurance_s;
 import tn.esprit.entities.Assurance;
 
@@ -111,6 +115,18 @@ public class AfficheFront implements Initializable {
     }
 
 
+    public void goToContrats(ActionEvent actionEvent) {
+        try {
+            // Load the FXML file for Contrats
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/assurancefxml/afficherfrontcontrat.fxml"));
+            Parent root = loader.load();
 
-
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -2,9 +2,13 @@ package tn.esprit.controllers.ASSURANCE;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import tn.esprit.services.Contrat_s;
 import tn.esprit.entities.Contrat;
 import tn.esprit.utils.DataBase;
@@ -12,6 +16,7 @@ import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Optional;
@@ -43,6 +48,8 @@ public class AjouterContrat {
 
     @FXML
     private Label checkrecaptcha;
+    @FXML
+    private Button button;
 
     @FXML
     void generateCaptcha(MouseEvent event) {
@@ -171,5 +178,22 @@ public class AjouterContrat {
         dureetf.clear();
         datesouscriptointf.getEditor().clear();
         combo.getSelectionModel().clearSelection();
+    }
+
+    public void goToAfficherFrontContrat(ActionEvent actionEvent) {
+        try {
+            // Load the FXML file for AfficherFrontcontrat
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/assurancefxml/AfficherFrontcontrat.fxml"));
+            Parent root = loader.load();
+
+            // Get the stage of the current scene
+            Stage stage = (Stage) button.getScene().getWindow();
+
+            // Set the new scene
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

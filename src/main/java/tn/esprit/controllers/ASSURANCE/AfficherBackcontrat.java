@@ -163,7 +163,7 @@ public class AfficherBackcontrat {
 
     private void initModifierColumn() {
         TableColumn<Contrat, Void> editCol = new TableColumn<>("Modifier");
-        editCol.setCellFactory(param -> new TableCell<Contrat, Void>() {
+        editCol.setCellFactory(param -> new TableCell<>() {
             private final Button editButton = new Button("Modifier");
 
             {
