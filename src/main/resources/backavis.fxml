@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="565.0" prefWidth="839.0" stylesheets="@style/styleafficher.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.BackAvis">
+   <children>
+      <TableView fx:id="tabAvis" layoutX="259.0" layoutY="95.0" prefHeight="274.0" prefWidth="494.0">
+        <columns>
+          <TableColumn fx:id="nomR" prefWidth="108.79997253417969" text="Id" />
+          <TableColumn fx:id="commentR" maxWidth="300.0" minWidth="0.0" prefWidth="236.0" text="Response" />
+            <TableColumn fx:id="responseR" prefWidth="147.199951171875" text="status" />
+        </columns>
+      </TableView>
+      <Button fx:id="supprimer" layoutX="613.0" layoutY="469.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="107.0" styleClass="avis-button" stylesheets="@style/styleafficher.css" text="supprimer" textFill="#f2ecec" />
+      <VBox alignment="TOP_CENTER" layoutY="-10.0" prefHeight="622.0" prefWidth="254.0" style="-fx-background-color: #F8C07F;" styleClass="right-bar" stylesheets="@style/styleafficher.css">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/nameApp.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="60.0" top="40.0" />
+               </VBox.margin>
+            </ImageView>
+            <HBox prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/analyse.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="BackAvis1" mnemonicParsing="false" onAction="#Dashboard" prefHeight="35.0" prefWidth="190.0" text="Dashboard" textAlignment="RIGHT" textFill="#080808" />
+               </children>
+            </HBox>
+            <HBox layoutX="30.0" layoutY="392.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/homme.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" prefWidth="202.0" text="Utilisateur">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="30.0" layoutY="438.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/probleme.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="Ajout" mnemonicParsing="false" onAction="#Dashboard_Back_Avis" prefHeight="26.0" prefWidth="138.0" text="Ajouter Devis" />
+               </children>
+            </HBox>
+            <HBox layoutX="30.0" layoutY="461.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/produit.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="BackAvis" mnemonicParsing="false" onAction="#BackAvis" prefHeight="35.0" prefWidth="190.0" styleClass="avis-button" stylesheets="@style/styleafficher.css" text="Repondre a un devis" textFill="WHITE" />
+               </children>
+            </HBox>
+
+         </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+      </VBox>
+      <HBox layoutX="259.0" layoutY="369.0" prefHeight="100.0" prefWidth="494.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="268.0">
+               <children>
+                  <TextField fx:id="TFadresse" alignment="CENTER" promptText="Edit Status" stylesheets="@style/styleafficher.css" HBox.hgrow="ALWAYS">
+                     <styleClass>
+                        <String fx:value="search" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets top="30.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="236.0">
+               <children>
+                  <TextField fx:id="TFadresse1" alignment="CENTER" prefHeight="26.0" prefWidth="151.0" promptText="Edit Response" stylesheets="@style/styleafficher.css" HBox.hgrow="ALWAYS">
+                     <styleClass>
+                        <String fx:value="search" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets top="30.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <Button fx:id="supprimer1" layoutX="496.0" layoutY="469.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="107.0" styleClass="avis-button" stylesheets="@style/styleafficher.css" text="Modifer" textFill="#f2ecec" />
+   </children>
+</AnchorPane>
