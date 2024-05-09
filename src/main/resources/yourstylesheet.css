@@ -1,0 +1,64 @@
+/* Define styles for the table view */
+.table-view {
+    -fx-background-color: #f8f8f8; /* Light gray background */
+    -fx-border-color: #d0d0d0; /* Light border color */
+    -fx-border-width: 1px; /* Border width */
+}
+
+/* Define styles for table rows */
+.table-row-cell {
+    -fx-background-color: #ffffff; /* White background for cells */
+    -fx-text-fill: #333333; /* Dark text color */
+}
+
+/* Define styles for odd table rows */
+.table-row-cell:odd {
+    -fx-background-color: #f5f5f5; /* Light gray background for odd rows */
+}
+
+/* Define styles for selected table rows */
+.table-row-cell:selected {
+    -fx-background-color: #add8e6; /* Light blue background for selected rows */
+    -fx-text-fill: #000000; /* Black text color for selected rows */
+}
+
+/* Define styles for table column headers */
+.table-column-header {
+    -fx-background-color: #f0f0f0; /* Light gray background for column headers */
+    -fx-text-fill: #333333; /* Dark text color for column headers */
+    -fx-border-color: #d0d0d0; /* Light border color for column headers */
+    -fx-border-width: 0 0 1px 0; /* Bottom border only for column headers */
+}
+
+/* Define styles for selected table column headers */
+.table-column-header-background:selected {
+    -fx-background-color: #add8e6; /* Light blue background for selected column headers */
+}
+
+/* Define styles for table cells */
+.table-cell {
+    -fx-alignment: CENTER_LEFT; /* Center-left alignment for cell content */
+    -fx-padding: 5px; /* Padding for cell content */
+}
+
+/* Define styles for selected table cells */
+.table-cell:selected {
+    -fx-background-color: transparent; /* Transparent background for selected cells */
+}
+
+/* Define fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Apply fade-in animation to newly added rows */
+.table-row-cell {
+    -fx-animation-duration: 0.5s; /* Animation duration */
+    -fx-animation-timing-function: ease-in; /* Animation timing function */
+    animation: fadeIn 0.5s; /* Apply fade-in animation */
+}
