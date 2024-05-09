@@ -1,15 +1,21 @@
 package tn.esprit.controllers.USER;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import tn.esprit.entities.User;
 import tn.esprit.services.ServiceUtilisateurs;
 import tn.esprit.utils.SessionManager;
 
-import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -109,6 +115,20 @@ public class UserController implements Initializable {
         return true;
     }
 
+    @FXML
+    public void MainMenu(ActionEvent actionEvent) {
+        try {
+            System.out.println("test3");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/InterfaceUser.fxml"));
+            Parent loginRoot = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(loginRoot);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
 
+        }
+    }
 }
 

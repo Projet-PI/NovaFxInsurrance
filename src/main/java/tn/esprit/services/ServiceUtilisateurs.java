@@ -53,30 +53,41 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
     }
 
     @Override
-    public List<User> afficher() {
+    public List<User> afficher(String searchQuery) {
         List<User> users = new ArrayList<>();
-        String query = "SELECT * FROM user"; // Adjust the table name if it's different in your DB
-        try (Statement stmt = conx.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
-            while (rs.next()) {
-                User user = new User(
-                        rs.getInt("id"),
-                        rs.getInt("cin"),
-                        rs.getString("nom"),
-                        rs.getString("prenom"),
-                        rs.getString("email"),
-                        rs.getString("adresse"),
-                        rs.getInt("num_tel"),
-                        rs.getString("password"),
-                        rs.getString("profession"),
-                        rs.getString("role")
-                );
-                users.add(user);
+        String query = "SELECT * FROM user";
+        if (searchQuery != null && !searchQuery.isEmpty()) {
+            query += " WHERE `nom` LIKE ?";
+        }
+        try (PreparedStatement stmt = conx.prepareStatement(query)) {
+            if (searchQuery != null && !searchQuery.isEmpty()) {
+                stmt.setString(1, "%" + searchQuery + "%");
+            }
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    User user = new User(
+                            rs.getInt("id"),
+                            rs.getInt("cin"),
+                            rs.getString("nom"),
+                            rs.getString("prenom"),
+                            rs.getString("email"),
+                            rs.getString("adresse"),
+                            rs.getInt("num_tel"),
+                            rs.getString("password"),
+                            rs.getString("profession"),
+                            rs.getString("role")
+                    );
+                    users.add(user);
+                }
+            } catch (SQLException e) {
+                System.err.println("Error executing query: " + e.getMessage());
             }
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            System.err.println("Error preparing statement: " + e.getMessage());
         }
         return users;
     }
+
 
 
     @Override

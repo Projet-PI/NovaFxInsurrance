@@ -86,6 +86,8 @@
         @FXML
         private Label reginfo;
 
+        private String searchValue = "";
+
 
         private Connection conx;
         private final ServiceUtilisateurs UserS = new ServiceUtilisateurs();
@@ -94,16 +96,19 @@
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
             roleCOMBOBOX.setItems(FXCollections.observableArrayList("[\"ROLE_USER\"]", "[\"ROLE_ADMIN\"]","[\"ROLE_RECLAMATION\"]", "[\"ROLE_SINISTRE\"]", "[\"ROLE_ASSURANCE\"]", "[\"ROLE_FINANCIER\"]"));
-            load();
+            load(searchValue);
+            SearchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+                load(newValue);
+            });
         }
 
         //Load Function
-        public void load() {
+        public void load(String query) {
             int column = 0;
             int row = 1;
             try {
                 userContainer.getChildren().clear();
-                for (User user : UserS.afficher()) {
+                for (User user : UserS.afficher(query)) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/CardViewUser.fxml"));
                     Pane userBox = fxmlLoader.load();
@@ -118,6 +123,8 @@
                     userContainer.add(userBox, column++, row);
                     GridPane.setMargin(userBox, new Insets(10));
                 }
+
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -263,7 +270,7 @@
         //Excel Function
         @FXML
         void ExporterExcel(ActionEvent event) {
-            List<User> users = UserS.afficher(); // This method should return a List of all users
+            List<User> users = UserS.afficher(""); // This method should return a List of all users
             exportUsersToExcel(users);
 
         }
@@ -361,6 +368,10 @@
                 e.printStackTrace();
                 // Optionally, handle the error, for example logging it or showing an error message
             }
+
+        }
+
+        public void Search(ActionEvent actionEvent) {
 
         }
     }

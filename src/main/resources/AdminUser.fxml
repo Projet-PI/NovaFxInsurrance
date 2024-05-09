@@ -109,7 +109,7 @@
                            </children>
                         </HBox>
                         <Button layoutX="902.0" layoutY="11.0" mnemonicParsing="false" onAction="#ExporterExcel" prefHeight="30.0" prefWidth="172.0" text="Exporter en EXCEL" />
-                        <TextField fx:id="SearchBar" layoutX="407.0" layoutY="14.0" prefHeight="26.0" prefWidth="200.0" promptText="Recherche..." />
+                        <TextField fx:id="SearchBar" layoutX="407.0" layoutY="14.0" onAction="#Search" prefHeight="26.0" prefWidth="200.0" promptText="Recherche..." />
                      </children></AnchorPane>
               </content>
             </Tab>
@@ -131,7 +131,6 @@
                </children>
             </VBox>
             <Button layoutX="19.0" layoutY="607.0" mnemonicParsing="false" onAction="#LogoutButton" prefHeight="30.0" prefWidth="135.0" text="Déconnexion" />
-            <Button layoutX="43.0" layoutY="562.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="87.0" text="Menu" />
          </children>
       </Pane>
       <Pane prefHeight="119.0" prefWidth="1315.0">
