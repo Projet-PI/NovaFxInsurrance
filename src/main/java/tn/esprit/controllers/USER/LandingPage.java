@@ -15,6 +15,18 @@ import java.io.IOException;
 public class LandingPage {
     @FXML
     public void MyAccount(ActionEvent actionEvent) {
+        try {
+            System.out.println("test3");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/BackUser.fxml"));
+            Parent loginRoot = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(loginRoot);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
     }
 
     @FXML
@@ -34,7 +46,7 @@ public class LandingPage {
 
     @FXML
     public void Logout(ActionEvent actionEvent) {
-        User currentUser = SessionManager.getCurrentUser(); // Assuming SessionManager has this method
+        User currentUser = SessionManager.getCurrentUser();
 
         if (currentUser != null) {
             System.out.println("User Email: " + currentUser.getEmail());
@@ -42,15 +54,12 @@ public class LandingPage {
         }else {
             System.out.println("no user was logged in ");
         }
-
         System.out.println("Logging out...");
         SessionManager.logoutCurrentUser();
-
         try {
             System.out.println("test3");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
             Parent loginRoot = loader.load();
-
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(loginRoot);
             stage.setScene(scene);

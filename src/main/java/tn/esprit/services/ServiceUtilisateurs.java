@@ -269,4 +269,56 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
         }
         return users;
     }
+
+    public boolean updateWithoutPassword(User user) {
+        String sql = "UPDATE user SET nom = ?, prenom = ?, email = ?, num_tel = ?, adresse = ?, profession = ?, cin = ? WHERE id = ?";
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = DataBase.getInstance().getConx();
+            if (con == null || !con.isValid(5)) {
+                System.err.println("Connection is not valid or closed.");
+                return false;
+            }
+            con.setAutoCommit(false);
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, user.getNom());
+            stmt.setString(2, user.getPrenom());
+            stmt.setString(3, user.getEmail());
+            stmt.setInt(4, user.getNum_tel());
+            stmt.setString(5, user.getAdresse());
+            stmt.setString(6, user.getProfession());
+            stmt.setInt(7, user.getCin());
+            stmt.setInt(8, user.getId());
+
+            int affectedRows = stmt.executeUpdate();
+
+            con.commit();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            System.err.println("SQLException: " + e.getSQLState() + " - " + e.getErrorCode());
+            System.err.println("Error updating user: " + e.getMessage());
+            if (con != null) {
+                try {
+                    con.rollback();
+                } catch (SQLException ex) {
+                    System.err.println("SQL Exception on rollback. Error: " + ex.getMessage());
+                }
+            }
+            return false;
+        } finally {
+            try {
+                if (stmt != null) stmt.close();
+                if (con != null) {
+                    con.setAutoCommit(true);
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("SQL Exception on closing. Error: " + ex.getMessage());
+            }
+        }
+    }
+
+
+
 }

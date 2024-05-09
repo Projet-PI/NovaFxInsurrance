@@ -49,7 +49,7 @@ public class UserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userService = new ServiceUtilisateurs();
-        currentUser = SessionManager.getInstance().getCurrentUser();  // Assuming SessionManager holds the logged-in user
+        currentUser = SessionManager.getInstance().getCurrentUser();
         loadUserProfile();
     }
 
@@ -66,17 +66,33 @@ public class UserController implements Initializable {
     }
 
     @FXML
-    private void HandleModification(ActionEvent event) {
+    private void HandleModification(javafx.event.ActionEvent event) {
+        if (!validateInput()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Veuillez vérifier les données saisies. Certains champs contiennent des erreurs.");
+            alert.showAndWait();
+            return;
+        }
+
         try {
-            currentUser.setNom(NomText.getText());
-            currentUser.setPrenom(PrénomText.getText());
-            currentUser.setAdresse(AdresseText.getText());
-            currentUser.setEmail((EmailText.getText()));
-            currentUser.setNum_tel(Integer.parseInt((NumtelText.getText())));
-            currentUser.setCin(Integer.parseInt((CinText.getText())));
-            currentUser.setProfession((ProfessionText.getText()));
-            userService.Update(currentUser);
+            currentUser.setNom(NomText.getText().trim());
+            currentUser.setPrenom(PrénomText.getText().trim());
+            currentUser.setEmail(EmailText.getText().trim());
+            currentUser.setNum_tel(Integer.parseInt(NumtelText.getText().trim()));
+            currentUser.setAdresse(AdresseText.getText().trim());
+            currentUser.setProfession(ProfessionText.getText().trim());
+            currentUser.setCin(Integer.parseInt(CinText.getText().trim()));
+
+            boolean updated = userService.updateWithoutPassword(currentUser);
+            if (updated == true) {
+                System.out.println("succes");
+            } else {
+                System.out.println("fail");
+            }
+            SessionManager.getInstance().setCurrentUser(currentUser);
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Votre Profile à été modifié avec succès.");
+            alert.showAndWait();
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Les numéros de téléphone et CIN doivent contenir uniquement des chiffres.");
             alert.showAndWait();
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Echec de modification de profile: " + e.getMessage());
@@ -84,5 +100,15 @@ public class UserController implements Initializable {
         }
     }
 
+    private boolean validateInput() {
+        if (NomText.getText().isEmpty() || PrénomText.getText().isEmpty() || AdresseText.getText().isEmpty() ||
+                EmailText.getText().isEmpty() || NumtelText.getText().isEmpty() || CinText.getText().isEmpty() ||
+                ProfessionText.getText().isEmpty()) {
+            return false;
+        }
+        return true;
     }
+
+
+}
 
