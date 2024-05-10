@@ -69,12 +69,16 @@ public class ReclamationEntryService {
             if (reclamationEntry.getResponseType().equals("AI")) {
                 ChatResponse regulationResponse = fetchRegulation(prompt);
                 regulation = regulationResponse.getRegulation();
+                ReclamationGroupeService reclamationGroupeService = new ReclamationGroupeService();
+                reclamationGroupe.setStatus("completed");
+                reclamationGroupeService.UpdateReclamationGroupe(reclamationGroupe);
             } else {
                 reclamationEntry.setResponse("No response");
                 regulation = "No response";
                 reclamationEntry.setStatus("pending");
                 // update reclamation group status to pending
                 ReclamationGroupeService reclamationGroupeService = new ReclamationGroupeService();
+                reclamationGroupe.setStatus("pending");
                 reclamationGroupeService.UpdateReclamationGroupe(reclamationGroupe);
             }
 
