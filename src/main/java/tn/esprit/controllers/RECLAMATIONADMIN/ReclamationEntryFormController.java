@@ -68,7 +68,7 @@ public class ReclamationEntryFormController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reclamation-entry.fxml"));
             Parent reclamationEntryParent = fxmlLoader.load();
 
-            ReclamationEntryController controller = fxmlLoader.getController();
+            ReclamationEntryControllerAdmin controller = fxmlLoader.getController();
             controller.setReclamationGroupe(reclamationGroupe);
 
             Stage currentStage = (Stage) inputField.getScene().getWindow();
@@ -112,7 +112,7 @@ public class ReclamationEntryFormController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reclamation-entry.fxml"));
             Parent reclamationEntryParent = fxmlLoader.load();
 
-            ReclamationEntryController controller = fxmlLoader.getController();
+            ReclamationEntryControllerAdmin controller = fxmlLoader.getController();
             controller.setReclamationGroupe(reclamationGroupe);
 
             Stage currentStage = (Stage) inputField.getScene().getWindow();

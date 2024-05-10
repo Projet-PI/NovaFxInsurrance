@@ -33,6 +33,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReclamationEntryController {
+
+    @FXML
+    public Button cancelButton;
     @FXML
     private ComboBox modeComboBox;
     @FXML

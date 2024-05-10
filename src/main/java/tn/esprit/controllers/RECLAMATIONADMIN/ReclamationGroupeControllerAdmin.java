@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -13,14 +12,14 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import tn.esprit.entities.reclamation_groupe;
-import tn.esprit.services.ReclamationEntryService;
-import tn.esprit.services.ReclamationGroupeService;
+import tn.esprit.services.ReclamationEntryServiceAdmin;
+import tn.esprit.services.ReclamationGroupeServiceAdmin;
 
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ReclamationGroupeController {
+public class ReclamationGroupeControllerAdmin {
 
     @FXML
     private ListView<reclamation_groupe> listView;
@@ -32,17 +31,19 @@ public class ReclamationGroupeController {
     private int pageNumber = 1;
     private final int pageSize = 2; // Number of items per page
 
+    private String filter = null;
+
     public void showAlert(String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setContentText(message);
         alert.showAndWait();
     }
 
-    private void loadListView(int pageNumber, int pageSize, String searchQuery) {
+    private void loadListView(int pageNumber, int pageSize, String searchQuery, String filter) {
         listView.getItems().clear(); // Clear existing items from ListView
 
-        ReclamationGroupeService service = new ReclamationGroupeService();
-        ResultSet rs = service.GetAll(pageNumber, pageSize, searchQuery);
+        ReclamationGroupeServiceAdmin service = new ReclamationGroupeServiceAdmin();
+        ResultSet rs = service.GetAll(pageNumber, pageSize, searchQuery, filter);
 
         try {
             while (rs.next()) {
@@ -104,19 +105,19 @@ public class ReclamationGroupeController {
             }
         });
 
-        loadListView(pageNumber, pageSize, null); // Load initial data
+        loadListView(pageNumber, pageSize, null, null); // Load initial data
 
         // Listen for changes in the search field
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             pageNumber = 1; // Reset page number when search criteria changes
-            loadListView(pageNumber, pageSize, newValue); // Reload list with search criteria
+            loadListView(pageNumber, pageSize, newValue, filter); // Reload list with search criteria
         });
     }
 
     public void previousPage(ActionEvent actionEvent) {
         if (pageNumber > 1) {
             pageNumber--;
-            loadListView(pageNumber, pageSize, searchField.getText()); // Reload list for previous page
+            loadListView(pageNumber, pageSize, searchField.getText(),filter); // Reload list for previous page
         }
     }
 
@@ -124,8 +125,9 @@ public class ReclamationGroupeController {
     public void nextPage(ActionEvent actionEvent) {
         System.out.println("Next page");
         pageNumber++;
-        loadListView(pageNumber, pageSize, searchField.getText()); // Reload list for next page
+        loadListView(pageNumber, pageSize, searchField.getText(),filter); // Reload list for next page
     }
+
 
     private void handleEditButton(reclamation_groupe item) {
         // Perform edit action here
@@ -154,23 +156,23 @@ public class ReclamationGroupeController {
     private void handleDeleteButton(reclamation_groupe item) {
         // Perform delete action here
         System.out.println("Delete: " + item.getName());
-        ReclamationGroupeService service = new ReclamationGroupeService();
+        ReclamationGroupeServiceAdmin service = new ReclamationGroupeServiceAdmin();
         service.DeleteReclamationGroupe(item.id);
         showAlert("Do you want to delete " + item.getName(), Alert.AlertType.WARNING);
         // refresh the list view
-        loadListView(pageNumber, pageSize, null); // Load initial data
+        loadListView(pageNumber, pageSize, null,filter); // Load initial data
 
         // Listen for changes in the search field
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             pageNumber = 1; // Reset page number when search criteria changes
-            loadListView(pageNumber, pageSize, newValue); // Reload list with search criteria
+            loadListView(pageNumber, pageSize, newValue, filter); // Reload list with search criteria
         });
     }
 
     private void handleViewButton(reclamation_groupe item) {
         // Perform delete action here
         System.out.println("View: " + item.getName());
-        ReclamationEntryService service1 = new ReclamationEntryService();
+        ReclamationEntryServiceAdmin service1 = new ReclamationEntryServiceAdmin();
         ResultSet rs1 = service1.GetAll(item);
         // print all reclamation entries
         try {
@@ -189,10 +191,10 @@ public class ReclamationGroupeController {
 
         // redirect to the reclamation entry page
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reclamation-entry.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reclamation-entry-admin.fxml"));
             Parent reclamationEntryParent = fxmlLoader.load();
 
-            ReclamationEntryController controller = fxmlLoader.getController();
+            ReclamationEntryControllerAdmin controller = fxmlLoader.getController();
             controller.setReclamationGroupe(item);
 
             Stage currentStage = (Stage) listView.getScene().getWindow();
@@ -205,18 +207,15 @@ public class ReclamationGroupeController {
         }
     }
 
-    public void openReclamationGroupAddForm(ActionEvent actionEvent) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reclamation_groupe_form_add.fxml"));
-            Parent addPageParent = fxmlLoader.load();
+    public void filterProcessed(ActionEvent event) {
+        System.out.println("Filter processed");
+        filter = "completed";
+        loadListView(pageNumber, pageSize, searchField.getText(),filter);
+    }
 
-            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
-            Scene addPageScene = new Scene(addPageParent, 870, 600);
-            currentStage.setScene(addPageScene);
-            currentStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void filterPending(ActionEvent event) {
+        System.out.println("Filter ddd");
+        filter = "pending";
+        loadListView(pageNumber, pageSize, searchField.getText(),filter);
     }
 }

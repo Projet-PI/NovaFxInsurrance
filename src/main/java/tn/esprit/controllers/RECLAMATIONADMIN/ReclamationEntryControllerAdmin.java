@@ -32,7 +32,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReclamationEntryController {
+public class ReclamationEntryControllerAdmin {
     @FXML
     private ComboBox modeComboBox;
     @FXML
@@ -68,7 +68,7 @@ public class ReclamationEntryController {
 
     private ReclamationEntryService service;
 
-    public ReclamationEntryController() {
+    public ReclamationEntryControllerAdmin() {
         this.service = new ReclamationEntryService();
     }
 
@@ -316,7 +316,7 @@ public class ReclamationEntryController {
         Parent editPageParent = fxmlLoader.load();
 
         // Get the controller of the edit page
-        ReclamationGroupeController controller = fxmlLoader.getController();
+        ReclamationGroupeControllerAdmin controller = fxmlLoader.getController();
 
         // Get the current stage
         Stage currentStage = (Stage) listView.getScene().getWindow();

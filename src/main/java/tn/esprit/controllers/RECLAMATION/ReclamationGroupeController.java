@@ -42,7 +42,7 @@ public class ReclamationGroupeController {
         listView.getItems().clear(); // Clear existing items from ListView
 
         ReclamationGroupeService service = new ReclamationGroupeService();
-        ResultSet rs = service.GetAll(pageNumber, pageSize, searchQuery);
+        ResultSet rs = service.GetAll(pageNumber, pageSize, searchQuery, "");
 
         try {
             while (rs.next()) {
