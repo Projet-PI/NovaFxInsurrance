@@ -83,7 +83,7 @@ public class AjouterRapportController implements Initializable {
         userService = new ServiceUtilisateurs();
 
         serviceSinistre = new ServiceSinistre();
-        int userId = 1; // Assuming the user ID is 1
+        int userId = 3; // Assuming the user ID is 1
         userName = getClientNameById(userId);
         email = getClientemailById(userId);
         userNameLabel.setText(userService.getUserNameWithId(userId));
@@ -294,10 +294,10 @@ public class AjouterRapportController implements Initializable {
             try {
                 System.out.println("try");
                 serviceSinistre.ajouter(sinistre);
-                afficherMessageErreur("Succès", "Le sinistre a été ajouté avec succès !");
+                afficherMessageErreur("Succès", "Le Rapport a été ajouté avec succès !");
                 try {
                     // Load the FXML file for the affichage sinistre page
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AffichageRapport.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/AffichageRapport.fxml"));
                     Parent affichageSinistreParent = fxmlLoader.load();
 
                     // Get the controller of the affichage sinistre page
@@ -315,7 +315,7 @@ public class AjouterRapportController implements Initializable {
                     e.printStackTrace();
                 }
             } catch (SQLException e) {
-                afficherMessageErreur("Erreur", "Échec de l'ajout du sinistre !");
+                afficherMessageErreur("Erreur", "Échec de l'ajout du rapport !");
             }
         }
     }

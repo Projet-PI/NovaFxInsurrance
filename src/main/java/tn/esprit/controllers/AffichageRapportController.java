@@ -78,7 +78,7 @@ public class AffichageRapportController {
     @FXML
     private void toRapports(){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AffichageRapport.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/AffichageRapport.fxml"));
             Parent ajoutRapportParent = fxmlLoader.load();
             AjouterRapportController controller = fxmlLoader.getController();
 
@@ -93,7 +93,7 @@ public class AffichageRapportController {
     @FXML
     private void toSinistre(){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AffichageSinistre.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/AffichageSinistre.fxml"));
             Parent ajoutRapportParent = fxmlLoader.load();
             AjouterRapportController controller = fxmlLoader.getController();
 
@@ -141,12 +141,12 @@ public class AffichageRapportController {
     @FXML
     private void handleMenu(ActionEvent event){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/AffichageSinistre.fxml"));
             Parent menuParent = fxmlLoader.load();
-            AfficheController controller = fxmlLoader.getController();
+            AffichageSinistreController controller = fxmlLoader.getController();
 
             Stage currentStage = (Stage) searchField.getScene().getWindow();
-            Scene menuScene = new Scene(menuParent, 800, 400);
+            Scene menuScene = new Scene(menuParent, 1000, 600);
             currentStage.setScene(menuScene);
             currentStage.show();
         } catch (IOException e) {
@@ -180,12 +180,12 @@ public class AffichageRapportController {
     @FXML
     private void handleAjouterButton() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AjoutRapport.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/AjoutRapport.fxml"));
             Parent ajoutRapportParent = fxmlLoader.load();
             AjouterRapportController controller = fxmlLoader.getController();
 
             Stage currentStage = (Stage) RapportListView.getScene().getWindow();
-            Scene ajoutRapportScene = new Scene(ajoutRapportParent, 600, 400);
+            Scene ajoutRapportScene = new Scene(ajoutRapportParent, 1000, 600);
             currentStage.setScene(ajoutRapportScene);
             currentStage.show();
         } catch (IOException e) {
@@ -202,7 +202,7 @@ public class AffichageRapportController {
             } else {
                 VBox card = new VBox(10);
                 card.setPadding(new Insets(10));
-                card.setBackground(new Background(new BackgroundFill(Color.web("#F2E0C9"), CornerRadii.EMPTY, Insets.EMPTY)));
+                card.setBackground(new Background(new BackgroundFill(Color.web("#007a80"), CornerRadii.EMPTY, Insets.EMPTY)));
 
                 String isFautifText = item.getisFautif()==1 ? "Fautif" : "Non Fautif";
                 Label isFautifLabel = new Label(isFautifText);
@@ -253,13 +253,13 @@ public class AffichageRapportController {
 
         System.out.println("Edit: " + item);
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DetailsRapport.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/DetailsRapport.fxml"));
             Parent editPageParent = fxmlLoader.load();
             DetailsRapportController controller = fxmlLoader.getController();
             controller.initData(item);
 
             Stage currentStage = (Stage) RapportListView.getScene().getWindow();
-            Scene editPageScene = new Scene(editPageParent, 600, 400);
+            Scene editPageScene = new Scene(editPageParent, 1000, 600);
             currentStage.setScene(editPageScene);
             currentStage.show();
         } catch (IOException e) {

@@ -68,7 +68,7 @@ public class AjouterSinistreController {
         applyCustomStyleCombo(expertIdComboBox);
         applyCustomStyle(pourcentageTextField);
         clientIdComboBox.setItems(getClientIdsWithRole("[\"ROLE_CLIENT\"]"));
-        expertIdComboBox.setItems(getExpertIdsWithRole("[\"ROLE_EXPERT\"]"));
+        expertIdComboBox.setItems(  getExpertIdsWithRole("[\"ROLE_EXPERT\"]"));
 
     }
 
@@ -142,7 +142,7 @@ public class AjouterSinistreController {
                 showAlert("Succès", "Le sinistre a été ajouté avec succès !");
                 try {
                     // Load the FXML file for the affichage sinistre page
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AffichageSinistre.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/AffichageSinistre.fxml"));
                     Parent affichageSinistreParent = fxmlLoader.load();
 
                     // Get the controller of the affichage sinistre page

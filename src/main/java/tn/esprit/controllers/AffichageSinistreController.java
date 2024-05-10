@@ -101,12 +101,12 @@ public class AffichageSinistreController {
     @FXML
     private void handleMenu(ActionEvent event){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/AffichageRapport.fxml"));
             Parent menuParent = fxmlLoader.load();
-            AfficheController controller = fxmlLoader.getController();
+            AffichageRapportController controller = fxmlLoader.getController();
 
             Stage currentStage = (Stage) searchField.getScene().getWindow();
-            Scene menuScene = new Scene(menuParent, 800, 400);
+            Scene menuScene = new Scene(menuParent, 1000, 600);
             currentStage.setScene(menuScene);
             currentStage.show();
         } catch (IOException e) {
@@ -203,7 +203,7 @@ public class AffichageSinistreController {
 
 
             // Load the FXML file for the ajout sinistre page
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AjouterSinistre.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/AjouterSinistre.fxml"));
             Parent ajoutSinistreParent = fxmlLoader.load();
 
             // Get the controller of the ajout sinistre page
@@ -214,7 +214,7 @@ public class AffichageSinistreController {
             Stage currentStage = (Stage) sinistreListView.getScene().getWindow();
 
             // Switch the scene to the ajout sinistre page
-            Scene ajoutSinistreScene = new Scene(ajoutSinistreParent, 800, 600);
+            Scene ajoutSinistreScene = new Scene(ajoutSinistreParent, 1000, 600);
             currentStage.setScene(ajoutSinistreScene);
             currentStage.show();
         } catch (IOException e) {
@@ -233,7 +233,7 @@ public class AffichageSinistreController {
             } else {
                 VBox card = new VBox(10);
                 card.setPadding(new Insets(10));
-                card.setBackground(new Background(new BackgroundFill(Color.web("#F2E0C9"), CornerRadii.EMPTY, Insets.EMPTY)));
+                card.setBackground(new Background(new BackgroundFill(Color.web("#007a80"), CornerRadii.EMPTY, Insets.EMPTY)));
 
                 Label clientIdLabel = new Label("Client ID: " + item.getSinistre_client_id());
                 Label expertIdLabel = new Label("Expert ID: " + item.getSinistre_expert_id());
@@ -264,11 +264,11 @@ public class AffichageSinistreController {
                 buttonBox.getChildren().addAll(editButton, deleteButton);
 // Set font size and style for labels
                 // Set font style for labels
-                clientIdLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Arial';");
-                expertIdLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Arial';");
-                isFautifLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Arial';");
-                pourcentageLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Arial';");
-                rapportLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Arial';");
+                clientIdLabel.setStyle("-fx-font-size: 14px; -fx-font-color: 'white'; -fx-font-family: 'Arial';");
+                expertIdLabel.setStyle("-fx-font-size: 14px; -fx-font-color: 'white'; -fx-font-family: 'Arial';");
+                isFautifLabel.setStyle("-fx-font-size: 14px; -fx-font-color: 'white'; -fx-font-family: 'Arial';");
+                pourcentageLabel.setStyle("-fx-font-size: 14px; -fx-font-color: 'white'; -fx-font-family: 'Arial';");
+                rapportLabel.setStyle("-fx-font-size: 14px; -fx-font-color: 'white'; -fx-font-family: 'Arial';");
 
 
                 card.getChildren().addAll(clientIdLabel, expertIdLabel, isFautifLabel, pourcentageLabel, rapportLabel, buttonBox);
@@ -292,7 +292,7 @@ public class AffichageSinistreController {
         System.out.println("Edit: " + item);
         try {
             // Load the FXML file for the edit page
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DetailsSinistre.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/DetailsSinistre.fxml"));
             Parent editPageParent = fxmlLoader.load();
 
             // Get the controller of the edit page
@@ -303,7 +303,7 @@ public class AffichageSinistreController {
             Stage currentStage = (Stage) sinistreListView.getScene().getWindow();
 
             // Switch the scene to the edit page
-            Scene editPageScene = new Scene(editPageParent, 600, 400);
+            Scene editPageScene = new Scene(editPageParent, 1000, 600);
             currentStage.setScene(editPageScene);
             currentStage.show();
         } catch (IOException e) {

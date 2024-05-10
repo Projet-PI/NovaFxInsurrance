@@ -95,7 +95,7 @@ public class DetailsSinistreController {
 
         // You may also want to bind the ComboBox value property to the is_fautif property
         // This ensures that any changes in the ComboBox are reflected in the is_fautif property
-        isFautifComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
+        isFautifComboBox.valueProperty().addListener((observeable, oldValue, newValue) -> {
             // Update is_fautif property based on ComboBox value
             sinistre.setIs_fautif(newValue.equals("Fautif") ? 1 : 0);
         });
@@ -130,7 +130,7 @@ public class DetailsSinistreController {
 
                 try {
                     // Load the FXML file for the affichage sinistre page
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AffichageSinistre.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/AffichageSinistre.fxml"));
                     Parent affichageSinistreParent = fxmlLoader.load();
 
                     // Get the controller of the affichage sinistre page
@@ -141,7 +141,7 @@ public class DetailsSinistreController {
                     Stage currentStage = (Stage) clientIdComboBox.getScene().getWindow();
 
                     // Switch the scene to the affichage sinistre page
-                    Scene affichageSinistreScene = new Scene(affichageSinistreParent, 800, 600); // Adjust size as needed
+                    Scene affichageSinistreScene = new Scene(affichageSinistreParent, 1000, 600); // Adjust size as needed
                     currentStage.setScene(affichageSinistreScene);
                     currentStage.show();
                 } catch (IOException e) {
@@ -269,7 +269,7 @@ public class DetailsSinistreController {
             document.add(new Paragraph("Client ID: " + sinistre.getSinistre_client_id()));
             document.add(new Paragraph("Expert ID: " + sinistre.getSinistre_expert_id()));
             document.add(new Paragraph("Is Fautif: " + (sinistre.getIs_fautif() == 1 ? "Fautif" : "Non Fautif")));
-            document.add(new Paragraph("Pourcentage: " + sinistre.getPourcentage()));
+            document.add(new Paragraph("Pourcentage: " + sinistre.getPourcentage() + "%"));
             document.add(new Paragraph("Rapport: " + sinistre.getRapport()));
             document.close();
 
@@ -288,7 +288,7 @@ public class DetailsSinistreController {
         // stage.close();
         try {
             // Load the FXML file for the affichage sinistre page
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AffichageSinistre.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/AffichageSinistre.fxml"));
             Parent affichageSinistreParent = fxmlLoader.load();
 
             // Get the controller of the affichage sinistre page
@@ -299,7 +299,7 @@ public class DetailsSinistreController {
             Stage currentStage = (Stage) clientIdComboBox.getScene().getWindow();
 
             // Switch the scene to the affichage sinistre page
-            Scene affichageSinistreScene = new Scene(affichageSinistreParent, 800, 600); // Adjust size as needed
+            Scene affichageSinistreScene = new Scene(affichageSinistreParent, 1000, 600); // Adjust size as needed
             currentStage.setScene(affichageSinistreScene);
             currentStage.show();
         } catch (IOException e) {

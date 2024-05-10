@@ -1,60 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.net.*?>
 <?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import org.fxmisc.richtext.*?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: #F2E0C9;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.DetailsRapportController">
-
-
-
-    <stylesheets>
-        <URL value="styles.css" />
-    </stylesheets>
-
-    <VBox alignment="CENTER" fillWidth="false" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="68.0" prefWidth="387.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Demande de modification du Rapport" textAlignment="CENTER" />
-
-
-        <HBox alignment="CENTER" spacing="100.0">
-            <Label text="Vous êtes Fautif:">
-                <padding>
-                    <Insets left="50.0" />
-                </padding></Label>
-            <ComboBox fx:id="isFautifComboBox" styleClass="custom-text-field">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Fautif" />
-                        <String fx:value="Non Fautif" />
-                    </FXCollections>
-                </items>
-            </ComboBox>
-
-
-        </HBox>
-
-        <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" spacing="50.0">
-            <Label fx:id="PourcentageerrorLabel" />
-            <Label text="Pourcentage demandé:" />
-            <TextField fx:id="pourcentageTextField" styleClass="custom-text-field" />
-            <VBox.margin>
-                <Insets />
-            </VBox.margin>
-        </HBox>
-        <HBox alignment="CENTER" spacing="60.0">
-            <Label text="Votre rapport:" />
-            <CodeArea fx:id="markdownEditor" prefHeight="100" prefWidth="214.0" />
-        </HBox>
-        <HBox alignment="CENTER" prefWidth="519.0" spacing="10.0"><Button layoutX="34.0" layoutY="255.0" onAction="#handleSaveButton" styleClass="custom-button" text="Save" />
-            <Button layoutX="115.0" layoutY="255.0" onAction="#handleCancelButton" styleClass="custom-button" text="Cancel" />
-            <Button onAction="#handleDownloadPDFButton" prefHeight="36.0" prefWidth="141.0" styleClass="custom-button" text="Download PDF" />
-
-        </HBox>
-    </VBox>
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.DetailsRapportController">
+   <HBox AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="271.2" AnchorPane.rightAnchor="271.2" AnchorPane.topAnchor="20.0">
+      <children>
+      
+      
+      
+      
+          <VBox alignment="CENTER" fillWidth="false" prefHeight="580.0" prefWidth="457.0" spacing="30.0" style="-fx-border-color: #007a80; -fx-border-radius: 10px;">
+              <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="72.0" prefWidth="439.0" text="Demande de modification du Rapport" textAlignment="CENTER" textFill="#007a80">
+               <font>
+                  <Font name="Book Antiqua" size="26.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="30.0" top="-30.0" />
+               </VBox.margin>
+            </Label>
+      
+      
+              <HBox alignment="CENTER" spacing="100.0">
+                  <Label text="Vous êtes Fautif:">
+                      <padding>
+                          <Insets left="50.0" />
+                      </padding>
+               </Label>
+                  <ComboBox fx:id="isFautifComboBox" styleClass="custom-text-field">
+                      <items>
+                          <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="Fautif" />
+                              <String fx:value="Non Fautif" />
+                          </FXCollections>
+                      </items>
+                  </ComboBox>
+      
+      
+              </HBox>
+      
+              <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" spacing="50.0">
+                  <Label fx:id="PourcentageerrorLabel" />
+                  <Label text="Pourcentage demandé:" />
+                  <TextField fx:id="pourcentageTextField" styleClass="custom-text-field" />
+                  <VBox.margin>
+                      <Insets />
+                  </VBox.margin>
+              </HBox>
+              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="396.0" spacing="60.0">
+                  <Label text="Votre rapport:" />
+                  <CodeArea prefHeight="60.0" prefWidth="175.0" />
+              </HBox>
+              <HBox alignment="CENTER" prefWidth="519.0" spacing="10.0">
+               <Button layoutX="34.0" layoutY="255.0" onAction="#handleSaveButton" styleClass="custom-button" text="Save" />
+                  <Button layoutX="115.0" layoutY="255.0" onAction="#handleCancelButton" styleClass="custom-button" text="Cancel" />
+                  <Button onAction="#handleDownloadPDFButton" prefHeight="36.0" prefWidth="141.0" styleClass="custom-button" text="Download PDF" />
+      
+              </HBox>
+          </VBox>
+      </children>
+   </HBox>
+   <ImageView fitHeight="57.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+      <image>
+         <Image url="@416434692_769425838447527_1407072637719166262_n.png" />
+      </image></ImageView>
 
 
 </AnchorPane>

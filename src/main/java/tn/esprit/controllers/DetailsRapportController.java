@@ -111,7 +111,7 @@ public class DetailsRapportController {
 
                     try {
                         // Load the FXML file for the affichage Rapport page
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AffichageRapport.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/AffichageRapport.fxml"));
                         Parent affichageRapportParent = fxmlLoader.load();
                         AffichageRapportController controller = fxmlLoader.getController();
                         // Perform any initialization if needed
@@ -120,7 +120,7 @@ public class DetailsRapportController {
                         Stage currentStage = (Stage) pourcentageTextField.getScene().getWindow();
 
                         // Switch the scene to the affichage Rapport page
-                        Scene affichageRapportScene = new Scene(affichageRapportParent, 800, 600); // Adjust size as needed
+                        Scene affichageRapportScene = new Scene(affichageRapportParent, 1000, 600); // Adjust size as needed
                         currentStage.setScene(affichageRapportScene);
                         currentStage.show();
                     } catch (IOException e) {
@@ -252,7 +252,7 @@ public class DetailsRapportController {
         // stage.close();
         try {
             // Load the FXML file for the affichage Rapport page
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AffichageRapport.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/AffichageRapport.fxml"));
             Parent affichageRapportParent = fxmlLoader.load();
 
             // Get the controller of the affichage Rapport page
@@ -263,7 +263,7 @@ public class DetailsRapportController {
             Stage currentStage = (Stage) pourcentageTextField.getScene().getWindow();
 
             // Switch the scene to the affichage Rapport page
-            Scene affichageRapportScene = new Scene(affichageRapportParent, 800, 600); // Adjust size as needed
+            Scene affichageRapportScene = new Scene(affichageRapportParent, 1000, 600); // Adjust size as needed
             currentStage.setScene(affichageRapportScene);
             currentStage.show();
         } catch (IOException e) {
