@@ -341,4 +341,66 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
 
 
 
+    public List<Integer> getUserIdsWithRole(String role) {
+        List<Integer> userIds = new ArrayList<>();
+        try {
+            String sql = "SELECT id FROM user WHERE role = ?";
+            PreparedStatement preparedStatement = conx.prepareStatement(sql);
+            preparedStatement.setString(1, role);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                userIds.add(resultSet.getInt("id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userIds;
+    }
+    public User getUserById(int userId) throws SQLException {
+        String sql = "SELECT * FROM user WHERE id = ?";
+        PreparedStatement preparedStatement = conx.prepareStatement(sql);
+        preparedStatement.setInt(1, userId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            User user = new User();
+            user.setId(resultSet.getInt("id"));
+            user.setEmail(resultSet.getString("email"));
+            user.setNom(resultSet.getString("nom"));
+            // Set other user properties as needed
+            return user;
+        } else {
+            return null; // User not found
+        }
+    }
+
+    public String getClientemailById(int id) {
+        String email = new String();
+        try {
+            String sql = "SELECT email FROM user WHERE id = ?";
+            PreparedStatement preparedStatement = conx.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                email = resultSet.getString("email");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return email;
+    }
+    public String getUserNameWithId(int id) {
+        String userName = new String();
+        try {
+            String sql = "SELECT nom FROM user WHERE id = ?";
+            PreparedStatement preparedStatement = conx.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                userName = resultSet.getString("nom");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userName;
+    }
 }

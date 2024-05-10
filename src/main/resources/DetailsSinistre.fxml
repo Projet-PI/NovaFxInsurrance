@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.fxmisc.richtext.*?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.DetailsSinistreController">
+   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="650.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <children>
+         <VBox alignment="CENTER" fillWidth="false" style="-fx-border-color: #007a80; -fx-border-radius: 10px;">
+            <children>
+                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="600.0" prefWidth="380.0" text="Modifier le Sinistre" textAlignment="CENTER" textFill="#007a80">
+                  <font>
+                     <Font name="Book Antiqua" size="40.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets bottom="50.0" />
+                  </VBox.margin>
+               </Label>
+         
+                 <HBox alignment="CENTER" prefHeight="600.0" spacing="50.0">
+                     <Label fx:id="ClienterrorLabel" />
+                     <Label prefHeight="32.0" prefWidth="120.0" text="ID Client:" textAlignment="CENTER" textFill="#007a80">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                     <ComboBox fx:id="clientIdComboBox" prefHeight="26.0" prefWidth="120.0" style="-fx-border-color: #007a80;" styleClass="custom-text-field" />
+                 </HBox>
+         
+                 <HBox alignment="CENTER" prefHeight="600.0" spacing="50.0">
+                     <Label fx:id="ExperterrorLabel" />
+                     <Label prefHeight="32.0" prefWidth="120.0" text="ID Expert:" textFill="#007a80">
+                     <font>
+                        <Font name="Book Antiqua" size="20.0" />
+                     </font></Label>
+                     <ComboBox fx:id="expertIdComboBox" prefHeight="26.0" prefWidth="120.0" style="-fx-border-color: #007a80;" styleClass="custom-text-field" />
+                 </HBox>
+         
+         
+                 <HBox alignment="CENTER" prefHeight="600.0" spacing="100.0">
+                     <Label prefHeight="26.0" prefWidth="152.0" text="Est Fautif:" textFill="#007a80">
+                     <font>
+                        <Font name="Book Antiqua" size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="55.0" />
+                     </padding>
+                  </Label>
+                     <ComboBox fx:id="isFautifComboBox" prefHeight="26.0" prefWidth="120.0" style="-fx-border-color: #007a80;" styleClass="custom-text-field">
+                         <items>
+                             <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="Fautif" />
+                                 <String fx:value="Non Fautif" />
+                             </FXCollections>
+                         </items>
+                     </ComboBox>
+         
+         
+                 </HBox>
+         
+                 <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0" spacing="50.0">
+                     <Label fx:id="PourcentageerrorLabel" />
+                     <Label prefHeight="26.0" prefWidth="145.0" text="Pourcentage:" textFill="#007a80">
+                     <font>
+                        <Font name="Book Antiqua" size="20.0" />
+                     </font></Label>
+                     <TextField fx:id="pourcentageTextField" prefHeight="26.0" prefWidth="121.0" style="-fx-border-color: #007a80;" styleClass="custom-text-field" />
+                     <VBox.margin>
+                         <Insets />
+                     </VBox.margin>
+                 </HBox>
+                 <HBox alignment="CENTER" prefHeight="600.0" spacing="60.0">
+                     <Label text="Rapport:" textFill="#007a80">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                     <CodeArea fx:id="markdownEditor" prefHeight="100" prefWidth="214.0" style="-fx-border-color: #007a80;" />
+                 </HBox>
+                 <HBox alignment="CENTER" prefHeight="600.0" prefWidth="519.0" spacing="10.0">
+                  <Button layoutX="34.0" layoutY="255.0" onAction="#handleSaveButton" styleClass="custom-button" text="Save" />
+                     <Button layoutX="115.0" layoutY="255.0" onAction="#handleCancelButton" styleClass="custom-button" text="Cancel" />
+                     <Button onAction="#handleDownloadPDFButton" styleClass="custom-button" text="Download PDF" />
+         
+                 </HBox>
+            </children>
+         </VBox>
+      </children>
+   </HBox>
+   <ImageView fitHeight="57.0" fitWidth="152.0" layoutX="-94.0" layoutY="-39.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+      <image>
+         <Image url="@416434692_769425838447527_1407072637719166262_n.png" />
+      </image>
+   </ImageView>
+
+
+</AnchorPane>
