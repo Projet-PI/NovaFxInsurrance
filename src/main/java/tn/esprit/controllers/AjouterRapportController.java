@@ -21,7 +21,7 @@ import tn.esprit.entities.User;
 import tn.esprit.services.ServiceRapport;
 import tn.esprit.services.ServiceSinistre;
 import tn.esprit.services.ServiceUtilisateurs;
-
+import tn.esprit.utils.SessionManager;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -50,6 +50,7 @@ public class AjouterRapportController implements Initializable {
     @FXML
     private Label ExperterrorLabel;
 
+    private SessionManager sessionManager;
 
     private ServiceUtilisateurs userService;
     private ServiceSinistre serviceSinistre;
@@ -80,10 +81,11 @@ public class AjouterRapportController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Set default user's name
+
         userService = new ServiceUtilisateurs();
 
         serviceSinistre = new ServiceSinistre();
-        int userId = 3; // Assuming the user ID is 1
+        int userId =3; //sessionManager.getUser().getId();
         userName = getClientNameById(userId);
         email = getClientemailById(userId);
         userNameLabel.setText(userService.getUserNameWithId(userId));
@@ -294,7 +296,7 @@ public class AjouterRapportController implements Initializable {
             try {
                 System.out.println("try");
                 serviceSinistre.ajouter(sinistre);
-                afficherMessageErreur("Succès", "Le Rapport a été ajouté avec succès !");
+                afficherMessageSuccess("Success", "Le Rapport a été ajouté avec succès !");
                 try {
                     // Load the FXML file for the affichage sinistre page
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/AffichageRapport.fxml"));
@@ -373,6 +375,11 @@ public class AjouterRapportController implements Initializable {
     }
 
     private void afficherMessageErreur(String titre, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titre);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }private void afficherMessageSuccess(String titre, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(titre);
         alert.setContentText(message);

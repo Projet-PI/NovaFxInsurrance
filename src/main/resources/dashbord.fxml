@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane fx:id="myBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.DashBord">
+<BorderPane fx:id="myBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.DashBord">
     <left>
         <VBox alignment="TOP_CENTER" prefHeight="810.0" prefWidth="253.0" style="-fx-background-color: #BEF594F;" styleClass="shadow" stylesheets="@style/styleafficher.css" BorderPane.alignment="CENTER">
             <children>
@@ -119,7 +116,7 @@
                         </Label>
                     </children>
                 </HBox>
-            <HBox onMouseClicked="#showAvisRestau" prefHeight="54.0" prefWidth="214.0" styleClass="button" stylesheets="@style/style.css">
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#showAvisRestau" prefHeight="54.0" prefWidth="214.0" styleClass="button" stylesheets="@style/style.css">
                <children>
                   <ImageView fitHeight="37.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -130,6 +127,26 @@
                      </HBox.margin>
                   </ImageView>
                   <Label text="Response_Devis">
+                     <HBox.margin>
+                        <Insets left="10.0" top="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="619.0" onMouseClicked="#goToRapport" prefHeight="54.0" prefWidth="214.0" styleClass="button" stylesheets="@style/style.css">
+               <children>
+                  <ImageView fitHeight="37.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/avis-client.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label text="Rapport">
                      <HBox.margin>
                         <Insets left="10.0" top="15.0" />
                      </HBox.margin>

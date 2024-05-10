@@ -1,10 +1,14 @@
 package tn.esprit.controllers;
 
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import javafx.scene.media.MediaView;
 import tn.esprit.entities.RapportClient;
 import tn.esprit.services.ServiceRapport;
 import tn.esprit.services.ServiceUtilisateurs;
@@ -28,8 +32,7 @@ import org.fxmisc.richtext.model.StyleSpansBuilder;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -53,31 +56,67 @@ public class DetailsRapportController {
     @FXML
     private Label PourcentageerrorLabel;
 
-    public void initialize() {
+    @FXML
+    private MediaView mediaView;
+    private MediaPlayer mediaPlayer;
+    private final List<String> paths = new ArrayList<>();
+    private final SimpleObjectProperty<MediaPlayer> mediaPlayerProperty = new SimpleObjectProperty<>();
 
+    @FXML
+    public void initialize() {
+        //markdownEditor = new CodeArea();
         MarkdownEditor.enableMarkdownEditing(markdownEditor);
         userService = new ServiceUtilisateurs();
+        paths.add("/images/Caraccident.mp4");
+        paths.add("/images/Untitled.mp4");
+        paths.add("/images/POVCRASH.mp4");
+        paths.add("/images/POVCRASH.mp4");
 
+        String randomPath = getRandomPath();
+        playMedia(randomPath);
+
+}
+
+    private String getRandomPath() {
+        Random random = new Random();
+        int index = random.nextInt(paths.size());
+        return paths.get(index);
+    }
+
+    @FXML
+    private void playMedia(String mediaFile) {
+        Media media = new Media(getClass().getResource(mediaFile).toExternalForm());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+
+        mediaPlayer.setOnReady(() -> {
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.play();
+        });
+
+        mediaPlayerProperty.set(mediaPlayer);
+        mediaView.setMediaPlayer(mediaPlayer);
+    }
+    public void cleanup() {
+        MediaPlayer mediaPlayer = mediaPlayerProperty.get();
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+        }
     }
 
     public void initData(RapportClient rapportClient) {
 
         this.rapportClient = rapportClient;
-        pourcentageTextField.setText(String.valueOf(rapportClient.getPourcentage()));
-        if (rapportClient.getisFautif()==1) {
-            isFautifComboBox.setValue("Fautif");
-        } else{
-            isFautifComboBox.setValue("Non Fautif");
-
-        }
-        markdownEditor.replaceText(rapportClient.getRapport());
         loadRapportDataForEdit(rapportClient);
 
+
+
     }
+
     @FXML
     public void loadRapportDataForEdit(RapportClient rapportClient) {
         // Set ComboBox value to match current is_fautif value
         isFautifComboBox.setValue(rapportClient.getisFautif() == 1 ? "Fautif" : "Non Fautif");
+        pourcentageTextField.setText(String.valueOf(rapportClient.getPourcentage()));
 
         // You may also want to bind the ComboBox value property to the is_fautif property
         // This ensures that any changes in the ComboBox are reflected in the is_fautif property
@@ -85,6 +124,7 @@ public class DetailsRapportController {
             // Update is_fautif property based on ComboBox value
             rapportClient.setIsFautif(newValue.equals("Fautif") ? 1 : 0);
         });
+        markdownEditor.replaceText(rapportClient.getRapport());
     }
 
     @FXML

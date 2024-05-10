@@ -155,6 +155,11 @@
             <artifactId>richtextfx</artifactId>
             <version>0.10.4</version> <!-- Or the latest version available -->
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>15.0.1</version>
+        </dependency>
     </dependencies>
 
     <build>
