@@ -71,7 +71,11 @@ public class ReclamationEntryService {
                 regulation = regulationResponse.getRegulation();
             } else {
                 reclamationEntry.setResponse("No response");
+                regulation = "No response";
                 reclamationEntry.setStatus("pending");
+                // update reclamation group status to pending
+                ReclamationGroupeService reclamationGroupeService = new ReclamationGroupeService();
+                reclamationGroupeService.UpdateReclamationGroupe(reclamationGroupe);
             }
 
 

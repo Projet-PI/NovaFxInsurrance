@@ -31,6 +31,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ReclamationEntryController {
 
@@ -61,6 +62,7 @@ public class ReclamationEntryController {
         }
     }
 
+
     public void showAlert(String message, AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setContentText(message);
@@ -82,6 +84,21 @@ public class ReclamationEntryController {
             scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         }
         modeComboBox.setValue("AI");
+        System.out.println("ListView initialized"); // Debugging print statement
+        boolean hasNoResponse = false;
+        for (reclamation_entry item : listView.getItems()) {
+            System.out.println("Response: " + item.getResponse()); // Debugging print statement
+            if (item.getResponse().equalsIgnoreCase("No response")) {
+                hasNoResponse = true;
+                break; // No need to continue checking once a "No response" is found
+            }
+        }
+
+        if (hasNoResponse) {
+            System.out.println("Hiding inputField and sendButton"); // Debugging print statement
+            inputField.setVisible(false);
+            sendButton.setVisible(false);
+        }
     }
  //C:\Users\farou\IdeaProjects\javafxreclamation\Roboto-Bold.ttf
     void PDF() {
@@ -185,6 +202,10 @@ public class ReclamationEntryController {
 
                 // Add the reclamation_entry object to the ListView
                 listView.getItems().add(entry);
+                if (Objects.equals(rs.getString("response"), "No response")) {
+                    inputField.setVisible(false);
+                    sendButton.setVisible(false);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
