@@ -368,7 +368,7 @@
         public void ReclamationButton(ActionEvent actionEvent) {
             try {
                 // Load the FXML document for the new view
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/reclamation-groupe.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/reclamation-groupe-admin.fxml"));
                 Parent root = loader.load();
 
                 // Get the stage from the event source, which is your button

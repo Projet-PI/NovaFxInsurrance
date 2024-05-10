@@ -19,24 +19,18 @@ public class ReclamationGroupeServiceAdmin {
     public ResultSet GetAll(int pageNumber, int pageSize, String searchQuery, String filterBy) {
         ResultSet rs = null;
 
-        // inject a user id
-        // check if the user is agent or normal user
-    /*
-        TODO:
-        - check if the user is agent or normal user
-     */
         try {
             int offset = (pageNumber - 1) * pageSize;
             String req = "SELECT * FROM `reclamation_groupe`";
 
             // If there's a search query, add a WHERE clause
-            // if there's filter by status, add a WHERE clause
             if (searchQuery != null && !searchQuery.isEmpty()) {
                 req += " WHERE `name` LIKE ?";
             }
 
+            // If there's a filterBy, add a WHERE or AND clause
             if (filterBy != null && !filterBy.isEmpty()) {
-                if (searchQuery != null && !searchQuery.isEmpty()) {
+                if (req.contains("WHERE")) {
                     req += " AND `status` = ?";
                 } else {
                     req += " WHERE `status` = ?";
@@ -55,6 +49,12 @@ public class ReclamationGroupeServiceAdmin {
                 st.setString(parameterIndex++, "%" + searchQuery + "%");
             }
 
+            // Set filterBy parameter if applicable
+            if (filterBy != null && !filterBy.isEmpty()) {
+                st.setString(parameterIndex++, filterBy);
+            }
+
+            // Set offset and limit parameters
             st.setInt(parameterIndex++, offset);
             st.setInt(parameterIndex++, pageSize);
 
@@ -64,6 +64,7 @@ public class ReclamationGroupeServiceAdmin {
         }
         return rs;
     }
+
 
 
     public ResultSet GetById(int id) {

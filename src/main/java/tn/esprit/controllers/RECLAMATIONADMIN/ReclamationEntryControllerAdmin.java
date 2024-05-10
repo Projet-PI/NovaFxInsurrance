@@ -24,6 +24,7 @@ import org.apache.pdfbox.pdmodel.font.PDType0Font;
 import tn.esprit.entities.reclamation_entry;
 import tn.esprit.entities.reclamation_groupe;
 import tn.esprit.services.ReclamationEntryService;
+import tn.esprit.services.ReclamationGroupeService;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,6 +32,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ReclamationEntryControllerAdmin {
     @FXML
@@ -67,6 +69,7 @@ public class ReclamationEntryControllerAdmin {
     public reclamation_groupe entryReclamationGroupe;
 
     private ReclamationEntryService service;
+    public ReclamationGroupeService reclamationGroupeServiceAdmin;
 
     public ReclamationEntryControllerAdmin() {
         this.service = new ReclamationEntryService();
@@ -182,6 +185,14 @@ public class ReclamationEntryControllerAdmin {
 
                 // Add the reclamation_entry object to the ListView
                 listView.getItems().add(entry);
+
+                if (Objects.equals(rs.getString("response"), "No response")) {
+                    inputField.setVisible(true);
+                    sendButton.setVisible(true);
+                } else {
+                    inputField.setVisible(false);
+                    sendButton.setVisible(false);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -316,7 +327,6 @@ public class ReclamationEntryControllerAdmin {
         Parent editPageParent = fxmlLoader.load();
 
         // Get the controller of the edit page
-        ReclamationGroupeControllerAdmin controller = fxmlLoader.getController();
 
         // Get the current stage
         Stage currentStage = (Stage) listView.getScene().getWindow();
@@ -343,14 +353,14 @@ public class ReclamationEntryControllerAdmin {
         }
 
         // Clear validation message if input is not empty and proceed with sending prompt
+        // get last item in the listview
+        reclamation_entry lastItem = listView.getItems().get(listView.getItems().size() - 1);
+        lastItem.setResponse(prompt);
+        // Clear validation message if input is not empty and proceed with sending prompt
         validationLabel.setText(""); // Clear validation message
-        String mode = (String) modeComboBox.getValue();
-        System.out.println("Mode: " + mode);
-        reclamation_entry entry = new reclamation_entry();
-        entry.setPrompt(prompt);
-        entry.setResponseType(mode);
-        entry.setDay_time(java.time.LocalDateTime.now().toString());
-        service.addReclamationEntry(entry, entryReclamationGroupe);
+        System.out.println("Mode: " + prompt);
+        service.updateReclamationEntry(lastItem);
+
         listView.getItems().clear();
         showAlert("Reclamation successfully added !", AlertType.INFORMATION);
         setReclamationGroupe(entryReclamationGroupe);
