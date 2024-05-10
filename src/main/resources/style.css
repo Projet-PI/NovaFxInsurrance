@@ -90,3 +90,69 @@
     -fx-border-radius: 0.25em;
     -fx-text-fill: #ffffff;
 }
+
+.custom-button {
+    -fx-background-color: #4CAF50; /* Green background */
+    -fx-text-fill: white; /* White text */
+    -fx-font-size: 14px; /* Larger font size */
+    -fx-padding: 10 20; /* Padding for button */
+    -fx-border-radius: 5px; /* Rounded borders */
+    -fx-background-radius: 5px; /* Match border radius with background */
+}
+
+.account-button {
+    -fx-background-color: #f0f0f0; /* Light grey background */
+    -fx-text-fill: black; /* Black text */
+    -fx-font-size: 14px;
+    -fx-padding: 8 16;
+}
+
+.menu-bar {
+    -fx-background-color: #2C3E50; /* Dark blue background */
+    -fx-text-fill: white;
+}
+
+.menu {
+    -fx-text-fill: white;
+}
+
+.menu-item {
+    -fx-text-fill: black;
+}
+.root {
+    -fx-font-family: 'Arial';
+}
+
+.label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #333;
+}
+
+.text-field {
+    -fx-font-size: 14px;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5;
+    -fx-padding: 5px;
+}
+
+.button {
+    -fx-background-color: #5cb85c;
+    -fx-text-fill: white;
+    -fx-border-radius: 5;
+    -fx-padding: 10px 20px;
+    -fx-font-size: 14px;
+}
+
+.button.primary-button {
+    -fx-background-color: #33b752;
+}
+
+.button.secondary-button {
+    -fx-background-color: #20da61;
+}
+
+.button:hover {
+    -fx-opacity: 0.8;
+}
+
+

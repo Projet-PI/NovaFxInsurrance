@@ -16,39 +16,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-class Request {
-    String text;
-
-    Request(String text) {
-        this.text = text;
-    }
-}
-
-class Response {
-    String regulation;
-    String elapsed_time;
-}
-
 // Method to insert values into the join table
 
 // Class to represent the regulation response
-class RegulationResponse {
-    private final String regulation;
-    private final String elapsedTime;
 
-    public RegulationResponse(String regulation, String elapsedTime) {
-        this.regulation = regulation;
-        this.elapsedTime = elapsedTime;
-    }
-
-    public String getRegulation() {
-        return regulation;
-    }
-
-    public String getElapsedTime() {
-        return elapsedTime;
-    }
-}
 
 public class ReclamationEntryService {
     Connection connection;
@@ -95,7 +66,7 @@ public class ReclamationEntryService {
             String prompt = reclamationEntry.getPrompt();
 
             // Call the method to retrieve regulation and elapsed time
-            RegulationResponse regulationResponse = fetchRegulation(prompt);
+            ChatResponse regulationResponse = fetchRegulation(prompt);
             String regulation = regulationResponse.getRegulation();
             String elapsedTime = regulationResponse.getElapsedTime();
 
@@ -115,7 +86,7 @@ public class ReclamationEntryService {
     }
 
     // Method to fetch regulation from the API
-    private RegulationResponse fetchRegulation(String prompt) throws IOException {
+    private ChatResponse fetchRegulation(String prompt) throws IOException {
         URL url = new URL("https://fb8b-197-3-6-252.ngrok-free.app/apiv1/regulation/get-regulation");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
@@ -146,7 +117,7 @@ public class ReclamationEntryService {
             System.out.println("Regulation: " + regulation);
             System.out.println("Elapsed Time: " + elapsedTime);
 
-            return new RegulationResponse(regulation, elapsedTime);
+            return new ChatResponse(regulation, elapsedTime);
         } finally {
             connection.disconnect();
         }

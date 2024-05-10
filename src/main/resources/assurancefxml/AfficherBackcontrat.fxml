@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="552.0" prefWidth="636.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ASSURANCE.AfficherBackcontrat">
+   
+    <children>
+      <ImageView fitHeight="552.0" fitWidth="708.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@backInterface.png" />
+         </image>
+      </ImageView>
+        <TableView fx:id="tableau" layoutX="14.0" layoutY="78.0" prefHeight="350.0" prefWidth="592.0">
+            <columns>
+                <TableColumn fx:id="idtv" prefWidth="100.0" text="ID" />
+                <TableColumn fx:id="dureetv" prefWidth="100.0" text="Durée" />
+                <TableColumn fx:id="dateDeSouscriptiontv" prefWidth="200.0" text="Date de Souscription" />
+                <TableColumn fx:id="typeCouverturetv" prefWidth="200.0" text="Type de Couverture" />
+            </columns>
+        </TableView>
+
+        <TextField fx:id="filterField" layoutX="80.0" layoutY="28.0" promptText="Search" />
+    </children>
+</AnchorPane>

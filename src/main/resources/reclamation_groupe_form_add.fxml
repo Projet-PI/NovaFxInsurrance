@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefWidth="583.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ReclamationGroupeFormAdd">
+<AnchorPane prefWidth="583.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.RECLAMATION.ReclamationGroupeFormAdd">
    <Label layoutX="35.0" layoutY="32.0" prefHeight="50.0" prefWidth="292.0" text="Add Reclamation" AnchorPane.topAnchor="32.0">
       <font>
          <Font name="System Bold" size="34.0" />

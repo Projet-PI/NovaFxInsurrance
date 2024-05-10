@@ -16,7 +16,7 @@ public class ReclamationGroupeService {
         connection = DataBase.getInstance().getConx();
     }
 
-    public ResultSet GetAll(int pageNumber, int pageSize, String searchQuery) {
+    public ResultSet GetAll(int pageNumber, int pageSize, String searchQuery, String filterBy) {
         ResultSet rs = null;
 
         // inject a user id
@@ -30,8 +30,17 @@ public class ReclamationGroupeService {
             String req = "SELECT * FROM `reclamation_groupe`";
 
             // If there's a search query, add a WHERE clause
+            // if there's filter by status, add a WHERE clause
             if (searchQuery != null && !searchQuery.isEmpty()) {
                 req += " WHERE `name` LIKE ?";
+            }
+
+            if (filterBy != null && !filterBy.isEmpty()) {
+                if (searchQuery != null && !searchQuery.isEmpty()) {
+                    req += " AND `status` = ?";
+                } else {
+                    req += " WHERE `status` = ?";
+                }
             }
 
             req += " LIMIT ?, ?";
