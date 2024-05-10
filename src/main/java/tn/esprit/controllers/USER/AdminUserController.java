@@ -86,7 +86,10 @@
         @FXML
         private Label reginfo;
 
+        private String searchValue = "";
 
+        private int pageNumber = 1;
+        private final int pageSize = 2; // Number of items per pag
         private Connection conx;
         private final ServiceUtilisateurs UserS = new ServiceUtilisateurs();
 
@@ -94,16 +97,32 @@
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
             roleCOMBOBOX.setItems(FXCollections.observableArrayList("[\"ROLE_USER\"]", "[\"ROLE_ADMIN\"]","[\"ROLE_RECLAMATION\"]", "[\"ROLE_SINISTRE\"]", "[\"ROLE_ASSURANCE\"]", "[\"ROLE_FINANCIER\"]"));
-            load();
+            load(searchValue);
+            SearchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+                load(newValue);
+            });
+        }
+
+        public void previousPage(ActionEvent actionEvent) {
+            if (pageNumber > 1) {
+                pageNumber--;
+            }
+            load("");
+        }
+
+        // Next page button handler
+        public void nextPage(ActionEvent actionEvent) {
+            pageNumber++;
+            load("");
         }
 
         //Load Function
-        public void load() {
+        public void load(String query) {
             int column = 0;
             int row = 1;
             try {
                 userContainer.getChildren().clear();
-                for (User user : UserS.afficher()) {
+                for (User user : UserS.afficher(query,pageNumber,pageSize)) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/CardViewUser.fxml"));
                     Pane userBox = fxmlLoader.load();
@@ -118,6 +137,8 @@
                     userContainer.add(userBox, column++, row);
                     GridPane.setMargin(userBox, new Insets(10));
                 }
+
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -263,7 +284,7 @@
         //Excel Function
         @FXML
         void ExporterExcel(ActionEvent event) {
-            List<User> users = UserS.afficher(); // This method should return a List of all users
+            List<User> users = UserS.afficher("",pageNumber,pageSize); // This method should return a List of all users
             exportUsersToExcel(users);
 
         }
@@ -340,25 +361,7 @@
 
         @FXML
         public void LogoutButton(ActionEvent actionEvent) {
-            System.out.println("test1");
-            SessionManager.logoutCurrentUser();
-            System.out.println(SessionManager.getUser());
-            System.out.println("test2");
 
-            try {
-                System.out.println("test3");
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml")); // Make sure the path is correct
-                Parent loginRoot = loader.load();
-
-                // Get the current stage from the action event, assuming the logout button triggers this method
-                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                Scene scene = new Scene(loginRoot);
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-                // Handle the exception (perhaps show an error message or log it)
-            }
         }
 
         @FXML
@@ -379,6 +382,11 @@
                 e.printStackTrace();
                 // Optionally, handle the error, for example logging it or showing an error message
             }
+
+        }
+
+        public void Search(ActionEvent actionEvent) {
+
         }
     }
 

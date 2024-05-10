@@ -40,7 +40,9 @@
                         <Label layoutX="0.0" layoutY="86.0" prefHeight="17.0" prefWidth="92.0" text="Date Début : " />
                         <Label layoutX="2.0" layoutY="114.0" prefHeight="17.0" prefWidth="92.0" text="Date Fin :" />
                         <!-- Add a button -->
-                        <Button fx:id="back" layoutX="110.0" layoutY="140.0" onAction="#viewContractButtonClicked" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8px 16px; -fx-border-radius: 3px;" text="Voir le contrat" />
+                        <Button fx:id="shareFbBtn" onAction="#partage" layoutX="114.0" layoutY="189.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="84.0" style="-fx-background-color:rgba(0,0,255,0.31);" styleClass="blue-button" />
+
+                        <Button fx:id="back" layoutX="110.0" layoutY="140.0" onAction="#viewContractButtonClicked" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8px 16px; -fx-border-radius: 3px;" text="ajouter le contrat" />
                     </children>
                 </AnchorPane>
             </children>

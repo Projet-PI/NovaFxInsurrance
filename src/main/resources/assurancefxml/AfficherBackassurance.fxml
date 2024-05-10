@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<?import java.net.URL?>
-<AnchorPane prefHeight="552.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ASSURANCE.AfficherBack">
+<AnchorPane prefHeight="666.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ASSURANCE.AfficherBack">
     <stylesheets>
-        <URL value="@yourstylesheet.css" />
+        <URL value="@backInterface.png" />
     </stylesheets>
     <children>
-        <TableView fx:id="tableau" layoutX="80.0" layoutY="82.0" prefHeight="428.0" prefWidth="760.0">
+      <ImageView fitHeight="666.0" fitWidth="1030.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../backInterface.png" />
+         </image></ImageView>
+        <TableView fx:id="tableau" layoutX="-18.0" layoutY="175.0" prefHeight="395.0" prefWidth="779.0">
             <columns>
                 <TableColumn fx:id="idtv" prefWidth="75.0" text="id" />
                 <TableColumn fx:id="nomtv" prefWidth="75.0" text="nom" />
@@ -21,11 +27,15 @@
                 <TableColumn fx:id="datedebuttv" prefWidth="154.0" text="date debut" />
                 <TableColumn fx:id="datefintv" prefWidth="159.0" text="date fin" />
                 <TableColumn fx:id="deleteColumn" prefWidth="75.0" text="Delete" />
-                <TableColumn fx:id="editColumn" prefWidth="75.0" text="Edit" />
+                <TableColumn fx:id="editColumn" prefWidth="71.0" text="Edit" />
             </columns>
         </TableView>
 
-      <TextField fx:id="filterField" layoutX="80.0" layoutY="28.0" promptText="Search" />
-      <Button layoutX="428.0" layoutY="28.0" mnemonicParsing="false" onAction="#ExporterExcel" text="export excel" />
+      <TextField fx:id="filterField" layoutX="21.0" layoutY="106.0" promptText="Search" />
+      <Button layoutX="281.0" layoutY="122.0" mnemonicParsing="false" onAction="#ExporterExcel" text="export excel" />
+
+
     </children>
+
+
 </AnchorPane>

@@ -136,7 +136,7 @@ public class AfficherBackcontrat {
 
 
     private void openModifierContratDialog(Contrat contrat) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierContrat.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/assurancefxml/ModifierContrat.fxml"));
         try {
             Parent root = loader.load();
             ModifierContrat controller = loader.getController();
@@ -163,7 +163,7 @@ public class AfficherBackcontrat {
 
     private void initModifierColumn() {
         TableColumn<Contrat, Void> editCol = new TableColumn<>("Modifier");
-        editCol.setCellFactory(param -> new TableCell<Contrat, Void>() {
+        editCol.setCellFactory(param -> new TableCell<>() {
             private final Button editButton = new Button("Modifier");
 
             {
