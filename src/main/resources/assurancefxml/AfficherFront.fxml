@@ -35,6 +35,6 @@
         </GridPane>
         <Pagination fx:id="pagination" layoutX="118.0" layoutY="100.0" prefHeight="574.0" prefWidth="530.0" style="-fx-border-color: #007a80; -fx-border-width: 5px;" />
         <Button layoutX="650.0" layoutY="30.0" text="vos contrat" onAction="#goToContrats"/>
-
+        <Button layoutX="750.0" layoutY="30.0" text="Go to Landing Page" onAction="#goToLandingPage"/>
     </children>
 </AnchorPane>

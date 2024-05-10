@@ -42,7 +42,20 @@ public class LandingPage {
     }
     @FXML
     public void MyAssurance(ActionEvent actionEvent) {
+        try {
+            System.out.println("test3");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/assurancefxml/afficherfront.fxml"));
+            Parent loginRoot = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(loginRoot);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
     }
+
 
     @FXML
     public void Logout(ActionEvent actionEvent) {
