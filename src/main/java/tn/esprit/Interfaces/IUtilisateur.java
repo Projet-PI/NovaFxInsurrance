@@ -20,4 +20,6 @@ public interface IUtilisateur<T> {
     void DeleteByID(int id);
 
     List<User> RechrecheUser(String recherche);
+
+    List<User> afficher(String searchQuery);
 }

@@ -336,27 +336,7 @@
         //Search Functions
         @FXML
         public void RechercheNom(ActionEvent actionEvent) {
-            int column = 0;
-            int row = 1;
-            String recherche = SearchBar.getText();
-            try {
-                userContainer.getChildren().clear();
-                for (User user : UserS.Rechreche(recherche)){
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/CardUser.fxml"));
-                    Pane userBox = fxmlLoader.load();
-                    //cardC = fxmlLoader.getController();
-                    userContainer.setUserData(user);
-                    if (column == 3) {
-                        column = 0;
-                        ++row;
-                    }
-                    userContainer.add(userBox, column++, row);
-                    GridPane.setMargin(userBox, new Insets(10));
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
         }
 
         @FXML
@@ -385,7 +365,28 @@
 
         }
 
+        @FXML
         public void Search(ActionEvent actionEvent) {
+            int column = 0;
+            int row = 1;
+            String recherche = SearchBar.getText();
+            try {
+                userContainer.getChildren().clear();
+                for (User user : UserS.Rechreche(recherche)){
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/CardViewUser.fxml"));
+                    Pane userBox = fxmlLoader.load();
+                    userContainer.setUserData(user);
+                    if (column == 3) {
+                        column = 0;
+                        ++row;
+                    }
+                    userContainer.add(userBox, column++, row);
+                    GridPane.setMargin(userBox, new Insets(10));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         }
     }

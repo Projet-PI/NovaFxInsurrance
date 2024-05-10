@@ -53,24 +53,29 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
     }
 
     @Override
-    public List<User> afficher(String searchQuery, int offset,int pageSize) {
+    public List<User> afficher(String searchQuery, int offset, int pageSize) {
         List<User> users = new ArrayList<>();
         String query = "SELECT * FROM user";
+
+        // Check if there's a search query
         if (searchQuery != null && !searchQuery.isEmpty()) {
             query += " WHERE `nom` LIKE ?";
         }
 
+        // Add pagination parameters
         query += " LIMIT ?, ?";
 
         try (PreparedStatement stmt = conx.prepareStatement(query)) {
+            int paramIndex = 1;
+
+            // Set search query parameter if it exists
             if (searchQuery != null && !searchQuery.isEmpty()) {
-                stmt.setString(1, "%" + searchQuery + "%");
+                stmt.setString(paramIndex++, "%" + searchQuery + "%");
             }
 
-            stmt.setInt(2, offset);
-            stmt.setInt(3, pageSize);
-
-
+            // Set pagination parameters
+            stmt.setInt(paramIndex++, offset);
+            stmt.setInt(paramIndex++, pageSize);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
@@ -96,6 +101,7 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
         }
         return users;
     }
+
 
 
 
@@ -338,6 +344,46 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
             }
         }
     }
+
+    @Override
+    public List<User> afficher(String searchQuery) {
+        List<User> users = new ArrayList<>();
+        String query = "SELECT * FROM user"; // Adjust the table name if it's different in your DB
+
+        if (searchQuery != null && !searchQuery.isEmpty()) {
+            query += " WHERE `nom` LIKE ?";
+        }
+
+        try (PreparedStatement stmt = conx.prepareStatement(query)) {
+            if (searchQuery != null && !searchQuery.isEmpty()) {
+                stmt.setString(1, "%" + searchQuery + "%");  // Sets the search string with wildcards for the LIKE clause
+            }
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    User user = new User(
+                            rs.getInt("id"),
+                            rs.getInt("cin"),
+                            rs.getString("nom"),
+                            rs.getString("prenom"),
+                            rs.getString("email"),
+                            rs.getString("adresse"),
+                            rs.getInt("num_tel"),
+                            rs.getString("password"),
+                            rs.getString("profession"),
+                            rs.getString("role")
+                    );
+                    users.add(user);
+                }
+            } catch (SQLException e) {
+                System.err.println("Error executing query: " + e.getMessage());
+            }
+        } catch (SQLException e) {
+            System.err.println("Error preparing statement: " + e.getMessage());
+        }
+        return users;
+    }
+
 
 
 
