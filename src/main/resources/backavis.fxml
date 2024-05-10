@@ -124,5 +124,6 @@
             </HBox>
          </children>
       </HBox>
+      <Button fx:id="afficher" layoutX="374.0" layoutY="469.0" mnemonicParsing="false" onAction="#afficher" prefHeight="35.0" prefWidth="107.0" styleClass="avis-button" stylesheets="@style/styleafficher.css" text="afficher" textFill="#f2ecec" />
    </children>
 </AnchorPane>

@@ -27,6 +27,9 @@ import java.util.ResourceBundle;
 public class BackAvis implements Initializable {
     @FXML
     private Button Ajouter_devis;
+    @FXML
+    private Button afficher;
+
 
     @FXML
     private Button BackAvis;
@@ -146,10 +149,10 @@ public class BackAvis implements Initializable {
     // Methode de Navigation
 
 
-    public void goback() throws IOException {
-        Stage stage = (Stage) BackAvis.getScene().getWindow();
+    public void afficher() throws IOException {
+        Stage stage = (Stage) afficher.getScene().getWindow();
         stage.close();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/back.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/afficher.fxml")));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Log IN");

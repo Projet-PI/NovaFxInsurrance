@@ -190,14 +190,14 @@ public class Avis implements Initializable {
         AvisRestau avis = new AvisRestau();
         avis.setStatus(status);
         avis.setResponse(response);
-        avis.setDevis_id_id(devis_id_id); // Définir l'ID du devis // 2
+        avis.setDevis_id_id(3); // Définir l'ID du devis // 2
 
         // Appeler la méthode pour ajouter l'avis à la base de données
         ServiceDevis service = new ServiceDevis();
         service.ajouter(avis);
 
         // Si le statut est "traite", envoyer un SMS
-        /*if ("101".equals(status)) {
+        if ("101".equals(status)) {
             // Construire le message à envoyer par SMS
             String message = "Merci d'avoir passe un devis Chez Nova Insurrance  : " + response;
 
@@ -205,7 +205,7 @@ public class Avis implements Initializable {
             Example example = new Example();
             example.send_sms(message);
         }
-*/
+
         // Effacer les champs de texte
         show();
         sasie.clear();
