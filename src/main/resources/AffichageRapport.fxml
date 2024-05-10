@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AffichageRapportController">
+
+
+
+    <VBox alignment="CENTER" spacing="10" style="-fx-border-color: #007a80; -fx-border-radius: 10px;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+      
+              <Label alignment="CENTER" contentDisplay="CENTER" text="Liste des Rapports" textAlignment="CENTER" textFill="#007a80">
+               <font>
+                  <Font name="Book Antiqua" size="35.0" />
+               </font></Label>
+         </children>
+      </HBox>
+
+        <HBox alignment="CENTER" opacity="0.9" spacing="20.0" style="-fx-border-radius: 5px;">      <Label style="-fx-font-size: 15px;" text="Trier Par : ">
+            <font>
+                <Font name="Arial Black" size="15.0" />
+            </font></Label>
+            <Button alignment="CENTER_LEFT" onAction="#handleSortButtonP" styleClass="custom-button" text="Pourcentage" />
+            <Button alignment="CENTER" contentDisplay="CENTER" onAction="#handleSortButtonId" prefHeight="26.0" prefWidth="48.0" styleClass="custom-button" text="Id" textAlignment="CENTER" />
+
+            <Label prefHeight="18.0" prefWidth="54.0" text="Search:" />
+            <TextField fx:id="searchField" promptText="Enter search query" styleClass="custom-text-field" />
+         <Button alignment="CENTER_LEFT" onAction="#handleMenu" styleClass="custom-button" text="Vers Sinistres" />
+            <padding>
+                <Insets top="10.0" />
+            </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+        </HBox>
+        <ListView fx:id="RapportListView" style="-fx-background-color: #007a80;" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets left="5.0" right="5.0" />
+         </VBox.margin></ListView>
+        <Pagination fx:id="pagination" styleClass="custom-button" />
+
+        <Button onAction="#handleAjouterButton" styleClass="custom-button" text="Ajouter un Rapport" />
+      <opaqueInsets>
+         <Insets />
+      </opaqueInsets>
+      <padding>
+         <Insets bottom="5.0" />
+      </padding>
+    </VBox>
+
+</AnchorPane>

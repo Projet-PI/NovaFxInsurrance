@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0"  xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AffichageSinistreController">
+
+
+   <VBox alignment="CENTER" spacing="10" style="-fx-border-color: #007a80; -fx-border-radius: 10;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="132.0" prefWidth="350.0" text="Liste des Sinistres" textAlignment="CENTER" textFill="#007a80">
+         <font>
+            <Font name="Book Antiqua" size="35.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="20.0" top="10.0" />
+         </VBox.margin></Label>
+
+      <HBox alignment="CENTER" opacity="0.9" spacing="20.0" style="-fx-border-radius: 5px;">      <Label style="-fx-font-size: 15px;" text="Trier Par : ">
+            <font>
+               <Font name="Arial Black" size="15.0" />
+            </font></Label>
+         <Button alignment="CENTER_LEFT" onAction="#handleSortButtonpourcentage" styleClass="custom-button" text="Purcentage" />
+         <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" onAction="#handleSortButtonClientID" styleClass="custom-button" text="ID Client" />
+         <Label prefHeight="18.0" prefWidth="54.0" text="Search:" />
+         <TextField fx:id="searchField" promptText="Enter search query" styleClass="custom-text-field" />
+         <Button alignment="CENTER" contentDisplay="CENTER" onAction="#handleMenu" styleClass="custom-button" text="Vers Rapports" textAlignment="CENTER">
+            <opaqueInsets>
+               <Insets left="20.0" />
+            </opaqueInsets></Button>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </HBox>
+      <!-- Sinistre ListView -->
+      <ListView fx:id="sinistreListView" style="-fx-background-color: #007a80;" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets left="5.0" right="5.0" />
+         </VBox.margin></ListView>
+      <Pagination fx:id="pagination" styleClass="custom-button" />
+
+      <!-- Button to Add Sinistre -->
+      <Button onAction="#handleAjouterButton" styleClass="custom-button" text="Ajouter un Sinistre" />
+      <padding>
+         <Insets bottom="10.0" />
+      </padding>
+   </VBox>
+
+</AnchorPane>
