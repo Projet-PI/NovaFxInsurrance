@@ -388,6 +388,27 @@
         public void Search(ActionEvent actionEvent) {
 
         }
+
+        public void assurancebutton(ActionEvent actionEvent) {
+
+            try {
+            // Load the FXML document for the new view
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/assurancefxml/AfficherBackassurance.fxml"));
+            Parent root = loader.load();
+
+            // Get the stage from the event source, which is your button
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+            // Set the scene with the new layout
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Optionally, handle the error, for example logging it or showing an error message
+        }
+
+        }
     }
 
 
