@@ -8,10 +8,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="637.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.USER.LoginController">
     <children>
-        <Label layoutX="73.0" layoutY="213.0" text="Email :">
+        <Label layoutX="73.0" layoutY="243.0" text="Email :">
             <font>
                 <Font size="14.0" />
             </font>
@@ -21,20 +22,28 @@
                 <Font size="14.0" />
             </font>
         </Label>
-        <TextField fx:id="mailFieldLogin" layoutX="72.0" layoutY="238.0" prefHeight="25.0" prefWidth="265.0" />
-        <TextField fx:id="tempPasswordField" layoutX="72.0" layoutY="340.0" prefHeight="30.0" prefWidth="265.0" />
+        <TextField fx:id="mailFieldLogin" layoutX="72.0" layoutY="268.0" prefHeight="25.0" prefWidth="265.0" promptText="Exemple@exemple.com" style="-fx-background-color: transparent; -fx-border-color: transparent transparent #4CAF50 transparent; -fx-border-width: 0 0 2 0; -fx-padding: 5px;" />
+
+        <TextField fx:id="tempPasswordField" layoutX="72.0" layoutY="340.0" prefHeight="30.0" prefWidth="265.0" promptText="******" style="-fx-background-color: transparent; -fx-border-color: transparent transparent #4CAF50 transparent; -fx-border-width: 0 0 2 0; -fx-padding: 5px;" />
+
         <Hyperlink layoutX="212.0" layoutY="382.0" onAction="#ResetPassword" text="Mot de Passe Oublié?" />
         <Hyperlink layoutX="70.0" layoutY="382.0" onAction="#creerCompteLog" text="Créer un compte" />
-        <Label layoutX="87.0" layoutY="478.0" text="Copyright © 2024 tous droits reservés">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Label>
+        <Label layoutX="75.0" layoutY="487.0" text="Copyright © 2024 tous droits reservés" />
+        <Button layoutX="73.0" layoutY="420.0" mnemonicParsing="true" onAction="#connecterUser" prefHeight="0.0" prefWidth="265.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 8px; -fx-background-radius: 8px; -fx-padding: 10px 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 5);" text="Se Connecter" />
         <ImageView fitHeight="643.0" fitWidth="515.0" layoutX="505.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@Page2.png" />
             </image>
         </ImageView>
-        <Button layoutX="73.0" layoutY="428.0" mnemonicParsing="true" onAction="#connecterUser" prefHeight="30.0" prefWidth="265.0" text="Se Connecter" />
+      <Text layoutX="68.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue">
+         <font>
+            <Font size="38.0" />
+         </font>
+      </Text>
+      <Text layoutX="70.0" layoutY="173.0" opacity="0.26" strokeType="OUTSIDE" strokeWidth="0.0" text="Connectez-vous à votre espace Nova">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>

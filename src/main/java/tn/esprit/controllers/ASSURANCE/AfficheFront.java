@@ -117,11 +117,8 @@ public class AfficheFront implements Initializable {
 
     public void goToContrats(ActionEvent actionEvent) {
         try {
-            // Load the FXML file for Contrats
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/assurancefxml/afficherfrontcontrat.fxml"));
             Parent root = loader.load();
-
-            // Create a new stage
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
@@ -129,20 +126,20 @@ public class AfficheFront implements Initializable {
             e.printStackTrace();
         }
     }
+
     @FXML
-
-
-   void goToLandingPage(ActionEvent actionEvent) {
-
-
+     void goToLandingPage(ActionEvent actionEvent) {
         try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/InterfaceUser.fxml"));
-        Parent root = loader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+         System.out.println("test3");
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/InterfaceUser.fxml"));
+         Parent loginRoot = loader.load();
+         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+         Scene scene = new Scene(loginRoot);
+         stage.setScene(scene);
+         stage.show();
     } catch (IOException e) {
         e.printStackTrace();
+
     }
     }
 }

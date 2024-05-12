@@ -1,5 +1,6 @@
 package tn.esprit.services;
 
+import tn.esprit.Interfaces.IService;
 import tn.esprit.entities.RapportClient;
 import tn.esprit.utils.DataBase;
 

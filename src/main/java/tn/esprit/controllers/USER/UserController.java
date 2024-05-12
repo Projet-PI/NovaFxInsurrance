@@ -61,6 +61,7 @@ public class UserController implements Initializable {
 
     private void loadUserProfile() {
         if (currentUser != null) {
+
             NomText.setText(currentUser.getNom());
             PrénomText.setText(currentUser.getPrenom());
             AdresseText.setText(currentUser.getAdresse());

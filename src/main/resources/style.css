@@ -140,7 +140,7 @@
     -fx-text-fill: white;
     -fx-border-radius: 5;
     -fx-padding: 10px 20px;
-    -fx-font-size: 14px;
+    -fx-font-size: 10px;
 }
 
 .button.primary-button {
@@ -154,5 +154,16 @@
 .button:hover {
     -fx-opacity: 0.8;
 }
+.button-connect {
+    -fx-background-color: #4CAF50; /* Vibrant green background */
+    -fx-text-fill: white; /* White text color for contrast */
+    -fx-font-size: 16px; /* Increased font size for better readability */
+    -fx-border-radius: 8px; /* Rounded corners for a modern look */
+    -fx-background-radius: 8px; /* Ensure the background matches the border rounding */
+    -fx-padding: 10px 20px; /* Padding for a better button shape and feel */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 5); /* Subtle shadow for depth */
+}
+
+
 
 

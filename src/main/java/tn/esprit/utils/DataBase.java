@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DataBase {
 
     private static DataBase instance;
-    private final String URL = "jdbc:mysql://localhost:3306/basenova_3";
+    private final String URL = "jdbc:mysql://localhost:3306/basenova";
     private final String USERNAME = "root";
     private final String PWD = "";
     private Connection conx;
