@@ -69,9 +69,7 @@ public class RegistrationController {
     private final ServiceUtilisateurs UserS = new ServiceUtilisateurs();
 
     // Api SMS Slim
-    public static final String ACCOUNT_SID = "AC9f540cdc67d5246c8545b552044d53f4";
-    public static final String AUTH_TOKEN = "2be9488b7454e4e779eed08fa7a752fc";
-    public static final String TWILIO_PHONE_NUMBER = "+14122183576";
+
     public String verificationCode;
     public String generateVerificationCode() {
         return String.format("%06d", new Random().nextInt(999999));
