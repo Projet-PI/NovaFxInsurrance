@@ -64,11 +64,24 @@ public class ReclamationEntryService {
         try {
             // Extract the prompt from reclamationEntry
             String prompt = reclamationEntry.getPrompt();
-
+            String regulation = "";
             // Call the method to retrieve regulation and elapsed time
-            ChatResponse regulationResponse = fetchRegulation(prompt);
-            String regulation = regulationResponse.getRegulation();
-            String elapsedTime = regulationResponse.getElapsedTime();
+            if (reclamationEntry.getResponseType().equals("AI")) {
+                ChatResponse regulationResponse = fetchRegulation(prompt);
+                regulation = regulationResponse.getRegulation();
+                ReclamationGroupeService reclamationGroupeService = new ReclamationGroupeService();
+                reclamationGroupe.setStatus("completed");
+                reclamationGroupeService.UpdateReclamationGroupe(reclamationGroupe);
+            } else {
+                reclamationEntry.setResponse("No response");
+                regulation = "No response";
+                reclamationEntry.setStatus("pending");
+                // update reclamation group status to pending
+                ReclamationGroupeService reclamationGroupeService = new ReclamationGroupeService();
+                reclamationGroupe.setStatus("pending");
+                reclamationGroupeService.UpdateReclamationGroupe(reclamationGroupe);
+            }
+
 
             // Insert the reclamation entry into the database
             insertReclamationEntry(reclamationEntry, regulation);
@@ -87,7 +100,7 @@ public class ReclamationEntryService {
 
     // Method to fetch regulation from the API
     private ChatResponse fetchRegulation(String prompt) throws IOException {
-        URL url = new URL("https://fb8b-197-3-6-252.ngrok-free.app/apiv1/regulation/get-regulation");
+        URL url = new URL("https://b071-154-108-103-84.ngrok-free.app/apiv1/regulation/get-regulation");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/json");
