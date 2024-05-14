@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import tn.esprit.controllers.USER.AdminUserController;
 import tn.esprit.entities.RapportClient;
 import tn.esprit.services.ServiceRapport;
 import tn.esprit.services.ServiceSinistre;
@@ -195,13 +196,13 @@ public class AffichageRapportController {
 
     public void back(ActionEvent actionEvent) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/dashbord.fxml"));
-            Parent ajoutRapportParent = fxmlLoader.load();
-            DashBord controller = fxmlLoader.getController();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
+            Parent AdminUserController = fxmlLoader.load();
+            AdminUserController controller = fxmlLoader.getController();
 
             Stage currentStage = (Stage) RapportListView.getScene().getWindow();
-            Scene ajoutRapportScene = new Scene(ajoutRapportParent, 1000, 600);
-            currentStage.setScene(ajoutRapportScene);
+            Scene AdminUserScene = new Scene(AdminUserController, 1000, 600);
+            currentStage.setScene(AdminUserScene);
             currentStage.show();
         } catch (IOException e) {
             e.printStackTrace();
