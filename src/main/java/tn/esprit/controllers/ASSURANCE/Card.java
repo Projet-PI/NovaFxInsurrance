@@ -94,23 +94,17 @@ public class Card {
 
     @FXML
     private void partage(ActionEvent event) {
-        System.out.println("dkhlnq");
-        String appId = "330484183474248";
-        String appSecret = "4cf17d1c8ce3d0b4e57840c5504e611f";
-        String accessTokenString = "EAAERIQJ4OLsBOzGMVRPowZARA4W1iz3U1j4D8GlJu6xC7IZCwOm0JXZB0FGZCQOtOgnciknoBv8bjPA6psHjUf2PfzoKCPZC1hG48YBsHwDiQXYnyW4CxqV7DaFx1DqaXx55P6mYncsJT4zJHZCRytFXQcdSZCOkZAfqAyLbkeDMuJZBVLjeCJUgNr2ZCCFEEbYH9tMu8HoLAPej4ySl6ApgZDZD";
 
+        String appId = "300308449736891";
+        String appSecret = "4cf17d1c8ce3d0b4e57840c5504e611f";
+        String accessTokenString = "EAAERIQJ4OLsBOwfLThlki7imZA30vmRUrlQzW1KMOuFjYdrL3F5zN7ZAaPdpSVruLZArNoJPM4sZAnM3GHNFGqDLpZAdZAY8ZAKo9bT1pK1ZADPtIID2k0hr1vRspjVNmjhMGWzL9WrAwZAhiFe06NIf2NjZCn7zW5YtJiMZBv15VFeeQBkMTNeiZCpzXNjWkw583l7mWSzEPESXZBb9b3mY1OII0YykZD";
         Facebook facebook = new FacebookFactory().getInstance();
         facebook.setOAuthAppId(appId, appSecret);
         facebook.setOAuthAccessToken(new AccessToken(accessTokenString, null));
 
         // Construire le message à partager sur Facebook
-        String msg = "Nouveau blog disponible maintenant ";
-//                + "\n*** Titre: "
-//                + A_s.getTitre()
-//                + "\n*** Description: "
-//        //+ blogservice.getDescription()
-//        //+ "\n***Date: "
-//        //+ blogservice.getNiveau() ;
+        String msg = "Nouveelle assurance  disponible maintenant ";
+//
 
         try {
             facebook.postStatusMessage(msg);

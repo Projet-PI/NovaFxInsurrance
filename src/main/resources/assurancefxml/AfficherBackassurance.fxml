@@ -32,8 +32,10 @@
         </TableView>
 
       <TextField fx:id="filterField" layoutX="21.0" layoutY="106.0" promptText="Search" />
-      <Button layoutX="281.0" layoutY="122.0" mnemonicParsing="false" onAction="#ExporterExcel" text="export excel" />
+        <Button layoutX="248.0" layoutY="122.0" mnemonicParsing="false" onAction="#ExporterExcel" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8px 16px; -fx-border-radius: 3px;" text="Export Excel" />
 
+        <Button layoutX="398.0" layoutY="122.0" mnemonicParsing="false" onAction="#goToAjouterAssurance" style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8px 16px; -fx-border-radius: 3px;" text="Ajouter Assurance" />
+        <Button layoutX="548.0" layoutY="122.0" mnemonicParsing="false" onAction="#goToListeContrat" style="-fx-background-color: #36f48f; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8px 16px; -fx-border-radius: 3px;" text="Liste Contrat" />
 
     </children>
 
