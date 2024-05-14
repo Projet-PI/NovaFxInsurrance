@@ -1,6 +1,7 @@
 package tn.esprit.controllers;
 
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -36,6 +37,8 @@ public class DashBord implements Initializable{
         // eventView.setOnMouseClicked(event -> loadFXML("/gererevenement.fxml"));
     }
 
+
+
     @FXML
     void showAvisRestau(MouseEvent event) {
 
@@ -58,6 +61,25 @@ public class DashBord implements Initializable{
 
     @FXML
     void goToRapport(MouseEvent event) {
+
+        try {
+            // Load user.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AffichageRapport.fxml"));
+            Node eventFXML = loader.load();
+
+            // Clear existing content from FieldHolder
+            vboxdash.getChildren().clear();
+
+            // Add the loaded userFXML to FieldHolder
+            vboxdash.getChildren().add(eventFXML);
+        } catch (IOException e) {
+            // Handle exception (e.g., file not found or invalid FXML)
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void devis(MouseEvent event) {
 
         try {
             // Load user.fxml
@@ -100,4 +122,20 @@ public class DashBord implements Initializable{
         }
     }
 
+    public void User(ActionEvent actionEvent) {
+        try {
+            // Load user.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
+            Node eventFXML = loader.load();
+
+            // Clear existing content from FieldHolder
+            vboxdash.getChildren().clear();
+
+            // Add the loaded userFXML to FieldHolder
+            vboxdash.getChildren().add(eventFXML);
+        } catch (IOException e) {
+            // Handle exception (e.g., file not found or invalid FXML)
+            e.printStackTrace();
+        }
+    }
 }

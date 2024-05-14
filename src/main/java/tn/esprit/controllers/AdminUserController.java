@@ -384,6 +384,22 @@
             }
 
         }
+
+        public void sinistre(ActionEvent actionEvent) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AffichageRapport.fxml")); // Make sure the path is correct
+                Parent loginRoot = loader.load();
+
+                // Get the current stage from the action event, assuming the logout button triggers this method
+                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                Scene scene = new Scene(loginRoot);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Handle the exception (perhaps show an error message or log it)
+            }
+        }
     }
 
 

@@ -193,6 +193,21 @@ public class AffichageRapportController {
         }
     }
 
+    public void back(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/dashbord.fxml"));
+            Parent ajoutRapportParent = fxmlLoader.load();
+            DashBord controller = fxmlLoader.getController();
+
+            Stage currentStage = (Stage) RapportListView.getScene().getWindow();
+            Scene ajoutRapportScene = new Scene(ajoutRapportParent, 1000, 600);
+            currentStage.setScene(ajoutRapportScene);
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public class RapportListCell extends ListCell<RapportClient> {
         @Override
         protected void updateItem(RapportClient item, boolean empty) {
@@ -230,12 +245,13 @@ public class AffichageRapportController {
                 deleteButton.setOnMouseExited(e -> deleteButton.setStyle("-fx-background-color: #f77736; -fx-text-fill: white;"));
 
                 buttonBox.getChildren().addAll(editButton, deleteButton);
-                isFautifLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Arial';");
-                pourcentageLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Arial';");
-                rapportLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Arial';");
-                rapportCliientId.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Arial';");
-                clientNom.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Arial';");
-                clientPrenom.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Arial';");
+                isFautifLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Arial'; -fx-text-fill: white;");
+                pourcentageLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Arial'; -fx-text-fill: white;");
+                rapportLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Arial'; -fx-text-fill: white;");
+                rapportCliientId.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Arial'; -fx-text-fill: white;");
+                clientNom.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Arial'; -fx-text-fill: white;");
+                clientPrenom.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Arial'; -fx-text-fill: white;");
+
                 card.getChildren().addAll(isFautifLabel,clientNom, clientPrenom, pourcentageLabel, rapportLabel,rapportCliientId, buttonBox);
                 setGraphic(card);
 

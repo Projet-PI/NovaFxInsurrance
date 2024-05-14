@@ -264,11 +264,11 @@ public class AffichageSinistreController {
                 buttonBox.getChildren().addAll(editButton, deleteButton);
 // Set font size and style for labels
                 // Set font style for labels
-                clientIdLabel.setStyle("-fx-font-size: 14px; -fx-font-color: 'white'; -fx-font-family: 'Arial';");
-                expertIdLabel.setStyle("-fx-font-size: 14px; -fx-font-color: 'white'; -fx-font-family: 'Arial';");
-                isFautifLabel.setStyle("-fx-font-size: 14px; -fx-font-color: 'white'; -fx-font-family: 'Arial';");
-                pourcentageLabel.setStyle("-fx-font-size: 14px; -fx-font-color: 'white'; -fx-font-family: 'Arial';");
-                rapportLabel.setStyle("-fx-font-size: 14px; -fx-font-color: 'white'; -fx-font-family: 'Arial';");
+                clientIdLabel.setStyle("-fx-font-size: 14px; -fx-font-color: 'white'; -fx-font-family: 'Arial'; -fx-text-fill: white;");
+                expertIdLabel.setStyle("-fx-font-size: 14px; -fx-font-color: 'white'; -fx-font-family: 'Arial'; -fx-text-fill: white;");
+                isFautifLabel.setStyle("-fx-font-size: 14px; -fx-font-color: 'white'; -fx-font-family: 'Arial'; -fx-text-fill: white;");
+                pourcentageLabel.setStyle("-fx-font-size: 14px; -fx-font-color: 'white'; -fx-font-family: 'Arial'; -fx-text-fill: white;");
+                rapportLabel.setStyle("-fx-font-size: 14px; -fx-font-color: 'white'; -fx-font-family: 'Arial'; -fx-text-fill: white;");
 
 
                 card.getChildren().addAll(clientIdLabel, expertIdLabel, isFautifLabel, pourcentageLabel, rapportLabel, buttonBox);

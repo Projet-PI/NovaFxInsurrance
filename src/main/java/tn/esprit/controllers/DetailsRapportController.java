@@ -70,7 +70,7 @@ public class DetailsRapportController {
         paths.add("/images/Caraccident.mp4");
         paths.add("/images/Untitled.mp4");
         paths.add("/images/POVCRASH.mp4");
-        paths.add("/images/POVCRASH.mp4");
+        paths.add("/images/CarCrash240.mp4");
 
         String randomPath = getRandomPath();
         playMedia(randomPath);

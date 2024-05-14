@@ -2,10 +2,11 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AffichageRapportController">
+<AnchorPane prefHeight="600.0" prefWidth="977.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AffichageRapportController">
 
 
 
@@ -20,23 +21,25 @@
          </children>
       </HBox>
 
-        <HBox alignment="CENTER" opacity="0.9" spacing="20.0" style="-fx-border-radius: 5px;">      <Label style="-fx-font-size: 15px;" text="Trier Par : ">
-            <font>
-                <Font name="Arial Black" size="15.0" />
-            </font></Label>
-            <Button alignment="CENTER_LEFT" onAction="#handleSortButtonP" styleClass="custom-button" text="Pourcentage" />
-            <Button alignment="CENTER" contentDisplay="CENTER" onAction="#handleSortButtonId" prefHeight="26.0" prefWidth="48.0" styleClass="custom-button" text="Id" textAlignment="CENTER" />
-
+        <HBox alignment="CENTER" opacity="0.9" spacing="20.0" style="-fx-border-radius: 5px;" stylesheets="@yourstylesheet.css">
+            <Label style="-fx-font-size: 15px;" text="Trier Par : ">
+                <font>
+                    <Font name="Arial Black" size="15.0" />
+                </font>
+            </Label>
+            <Button fx:id="sortButtonP" alignment="CENTER_LEFT" onAction="#handleSortButtonP" text="Pourcentage" />
+            <Button fx:id="sortButtonId" alignment="CENTER" contentDisplay="CENTER" onAction="#handleSortButtonId" prefHeight="26.0" prefWidth="48.0" text="Id" textAlignment="CENTER" />
             <Label prefHeight="18.0" prefWidth="54.0" text="Search:" />
-            <TextField fx:id="searchField" promptText="Enter search query" styleClass="custom-text-field" />
-         <Button alignment="CENTER_LEFT" onAction="#handleMenu" styleClass="custom-button" text="Vers Sinistres" />
+            <TextField fx:id="searchField" promptText="Enter search query" />
+            <Button alignment="CENTER_LEFT" onAction="#handleMenu" text="Vers Sinistres" />
             <padding>
                 <Insets top="10.0" />
             </padding>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
         </HBox>
+
         <ListView fx:id="RapportListView" style="-fx-background-color: #007a80;" VBox.vgrow="ALWAYS">
          <VBox.margin>
             <Insets left="5.0" right="5.0" />
@@ -51,5 +54,13 @@
          <Insets bottom="5.0" />
       </padding>
     </VBox>
-
+   <Button mnemonicParsing="false" onAction="#back" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+      <graphic>
+          <ImageView fitHeight="57.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                  <Image url="@416434692_769425838447527_1407072637719166262_n.png" />
+              </image>
+         </ImageView>
+      </graphic>
+   </Button>
 </AnchorPane>

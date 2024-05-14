@@ -62,3 +62,31 @@
     -fx-animation-timing-function: ease-in; /* Animation timing function */
     animation: fadeIn 0.5s; /* Apply fade-in animation */
 }
+.custom-button {
+    -fx-background-color: linear-gradient(to bottom, #98FB98, #00FF00);
+    -fx-background-radius: 5px;
+    -fx-text-fill: black;
+}
+
+.custom-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #7FFF00, #32CD32);
+}
+.custom-text-field {
+    -fx-background-color: linear-gradient(to bottom, #98FB98, #00FF00);
+    -fx-background-radius: 5px;
+    -fx-text-fill: black;
+    -fx-prompt-text-fill: gray;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 1px;
+}
+
+.custom-text-field:hover {
+    -fx-background-color: linear-gradient(to bottom, #7FFF00, #32CD32);
+}
+
+.custom-text-field:focused {
+    -fx-background-color: linear-gradient(to bottom, #7FFF00, #32CD32);
+    -fx-border-color: #4CAF50;
+}
+
+
