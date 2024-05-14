@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane onMousePressed="#click" prefHeight="225.0" prefWidth="219.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.Devis">
+<AnchorPane onMousePressed="#click" prefHeight="225.0" prefWidth="219.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.DEVIS.Devis">
    <children>
       <VBox prefHeight="236.0" prefWidth="225.0" styleClass="shadow" stylesheets="@style/styleafficher.css">
          <children>
@@ -17,9 +17,7 @@
                </font>
             </Label>
             <ImageView fx:id="img" fitHeight="172.0" fitWidth="244.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/image.png" />
-               </image>
+
             </ImageView>
          </children>
       </VBox>

@@ -5,6 +5,7 @@ package tn.esprit.services;
 
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import tn.esprit.Interfaces.IService;
 import tn.esprit.entities.Devis;
 import tn.esprit.entities.RapportClient;
 import tn.esprit.utils.DataBase;

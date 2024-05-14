@@ -6,20 +6,27 @@ import java.sql.SQLException;
 
 public class DataBase {
 
-    private static DataBase instance ;
-    private final String URL ="jdbc:mysql://localhost:3306/basenova_3" ;
-    private final String USERNAME ="root";
-    private final String PWD ="";
-    Connection conx;
+    private static DataBase instance;
+    private final String URL = "jdbc:mysql://localhost:3306/basenova_3";
+    private final String USERNAME = "root";
+    private final String PWD = "";
+    private Connection conx;
 
-    private DataBase(){
+    private DataBase() {
+        connect();
+    }
+
+    private void connect() {
         try {
-            conx = DriverManager.getConnection(URL, USERNAME, PWD);
-            System.out.println("Connextion établie!");
-        } catch(SQLException e) {
-            System.out.println(e.getMessage());
+            if (conx == null || conx.isClosed()) {
+                conx = DriverManager.getConnection(URL, USERNAME, PWD);
+                System.out.println("Connection established!");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error connecting to the database: " + e.getMessage());
         }
     }
+
     public static DataBase getInstance() {
         if (instance == null) {
             instance = new DataBase();
@@ -28,6 +35,13 @@ public class DataBase {
     }
 
     public Connection getConx() {
+        try {
+            if (conx == null || conx.isClosed()) {
+                connect();
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to check connection status: " + e.getMessage());
+        }
         return conx;
     }
 }

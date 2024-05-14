@@ -53,30 +53,50 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
     }
 
     @Override
-    public List<User> afficher() {
+    public List<User> afficher(String searchQuery, int offset,int pageSize) {
         List<User> users = new ArrayList<>();
-        String query = "SELECT * FROM user"; // Adjust the table name if it's different in your DB
-        try (Statement stmt = conx.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
-            while (rs.next()) {
-                User user = new User(
-                        rs.getInt("id"),
-                        rs.getInt("cin"),
-                        rs.getString("nom"),
-                        rs.getString("prenom"),
-                        rs.getString("email"),
-                        rs.getString("adresse"),
-                        rs.getInt("num_tel"),
-                        rs.getString("password"),
-                        rs.getString("profession"),
-                        rs.getString("role")
-                );
-                users.add(user);
+        String query = "SELECT * FROM user";
+        if (searchQuery != null && !searchQuery.isEmpty()) {
+            query += " WHERE `nom` LIKE ?";
+        }
+
+        query += " LIMIT ?, ?";
+
+        try (PreparedStatement stmt = conx.prepareStatement(query)) {
+            if (searchQuery != null && !searchQuery.isEmpty()) {
+                stmt.setString(1, "%" + searchQuery + "%");
+            }
+
+            stmt.setInt(2, offset);
+            stmt.setInt(3, pageSize);
+
+
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    User user = new User(
+                            rs.getInt("id"),
+                            rs.getInt("cin"),
+                            rs.getString("nom"),
+                            rs.getString("prenom"),
+                            rs.getString("email"),
+                            rs.getString("adresse"),
+                            rs.getInt("num_tel"),
+                            rs.getString("password"),
+                            rs.getString("profession"),
+                            rs.getString("role")
+                    );
+                    users.add(user);
+                }
+            } catch (SQLException e) {
+                System.err.println("Error executing query: " + e.getMessage());
             }
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            System.err.println("Error preparing statement: " + e.getMessage());
         }
         return users;
     }
+
 
 
     @Override
@@ -269,6 +289,58 @@ public class ServiceUtilisateurs implements IUtilisateur<User> {
         }
         return users;
     }
+
+    public boolean updateWithoutPassword(User user) {
+        String sql = "UPDATE user SET nom = ?, prenom = ?, email = ?, num_tel = ?, adresse = ?, profession = ?, cin = ? WHERE id = ?";
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = DataBase.getInstance().getConx();
+            if (con == null || !con.isValid(5)) {
+                System.err.println("Connection is not valid or closed.");
+                return false;
+            }
+            con.setAutoCommit(false);
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, user.getNom());
+            stmt.setString(2, user.getPrenom());
+            stmt.setString(3, user.getEmail());
+            stmt.setInt(4, user.getNum_tel());
+            stmt.setString(5, user.getAdresse());
+            stmt.setString(6, user.getProfession());
+            stmt.setInt(7, user.getCin());
+            stmt.setInt(8, user.getId());
+
+            int affectedRows = stmt.executeUpdate();
+
+            con.commit();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            System.err.println("SQLException: " + e.getSQLState() + " - " + e.getErrorCode());
+            System.err.println("Error updating user: " + e.getMessage());
+            if (con != null) {
+                try {
+                    con.rollback();
+                } catch (SQLException ex) {
+                    System.err.println("SQL Exception on rollback. Error: " + ex.getMessage());
+                }
+            }
+            return false;
+        } finally {
+            try {
+                if (stmt != null) stmt.close();
+                if (con != null) {
+                    con.setAutoCommit(true);
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("SQL Exception on closing. Error: " + ex.getMessage());
+            }
+        }
+    }
+
+
+
     public List<Integer> getUserIdsWithRole(String role) {
         List<Integer> userIds = new ArrayList<>();
         try {

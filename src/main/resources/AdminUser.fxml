@@ -1,133 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AdminUserController">
-    <children>
-        <TabPane layoutX="170.0" layoutY="104.0" prefHeight="664.0" prefWidth="1145.0" tabClosingPolicy="UNAVAILABLE">
-            <tabs>
-                <Tab text="Ajouter Utilisateurs">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <children>
-                                <GridPane layoutX="67.0" layoutY="75.0" prefHeight="427.0" prefWidth="423.0">
-                                    <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    </columnConstraints>
-                                    <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    </rowConstraints>
-                                    <children>
-                                        <Label text="CIN :">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Label>
-                                        <Label text="Nom :" GridPane.rowIndex="1">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Label>
-                                        <Label text="Prénom :" GridPane.rowIndex="2">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Label>
-                                        <Label text="Email :" GridPane.rowIndex="3">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Label>
-                                        <Label text="Adresse :" GridPane.rowIndex="4">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Label>
-                                        <Label text="N° Telephone :" GridPane.rowIndex="5" />
-                                        <Label prefHeight="18.0" prefWidth="37.0" text="Role :" GridPane.rowIndex="7" />
-                                        <Label text="Mot de Passe :" GridPane.rowIndex="6" />
-                                        <TextField fx:id="cinTF" GridPane.columnIndex="1" />
-                                        <TextField fx:id="nomTF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                        <TextField fx:id="prenomTF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                        <TextField fx:id="emailTF" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                        <TextField fx:id="adresseTF" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                        <TextField fx:id="numtelTF" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                        <TextField fx:id="mdpTF" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                        <ComboBox fx:id="roleCOMBOBOX" prefHeight="25.0" prefWidth="212.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                        <Label text="profession :" GridPane.rowIndex="8" />
-                                        <TextField fx:id="professionTF" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                                    </children>
-                                </GridPane>
-                                <Button layoutX="671.0" layoutY="276.0" mnemonicParsing="false" onAction="#AjouterButton" prefHeight="38.0" prefWidth="116.0" text="Ajouter" />
-                                <TextField fx:id="uinfolabel" layoutX="61.0" layoutY="34.0" prefHeight="26.0" prefWidth="420.0" />
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </Tab>
-                <Tab text="Liste Utilisateurs">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <children>
-                                <ScrollPane layoutY="57.0" prefHeight="543.0" prefWidth="1145.0">
-                                    <content>
-                                        <GridPane fx:id="userContainer" prefHeight="0.0" prefWidth="0.0">
-                                        </GridPane>
-                                    </content>
-                                </ScrollPane>
-                                <HBox prefHeight="52.0" prefWidth="279.0">
-                                    <children>
-                                        <Label prefHeight="52.0" prefWidth="88.0" text="Trier par :">
-                                            <font>
-                                                <Font size="16.0" />
-                                            </font>
-                                        </Label>
-                                    </children>
-                                </HBox>
-                                <Button layoutX="902.0" layoutY="11.0" mnemonicParsing="false" onAction="#ExporterExcel" prefHeight="30.0" prefWidth="172.0" text="Exporter en EXCEL" />
-                                <TextField fx:id="SearchBar" layoutX="407.0" layoutY="14.0" prefHeight="26.0" prefWidth="200.0" promptText="Recherche..." />
-                            </children></AnchorPane>
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
-        <Pane layoutX="-1.0" layoutY="104.0" prefHeight="664.0" prefWidth="172.0">
-            <children>
-                <VBox layoutX="6.0" layoutY="22.0" prefHeight="466.0" prefWidth="160.0">
-                    <children>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" text="Gestion Utilisateurs" />
-                        <Separator prefWidth="200.0" />
-                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="160.0" text="Gestion Finance" />
-                        <Separator prefWidth="200.0" />
-                        <Button mnemonicParsing="false" onAction="#ReclamationButton" prefHeight="36.0" prefWidth="189.0" text="Gestion Réclamation" />
-                        <Separator prefWidth="200.0" />
-                        <Button mnemonicParsing="false" onAction="#sinistre" prefHeight="38.0" prefWidth="160.0" text="Gestion Sinistre" />
-                        <Separator prefWidth="200.0" />
-                        <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="175.0" text="Gestion Assurance" />
-                    </children>
-                </VBox>
-                <Button layoutX="19.0" layoutY="607.0" mnemonicParsing="false" onAction="#LogoutButton" prefHeight="30.0" prefWidth="135.0" text="Déconnexion" />
-            </children>
-        </Pane>
-        <Pane prefHeight="119.0" prefWidth="1315.0">
-            <children>
-                <Text layoutX="1003.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion Utilisateurs" wrappingWidth="267.0">
-                    <font>
-                        <Font size="29.0" />
-                    </font>
-                </Text>
+<AnchorPane stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.USER.AdminUserController">
+   <children>
+      <TabPane layoutX="170.0" layoutY="104.0" prefHeight="664.0" prefWidth="1145.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Ajouter Utilisateurs">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutX="67.0" layoutY="75.0" prefHeight="427.0" prefWidth="423.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="CIN :">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Nom :" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Prénom :" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Email :" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Adresse :" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="N° Telephone :" GridPane.rowIndex="5" />
+                              <Label prefHeight="18.0" prefWidth="37.0" text="Role :" GridPane.rowIndex="7" />
+                              <Label text="Mot de Passe :" GridPane.rowIndex="6" />
+                              <TextField fx:id="cinTF" GridPane.columnIndex="1" />
+                              <TextField fx:id="nomTF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="prenomTF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="emailTF" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="adresseTF" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="numtelTF" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <TextField fx:id="mdpTF" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <ComboBox fx:id="roleCOMBOBOX" prefHeight="25.0" prefWidth="212.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <Label text="profession :" GridPane.rowIndex="8" />
+                              <TextField fx:id="professionTF" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                           </children>
+                        </GridPane>
+                        <Button layoutX="671.0" layoutY="276.0" mnemonicParsing="false" onAction="#AjouterButton" prefHeight="38.0" prefWidth="116.0" text="Ajouter" />
+                        <TextField fx:id="uinfolabel" layoutX="61.0" layoutY="34.0" prefHeight="26.0" prefWidth="420.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Liste Utilisateurs">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ScrollPane layoutY="57.0" prefHeight="543.0" prefWidth="1145.0">
+                           <content>
+                              <GridPane fx:id="userContainer" prefHeight="0.0" prefWidth="0.0">
+                              </GridPane>
+                           </content>
+                        </ScrollPane>
+                        <HBox prefHeight="52.0" prefWidth="279.0">
+                           <children>
+                              <Label prefHeight="52.0" prefWidth="88.0" text="Trier par :">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Button layoutX="902.0" layoutY="11.0" mnemonicParsing="false" onAction="#ExporterExcel" prefHeight="30.0" prefWidth="172.0" text="Exporter en EXCEL" />
+                        <TextField fx:id="SearchBar" layoutX="407.0" layoutY="14.0" onAction="#Search" prefHeight="26.0" prefWidth="200.0" promptText="Recherche..." />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Pane layoutX="-1.0" layoutY="104.0" prefHeight="664.0" prefWidth="172.0">
+         <children>
+            <VBox layoutX="6.0" layoutY="22.0" prefHeight="466.0" prefWidth="160.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" text="Gestion Utilisateurs" />
+                  <Separator prefWidth="200.0" />
+                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="160.0" text="Gestion Finance" />
+                  <Separator prefWidth="200.0" />
+                  <Button mnemonicParsing="false" onAction="#ReclamationButton" prefHeight="36.0" prefWidth="189.0" text="Gestion Réclamation" />
+                  <Separator prefWidth="200.0" />
+                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="160.0" text="Gestion Sinistre" />
+                  <Separator prefWidth="200.0" />
+                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="175.0" text="Gestion Assurance" />
+               </children>
+            </VBox>
+            <Button layoutX="19.0" layoutY="607.0" mnemonicParsing="false" onAction="#LogoutButton" prefHeight="30.0" prefWidth="135.0" text="Déconnexion" />
+         </children>
+      </Pane>
+      <Pane prefHeight="119.0" prefWidth="1315.0">
+         <children>
+            <Text layoutX="1003.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion Utilisateurs" wrappingWidth="267.0">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Text>
 
-            </children>
-        </Pane>
-    </children>
+         </children>
+      </Pane>
+   </children>
 </AnchorPane>

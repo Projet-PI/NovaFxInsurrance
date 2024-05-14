@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="700.0" prefWidth="950.0" stylesheets="@style/styleafficher.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.Ajouter">
+<AnchorPane prefHeight="700.0" prefWidth="950.0" stylesheets="@style/styleafficher.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.DEVIS.Ajouter">
    <children>
       <HBox accessibleRole="BUTTON" layoutX="101.0" layoutY="7.0" prefHeight="622.0" prefWidth="774.0" styleClass="show-box" stylesheets="@style/styleafficher.css">
          <VBox prefHeight="558.0" prefWidth="278.0">

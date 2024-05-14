@@ -25,9 +25,15 @@
             <version>5.5.13.3</version>
         </dependency>
         <dependency>
+
             <groupId>com.twilio.sdk</groupId>
             <artifactId>twilio</artifactId>
             <version>10.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.facebook4j</groupId>
+            <artifactId>facebook4j-core</artifactId>
+            <version>2.4.0</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
