@@ -127,7 +127,7 @@
                   <Separator prefWidth="200.0" />
                   <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="160.0" text="Gestion Sinistre" />
                   <Separator prefWidth="200.0" />
-                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="175.0" text="Gestion Assurance" />
+                  <Button mnemonicParsing="false" onAction="#assurance" prefHeight="36.0" prefWidth="175.0" text="Gestion Assurance" />
                </children>
             </VBox>
             <Button layoutX="19.0" layoutY="607.0" mnemonicParsing="false" onAction="#LogoutButton" prefHeight="30.0" prefWidth="135.0" text="Déconnexion" />

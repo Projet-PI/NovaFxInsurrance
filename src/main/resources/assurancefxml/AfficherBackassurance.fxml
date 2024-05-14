@@ -2,14 +2,16 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="666.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ASSURANCE.AfficherBack">
+<AnchorPane prefHeight="666.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ASSURANCE.AfficherBack">
     <stylesheets>
         <URL value="@backInterface.png" />
     </stylesheets>
@@ -32,7 +34,14 @@
         </TableView>
 
       <TextField fx:id="filterField" layoutX="21.0" layoutY="106.0" promptText="Search" />
-      <Button layoutX="281.0" layoutY="122.0" mnemonicParsing="false" onAction="#ExporterExcel" text="export excel" />
+        <Button fx:id="shareFbBtn" layoutX="400.0" layoutY="122.0" mnemonicParsing="false" onAction="#partage" prefHeight="32.0" prefWidth="115.0" style="-fx-background-color:rgba(0,0,255,0.31);" styleClass="blue-button" />
+
+        <Button layoutX="281.0" layoutY="122.0" mnemonicParsing="false" onAction="#ExporterExcel" text="export excel" />
+      <Label layoutX="414.0" layoutY="125.0" prefHeight="17.0" prefWidth="84.0" text="partage fb">
+         <font>
+            <Font name="Candara Light" size="17.0" />
+         </font>
+      </Label>
 
 
     </children>

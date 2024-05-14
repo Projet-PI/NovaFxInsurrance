@@ -9,7 +9,7 @@ public class PasswordUtil {
      * @return a hashed password
      */
     public static String hashPassword(String plainTextPassword) {
-        return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt(13));
+        return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt(12));
     }
 
     /**
@@ -19,7 +19,12 @@ public class PasswordUtil {
      * @return true if the passwords match, false otherwise
      */
     public static boolean checkPassword(String plainTextPassword, String hashedPassword) {
-        return BCrypt.checkpw(plainTextPassword, hashedPassword);
-    }
+        try {
+            return BCrypt.checkpw(plainTextPassword, hashedPassword);
+        } catch (IllegalArgumentException e) {
+            System.err.println("Invalid hash provided: " + e.getMessage());
+            return false;
+        }
 
+    }
 }

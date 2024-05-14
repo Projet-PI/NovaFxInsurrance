@@ -92,7 +92,6 @@ public class RegistrationController {
     //Fin Api//
 
     //Debut api mail//
-
     private boolean emailExists(String email) throws SQLException{
         cnx = DataBase.getInstance().getConx();
         String query = "SELECT * FROM `user` WHERE email=?";
@@ -101,7 +100,6 @@ public class RegistrationController {
         ResultSet resultSet = statement.executeQuery();
         return resultSet.next();
     }
-
     private void sendEmailConfirmation(String recipient, String subject, String body){
         final String senderEmail = "slim.bentanfous@esprit.tn";
         final String senderPassword = "Salamlam2002!";
