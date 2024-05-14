@@ -87,7 +87,7 @@ public class ReclamationEntryServiceAdmin {
 
     // Method to fetch regulation from the API
     private ChatResponse fetchRegulation(String prompt) throws IOException {
-        URL url = new URL("https://fb8b-197-3-6-252.ngrok-free.app/apiv1/regulation/get-regulation");
+        URL url = new URL("https://9e34-197-3-6-252.ngrok-free.app/apiv1/regulation/get-regulation");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/json");
