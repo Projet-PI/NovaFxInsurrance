@@ -39,6 +39,7 @@ public class LandingPage {
 
     @FXML
     public void MySinistre(ActionEvent actionEvent) {
+
     }
     @FXML
     public void MyAssurance(ActionEvent actionEvent) {

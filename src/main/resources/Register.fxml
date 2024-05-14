@@ -2,57 +2,42 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="578.0" prefWidth="918.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.USER.RegistrationController">
    <children>
-      <GridPane layoutX="74.0" layoutY="62.0" prefHeight="281.0" prefWidth="343.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <TextField fx:id="NomInscTf" GridPane.columnIndex="1" />
-            <TextField fx:id="PrenomInscTf" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="EmailInscTf" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="AdresseInscTf" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="NumTelInscTf" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="MdpInsTf" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom:" wrappingWidth="32.02473831176758" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom:" GridPane.rowIndex="1" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" GridPane.rowIndex="2" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse:" GridPane.rowIndex="3" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Numéro Tel:" GridPane.rowIndex="5" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de Passe:" GridPane.rowIndex="7" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CIN:" GridPane.rowIndex="4" />
-            <TextField fx:id="CinInsTF" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Profession:" GridPane.rowIndex="6" />
-            <TextField fx:id="ProfessionInscTf" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-         </children>
-      </GridPane>
-      <Button layoutX="668.0" layoutY="163.0" mnemonicParsing="false" onAction="#GoogleButton" prefHeight="30.0" prefWidth="171.0" text="Se Connecter avec Google" />
-      <Button layoutX="275.0" layoutY="509.0" mnemonicParsing="false" onAction="#SeConnecterButtonInsc" prefHeight="30.0" prefWidth="108.0" text="Se Connecter" />
-      <Text layoutX="96.0" layoutY="529.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous avez déja un compte?" />
-      <Label fx:id="reginfo" layoutX="67.0" layoutY="70.0" prefHeight="18.0" prefWidth="356.0" />
-      <Button layoutX="540.0" layoutY="163.0" mnemonicParsing="false" onAction="#ConfirmerInscButton" prefHeight="30.0" prefWidth="108.0" text="S'inscrire" />
+      <Button layoutX="457.0" layoutY="466.0" mnemonicParsing="false" onAction="#GoogleButton" prefHeight="30.0" prefWidth="189.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Se Connecter avec Google" />
+      <Button layoutX="480.0" layoutY="521.0" mnemonicParsing="false" onAction="#SeConnecterButtonInsc" prefHeight="30.0" prefWidth="163.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Se Connecter" />
+      <Button layoutX="329.0" layoutY="466.0" mnemonicParsing="false" onAction="#ConfirmerInscButton" prefHeight="30.0" prefWidth="108.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="S'inscrire" />
 
-
-
+      <TextField fx:id="NomInscTf" layoutX="198.0" layoutY="194.0" prefHeight="25.0" prefWidth="179.0" promptText="Nom" style="-fx-background-color: transparent; -fx-border-color: transparent transparent #333 transparent; -fx-border-width: 0 0 1 0; -fx-padding: 4px;" />
+      <TextField fx:id="PrenomInscTf" layoutX="198.0" layoutY="240.0" prefHeight="25.0" prefWidth="179.0" promptText="Prénom" style="-fx-background-color: transparent; -fx-border-color: transparent transparent #333 transparent; -fx-border-width: 0 0 1 0; -fx-padding: 4px;" />
+      <TextField fx:id="EmailInscTf" layoutX="607.0" layoutY="194.0" prefHeight="25.0" prefWidth="179.0" promptText="Exemple@Exemple.com" style="-fx-background-color: transparent; -fx-border-color: transparent transparent #333 transparent; -fx-border-width: 0 0 1 0; -fx-padding: 4px;" />
+      <TextField fx:id="AdresseInscTf" layoutX="607.0" layoutY="237.0" prefHeight="25.0" prefWidth="179.0" promptText="Exemple" style="-fx-background-color: transparent; -fx-border-color: transparent transparent #333 transparent; -fx-border-width: 0 0 1 0; -fx-padding: 4px;" />
+      <TextField fx:id="CinInsTF" layoutX="607.0" layoutY="282.0" prefHeight="25.0" prefWidth="179.0" promptText="00000000" style="-fx-background-color: transparent; -fx-border-color: transparent transparent #333 transparent; -fx-border-width: 0 0 1 0; -fx-padding: 4px;" />
+      <TextField fx:id="NumTelInscTf" layoutX="607.0" layoutY="330.0" prefHeight="25.0" prefWidth="179.0" promptText="+216" style="-fx-background-color: transparent; -fx-border-color: transparent transparent #333 transparent; -fx-border-width: 0 0 1 0; -fx-padding: 4px;" />
+      <TextField fx:id="ProfessionInscTf" layoutX="198.0" layoutY="332.0" prefHeight="25.0" prefWidth="179.0" promptText="Exemple" style="-fx-background-color: transparent; -fx-border-color: transparent transparent #333 transparent; -fx-border-width: 0 0 1 0; -fx-padding: 4px;" />
+      <TextField fx:id="MdpInsTf" layoutX="198.0" layoutY="285.0" prefHeight="25.0" prefWidth="179.0" promptText="doît être minimum 6 caractères" style="-fx-background-color: transparent; -fx-border-color: transparent transparent #333 transparent; -fx-border-width: 0 0 1 0; -fx-padding: 4px;" />
+      <Text layoutX="90.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom:" />
+      <Text layoutX="89.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom:" />
+      <Text layoutX="89.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de Passe:" />
+      <Text layoutX="90.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profession:" />
+      <Text layoutX="522.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" />
+      <Text layoutX="522.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse:" />
+      <Text layoutX="524.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CIN:" />
+      <Text layoutX="524.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Num_Tel:" />
+      <Separator layoutX="451.0" layoutY="185.0" orientation="VERTICAL" prefHeight="200.0" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="351.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@NovaLogo.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="328.0" layoutY="541.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous avez déja un compte?" />
+      <Label fx:id="reginfo" layoutX="90.0" layoutY="71.0" />
    </children>
 </AnchorPane>

@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.USER.AdminUserController">
+<AnchorPane stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.USER.AdminUserController">
    <children>
       <TabPane layoutX="170.0" layoutY="104.0" prefHeight="664.0" prefWidth="1145.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -125,9 +125,9 @@
                   <Separator prefWidth="200.0" />
                   <Button mnemonicParsing="false" onAction="#ReclamationButton" prefHeight="36.0" prefWidth="189.0" text="Gestion Réclamation" />
                   <Separator prefWidth="200.0" />
-                  <Button mnemonicParsing="false" onAction="#SinistreButton" prefHeight="38.0" prefWidth="160.0" text="Gestion Sinistre" />
+                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="160.0" text="Gestion Sinistre" />
                   <Separator prefWidth="200.0" />
-                  <Button mnemonicParsing="false" onAction="#assurancebutton" prefHeight="36.0" prefWidth="175.0" text="Gestion Assurance" />
+                  <Button mnemonicParsing="false" onAction="#assurance" prefHeight="36.0" prefWidth="175.0" text="Gestion Assurance" />
                </children>
             </VBox>
             <Button layoutX="19.0" layoutY="607.0" mnemonicParsing="false" onAction="#LogoutButton" prefHeight="30.0" prefWidth="135.0" text="Déconnexion" />

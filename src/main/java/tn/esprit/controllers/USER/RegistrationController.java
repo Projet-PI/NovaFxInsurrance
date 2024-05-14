@@ -69,9 +69,7 @@ public class RegistrationController {
     private final ServiceUtilisateurs UserS = new ServiceUtilisateurs();
 
     // Api SMS Slim
-    public static final String ACCOUNT_SID = "AC82bc4c7caa7f6f456f88448e5d6227c0";
-    public static final String AUTH_TOKEN = "098dd902c953033a3e7ca73df761f5fb";
-    public static final String TWILIO_PHONE_NUMBER = "+12697491291";
+
     public String verificationCode;
     public String generateVerificationCode() {
         return String.format("%06d", new Random().nextInt(999999));
@@ -94,7 +92,6 @@ public class RegistrationController {
     //Fin Api//
 
     //Debut api mail//
-
     private boolean emailExists(String email) throws SQLException{
         cnx = DataBase.getInstance().getConx();
         String query = "SELECT * FROM `user` WHERE email=?";
@@ -103,7 +100,6 @@ public class RegistrationController {
         ResultSet resultSet = statement.executeQuery();
         return resultSet.next();
     }
-
     private void sendEmailConfirmation(String recipient, String subject, String body){
         final String senderEmail = "slim.bentanfous@esprit.tn";
         final String senderPassword = "Salamlam2002!";

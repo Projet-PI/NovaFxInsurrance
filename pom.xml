@@ -25,6 +25,11 @@
             <version>5.5.13.3</version>
         </dependency>
         <dependency>
+            <groupId>at.favre.lib</groupId>
+            <artifactId>bcrypt</artifactId>
+            <version>0.10.2</version>
+        </dependency>
+        <dependency>
 
             <groupId>com.twilio.sdk</groupId>
             <artifactId>twilio</artifactId>

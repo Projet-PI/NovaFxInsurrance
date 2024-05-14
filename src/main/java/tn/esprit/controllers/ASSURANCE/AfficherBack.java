@@ -1,5 +1,9 @@
 package tn.esprit.controllers.ASSURANCE;
 
+import facebook4j.Facebook;
+import facebook4j.FacebookException;
+import facebook4j.FacebookFactory;
+import facebook4j.auth.AccessToken;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXMLLoader;
@@ -57,6 +61,8 @@ public class AfficherBack {
 
     @FXML
     private TableColumn<Assurance, Assurance> deleteColumn;
+    @FXML
+    private Button shareFbBtn;
 
     @FXML
     private TextField filterField;
@@ -269,30 +275,36 @@ public class AfficherBack {
         }
     }
 
+    public void navigateToAjouterAssurance(ActionEvent actionEvent) {
+        // Ajouter le code pour naviguer vers la vue d'ajout d'assurance
+    }
 
-    public void goToAjouterAssurance(ActionEvent actionEvent) {
+    @FXML
+    private void partage(ActionEvent event) {
+        System.out.println("dkhlnq");
+        String appId = "330484183474248";
+        String appSecret = "4cf17d1c8ce3d0b4e57840c5504e611f";
+        String accessTokenString = "EAAERIQJ4OLsBOzGMVRPowZARA4W1iz3U1j4D8GlJu6xC7IZCwOm0JXZB0FGZCQOtOgnciknoBv8bjPA6psHjUf2PfzoKCPZC1hG48YBsHwDiQXYnyW4CxqV7DaFx1DqaXx55P6mYncsJT4zJHZCRytFXQcdSZCOkZAfqAyLbkeDMuJZBVLjeCJUgNr2ZCCFEEbYH9tMu8HoLAPej4ySl6ApgZDZD";
+
+        Facebook facebook = new FacebookFactory().getInstance();
+        facebook.setOAuthAppId(appId, appSecret);
+        facebook.setOAuthAccessToken(new AccessToken(accessTokenString, null));
+
+        // Construire le message à partager sur Facebook
+        String msg = "une nouvelle assurance est ajouter ";
+//                + "\n*** Titre: "
+//                + A_s.getTitre()
+//                + "\n*** Description: "
+//        //+ blogservice.getDescription()
+//        //+ "\n***Date: "
+//        //+ blogservice.getNiveau() ;
+
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/assurancefxml/AjouterAssurance.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+            facebook.postStatusMessage(msg);
+            System.out.println("Post shared successfully.");
+        } catch (FacebookException e) {
+            throw new RuntimeException(e);
         }
-    }
 
-
-    public void goToListeContrat(ActionEvent actionEvent) {try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/assurancefxml/AfficherBackcontrat.fxml"));
-        Parent root = loader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
-    } catch (IOException e) {
-        e.printStackTrace();
-        // Handle the error gracefully, like showing an alert or logging it
     }
-    }
-
 }

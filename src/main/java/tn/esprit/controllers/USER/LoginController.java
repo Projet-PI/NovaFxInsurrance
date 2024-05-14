@@ -4,7 +4,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -22,6 +22,7 @@ import java.util.UUID;
 
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+//import org.mindrot.jbcrypt.BCrypt;
 import tn.esprit.entities.User;
 import tn.esprit.services.ServiceUtilisateurs;
 import tn.esprit.utils.DataBase;
@@ -91,7 +92,8 @@ public class LoginController implements Initializable {
                     ResultSet rs = stm.executeQuery();
                     if (rs.next()) {
                         String storedHash = rs.getString("password");
-                        if (PasswordUtil.checkPassword(password, storedHash)) {
+                        BCrypt.Result result= BCrypt.verifyer().verify(password.toCharArray(),storedHash);
+                        if (result.verified) {
                             return new User(rs.getInt("id"),
                                     rs.getInt("cin"),
                                     rs.getString("nom"),
