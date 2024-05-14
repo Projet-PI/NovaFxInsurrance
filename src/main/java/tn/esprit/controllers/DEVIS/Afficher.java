@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import tn.esprit.Interfaces.MyListener;
 import tn.esprit.controllers.DEVIS.Devis;
@@ -29,6 +30,8 @@ public class Afficher implements Initializable {
     private Button Stat;
     @FXML
     private TextField search;
+    @FXML
+    private Button Home;
 
     // Existing Java declarations...
 
@@ -72,6 +75,27 @@ public class Afficher implements Initializable {
     {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/chart.fxml"));
+            Parent root = loader.load();
+
+            // Créer la scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la scène actuelle à partir du bouton cliqué
+            Stage stage = (Stage) Stat.getScene().getWindow();
+
+            // Remplacer la scène actuelle par la nouvelle scène
+            stage.setScene(scene);
+            stage.show();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void Home(ActionEvent event)
+    {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Adminuser.fxml"));
             Parent root = loader.load();
 
             // Créer la scène avec la nouvelle page
