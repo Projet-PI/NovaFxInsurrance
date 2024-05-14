@@ -235,7 +235,7 @@
                         <Insets left="100.0" top="30.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="66.0" styleClass="avis-button" stylesheets="@style/styleafficher.css" text="A-Z" textFill="#fcf9f9">
+                  <Button fx:id="Home" onAction="#Home" mnemonicParsing="false" prefHeight="38.0" prefWidth="66.0" styleClass="avis-button" stylesheets="@style/styleafficher.css" text="Home" textFill="#fcf9f9">
                      <HBox.margin>
                         <Insets left="20.0" top="30.0" />
                      </HBox.margin>

@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="666.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ASSURANCE.AfficherBack">
+<AnchorPane prefHeight="666.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ASSURANCE.AfficherBack">
     <stylesheets>
         <URL value="@backInterface.png" />
     </stylesheets>
     <children>
-      <ImageView fitHeight="666.0" fitWidth="1030.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../backInterface.png" />
-         </image></ImageView>
+        <ImageView fitHeight="666.0" fitWidth="1030.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../backInterface.png" />
+            </image></ImageView>
         <TableView fx:id="tableau" layoutX="-18.0" layoutY="175.0" prefHeight="395.0" prefWidth="779.0">
             <columns>
                 <TableColumn fx:id="idtv" prefWidth="75.0" text="id" />
@@ -33,16 +27,12 @@
             </columns>
         </TableView>
 
-      <TextField fx:id="filterField" layoutX="21.0" layoutY="106.0" promptText="Search" />
-        <Button fx:id="shareFbBtn" layoutX="400.0" layoutY="122.0" mnemonicParsing="false" onAction="#partage" prefHeight="32.0" prefWidth="115.0" style="-fx-background-color:rgba(0,0,255,0.31);" styleClass="blue-button" />
+        <TextField fx:id="filterField" layoutX="21.0" layoutY="106.0" promptText="Search" />
+        <Button layoutX="248.0" layoutY="122.0" mnemonicParsing="false" onAction="#ExporterExcel" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8px 16px; -fx-border-radius: 3px;" text="Export Excel" />
 
-        <Button layoutX="281.0" layoutY="122.0" mnemonicParsing="false" onAction="#ExporterExcel" text="export excel" />
-      <Label layoutX="414.0" layoutY="125.0" prefHeight="17.0" prefWidth="84.0" text="partage fb">
-         <font>
-            <Font name="Candara Light" size="17.0" />
-         </font>
-      </Label>
-
+        <Button layoutX="398.0" layoutY="122.0" mnemonicParsing="false" onAction="#goToAjouterAssurance" style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8px 16px; -fx-border-radius: 3px;" text="Ajouter Assurance" />
+        <Button fx:id="shareFbBtn" layoutX="500.0" layoutY="122.0" mnemonicParsing="false" onAction="#partage" prefHeight="32.0" prefWidth="115.0" style="-fx-background-color:rgba(0,0,255,0.31);" styleClass="blue-button" AnchorPane.topAnchor="10.0" />
+        <Button layoutX="548.0" layoutY="122.0" mnemonicParsing="false" onAction="#goToListeContrat" style="-fx-background-color: #36f48f; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8px 16px; -fx-border-radius: 3px;" text="Liste Contrat" />
 
     </children>
 

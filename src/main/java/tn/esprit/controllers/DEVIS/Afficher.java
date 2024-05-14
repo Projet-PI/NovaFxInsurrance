@@ -24,7 +24,8 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class Afficher implements Initializable {
-
+    @FXML
+    private Button Home;
     @FXML
     private Button Stat;
     @FXML
@@ -89,6 +90,28 @@ public class Afficher implements Initializable {
             e.printStackTrace();
         }
     }
+    public void Home(ActionEvent event)
+    {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/adminuser.fxml"));
+            Parent root = loader.load();
+
+            // Créer la scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la scène actuelle à partir du bouton cliqué
+            Stage stage = (Stage) Stat.getScene().getWindow();
+
+            // Remplacer la scène actuelle par la nouvelle scène
+            stage.setScene(scene);
+            stage.show();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     private void setChosenRestau(tn.esprit.entities.Devis r) {
         nomRestau.setText(r.getName());

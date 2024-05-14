@@ -61,8 +61,6 @@ public class AfficherBack {
 
     @FXML
     private TableColumn<Assurance, Assurance> deleteColumn;
-    @FXML
-    private Button shareFbBtn;
 
     @FXML
     private TextField filterField;
@@ -275,8 +273,30 @@ public class AfficherBack {
         }
     }
 
-    public void navigateToAjouterAssurance(ActionEvent actionEvent) {
-        // Ajouter le code pour naviguer vers la vue d'ajout d'assurance
+
+    public void goToAjouterAssurance(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/assurancefxml/AjouterAssurance.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void goToListeContrat(ActionEvent actionEvent) {try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/assurancefxml/AfficherBackcontrat.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    } catch (IOException e) {
+        e.printStackTrace();
+        // Handle the error gracefully, like showing an alert or logging it
+    }
     }
 
     @FXML
