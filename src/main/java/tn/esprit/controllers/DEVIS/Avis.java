@@ -197,7 +197,7 @@ public class Avis implements Initializable {
         service.ajouter(avis);
 
         // Si le statut est "traite", envoyer un SMS
-        if ("101".equals(status)) {
+        if ("traite".equals(status)) {
             // Construire le message à envoyer par SMS
             String message = "Merci d'avoir passe un devis Chez Nova Insurrance  : " + response;
 
